@@ -1,0 +1,37 @@
+{% load has_group %}
+
+
+    <li class="nav-item has-treeview {% if 'Dashboard' in segment %} menu-open {% endif %}">
+      <a href="#" class="nav-link {% if 'Dashboard' in segment %} active {% endif %}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+          Dashboard
+          
+        </p>
+      </a>
+      {% if request.user|has_group:"Grupo01" %}
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="/Dashboard_salesucursales.html" class="nav-link {% if 'Dashboard_salesucursales.html' in segment %} active {% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Sucursales
+                <i class="right fas fa-angle-left"></i>
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/index2.html" class="nav-link {% if 'index2.html' in segment %} active {% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Dashboard v2</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/index3.html" class="nav-link {% if 'index3.html' in segment %} active {% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Dashboard v3</p>
+            </a>
+          </li>
+        </ul>
+      {% endif %}
+    </li>

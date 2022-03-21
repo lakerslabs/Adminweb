@@ -5,7 +5,7 @@ from unipath import Path
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print('>>> CORE_DIR: ' + str(CORE_DIR))
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
@@ -48,7 +48,7 @@ ROOT_URLCONF = 'core.urls'
 LOGIN_REDIRECT_URL = "home"  # Route defined in home/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined in home/urls.py
 TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
-print('>>> TEMPLATE_DIR: ' + str(TEMPLATE_DIR))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -106,13 +106,12 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-print('>>> STATIC_ROOT: ' + str(STATIC_ROOT))
-print('>>> STATIC_URL: ' + str(STATIC_URL))
+
 
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [CORE_DIR + '/apps/static']
-print('>>> STATICFILES_DIRS: ' + str(STATICFILES_DIRS))
+
 
 
 #############################################################

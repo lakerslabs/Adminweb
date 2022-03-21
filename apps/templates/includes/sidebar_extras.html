@@ -1,0 +1,40 @@
+{% load has_group %}
+<li class="nav-item has-treeview {% if 'tables-' in segment %} menu-open {% endif %}">
+    <a href="#" class="nav-link {% if 'tables-' in segment %} active {% endif %}">
+      <i class="nav-icon fas fa-book"></i>
+      <p>
+        Instructivos
+        <i class="fas fa-angle-left right"></i>
+      </p>
+    </a>
+    
+  </li>
+  {% if request.user|has_group:"Grupo01" %}
+    <li class="nav-item">
+      <a href="transporte" class="nav-link">
+        <i class="nav-icon far fa-calendar-alt"></i>
+        <p>
+          Transporte
+          <!-- <span class="badge badge-info right">2</span> -->
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="direccionario" class="nav-link">
+        <i class="nav-icon fas fa-search"></i>
+        <p>
+          Direccionario
+          <!-- <span class="badge badge-info right">2</span> -->
+        </p>
+      </a>
+    </li>
+  {% endif %}
+  <li class="nav-item">
+    <a href="/calendar.html" class="nav-link">
+      <i class="nav-icon far fa-calendar-alt"></i>
+      <p>
+        Calendar
+        <span class="badge badge-info right">2</span>
+      </p>
+    </a>
+  </li>
