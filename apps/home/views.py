@@ -52,10 +52,8 @@ def pages(request):
 
 @login_required(login_url="/login/")
 def direccionario(request):
-    context = {'segment': 'direccionario'}
-
-    html_template = loader.get_template('home/direccionario.html')
-    return HttpResponse(html_template.render(context, request))
+    dir_iframe = 'http://192.168.0.143:8080/proyecto_21/direccionario/index.php'
+    return render(request,'home/direccionario.html',{'dir_iframe':dir_iframe})
 
 
 @login_required(login_url="/login/")
