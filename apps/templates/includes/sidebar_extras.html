@@ -9,7 +9,7 @@
     </a>
     
   </li>
-  {% if request.user|has_group:"Grupo01" %}
+  {% if request.user|has_group:"admin" %}
     <li class="nav-item">
       <a href="transporte" class="nav-link">
         <i class="nav-icon far fa-calendar-alt"></i>

@@ -14,6 +14,7 @@ urlpatterns = [
     # The transporte page
     path('transporte', views.transporte, name='transporte'),
     path('direccionario', views.direccionario, name='direccionario'),
+    path('salesucursales', views.sale_sucursales, name='direccionario'),
     path('transporte/crearTransporte', views.crearTransporte, name='crearTransporte'),
     path('eliminarTransporte/<int:id>', views.eliminarTransporte, name='eliminarTransporte'),
     path('transporte/editarTransporte/<int:id>', views.editarTransporte, name='editarTransporte'),
