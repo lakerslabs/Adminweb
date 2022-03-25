@@ -14,6 +14,8 @@ from Transportes.forms import TransporteForm
 from reservarsala.models import reservaSala
 # from reservarsala.form import reservaForm
 from django.views.generic.list import ListView
+from apps.home.vistas.viewsDash import *
+from apps.home.vistas.viewsReportes import *
 
 
 
@@ -49,15 +51,6 @@ def pages(request):
     except:
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
-
-@login_required(login_url="/login/")
-def sale_sucursales(request):
-    return render(request,'home/Dashboard_salesucursales.html')
-
-@login_required(login_url="/login/")
-def direccionario(request):
-    dir_iframe = 'http://192.168.0.143:8080/proyecto_21/direccionario/index.php'
-    return render(request,'home/direccionario.html',{'dir_iframe':dir_iframe})
 
 
 @login_required(login_url="/login/")
