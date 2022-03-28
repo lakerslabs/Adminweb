@@ -25,7 +25,7 @@ from apps.home.vistas.settingsUrls import *
 # Logistica
 @login_required(login_url="/login/")
 def Kpis_Logistica(request):
-    Nombre='Kpis_Logistica'
+    Nombre='Kpis Logistica'
     dir_iframe = DIR_PBI['Kpis_Logística']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
@@ -40,7 +40,7 @@ def Promociones(request):
 
 @login_required(login_url="/login/")
 def Inventarios_Sucursales(request):
-    Nombre='Inventarios_Sucursales'
+    Nombre='Inventarios Sucursales'
     dir_iframe = DIR_PBI['Inventarios_Sucursales']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
@@ -58,45 +58,45 @@ def Geodatos(request):
 
 @login_required(login_url="/login/")
 def Notas_de_credito(request):
-    Nombre='Notas_de_credito'
+    Nombre='Notas de credito'
     dir_iframe = DIR_PBI['Notas_de_credito']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Ventas_Franquicias(request):
-    Nombre='Ventas_Franquicias'
+    Nombre='Ventas Franquicias'
     dir_iframe = DIR_PBI['Ventas_Franquicias']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Ventas_Sucursales(request):
-    Nombre='Ventas_Sucursales'
+    Nombre='Ventas Sucursales'
     dir_iframe = DIR_PBI['Ventas_Sucursales']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Velocidad_de_Ventas(request):
-    Nombre='Velocidad_de_Ventas'
+    Nombre='Velocidad de Ventas'
     dir_iframe = DIR_PBI['Velocidad_de_Ventas']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 # Mayoristas
 @login_required(login_url="/login/")
 def Ventas_Mayoristas(request):
-    Nombre='Ventas_Mayoristas'
+    Nombre='Ventas Mayoristas'
     dir_iframe = DIR_PBI['Ventas_Mayoristas']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 # Ecommerce
 @login_required(login_url="/login/")
 def Ventas_Ecommerce(request):
-    Nombre='Ventas_Ecommerce'
+    Nombre='Ventas Ecommerce'
     dir_iframe = DIR_PBI['Ventas_Ecommerce']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Kpis_Ecommerce(request):
-    Nombre='Kpis_Ecommerce'
+    Nombre='Kpis Ecommerce'
     dir_iframe = DIR_PBI['Kpis_Ecommerce']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 

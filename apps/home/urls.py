@@ -25,9 +25,15 @@ urlpatterns = [
     # Logistica
     path('Kpis_Logistica', views.Kpis_Logistica, name='Dashboard_PowerBI'), 
     path('Pedidos_pendiente_despacho', views.Pedidos_pendiente_despacho, name='Reportes'),
+    path('Gestión_cronograma', views.Gestión_cronograma, name='Herramientas'),
+    path('Gestión_guías_mayoristas', views.Gestión_guías_mayoristas, name='Herramientas'),
+    path('Gestión_cronograma', views.Gestión_cronograma, name='Herramientas'),
 
     # Abastecimiento
     path('Auditoría_orden', views.Auditoría_orden, name='Reportes'),
+    path('Carga_de_orden', views.Carga_de_orden, name='Herramientas'),
+    path('Activar_orden', views.Activar_orden, name='Herramientas'),
+    path('Desactivar_orden', views.Desactivar_orden, name='Herramientas'),
 
 
     # Comercial
@@ -41,6 +47,7 @@ urlpatterns = [
     path('Velocidad_de_Ventas', views.Velocidad_de_Ventas, name='Dashboard_PowerBI'),
     path('Stock_Sucursales', views.Stock_Sucursales, name='Reportes'),
     path('Stock_central', views.Stock_central, name='Reportes'),
+    path('Ventas_sucursales', views.Ventas_sucursales, name='Herramientas'),
     
 
     # Mayoristas
@@ -54,6 +61,7 @@ urlpatterns = [
     path('Pedidos', views.Pedidos, name='Reportes'),
     path('Auditoría_Ecommerce', views.Auditoría_Ecommerce, name='Reportes'),
     path('Auditoría_Prisma', views.Auditoría_Prisma, name='Reportes'),
+    path('Control_pedidos', views.Control_pedidos, name='Herramientas'),
 
 
     # Matches any html file

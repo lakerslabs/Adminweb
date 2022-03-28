@@ -16,6 +16,7 @@ from reservarsala.models import reservaSala
 from django.views.generic.list import ListView
 from apps.home.vistas.viewsDash import *
 from apps.home.vistas.viewsReportes import *
+from apps.home.vistas.viewsHerramientas import *
 
 
 

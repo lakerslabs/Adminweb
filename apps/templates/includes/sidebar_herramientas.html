@@ -1,6 +1,6 @@
-{% load has_group %}  
-  <li class="nav-item has-treeview {% if 'tables-' in segment %} menu-open {% endif %}">
-    <a href="#" class="nav-link {% if 'tables-' in segment %} active {% endif %}">
+{% load has_group %}
+  <li class="nav-item has-treeview {% if 'Herramientas' in segment %} menu-open {% endif %}">
+    <a href="#" class="nav-link {% if 'Herramientas' in segment %} active {% endif %}">
       <i class="nav-icon fas fa-plus-square"></i>
       <p>
         Herramientas
@@ -23,7 +23,18 @@
         
         {% endif %}
         {% if request.user|has_group:"Logistica" or request.user|has_group:"Logistica_Sup" or request.user|has_group:"admin" %}
-        
+        <li class="nav-item">
+          <a href="Gestión_guías_mayoristas" class="nav-link {% if 'Gestión_guías_mayoristas' in segment %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Guías mayoristas</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Gestión_cronograma" class="nav-link {% if 'Gestión_cronograma' in segment %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Gestión cronograma</p>
+          </a>
+        </li>
         {% endif %}
       <!-- Fin Logistica -->
       
@@ -32,7 +43,26 @@
                   <!-- ver solo el supervisor del area aqui -->
         {% endif %}
         {% if request.user|has_group:"Abastecimiento" or request.user|has_group:"Abastecimiento_Sup" or request.user|has_group:"admin" %}
-                  <!-- accesos del area aqui -->
+        <!-- accesos del area aqui -->
+        <li class="nav-item">
+          <a href="Carga_de_orden" class="nav-link {% if 'Carga_de_orden' in segment %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Carga de orden</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Activar_orden" class="nav-link {% if 'Activar_orden' in segment %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Activar orden</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Desactivar_orden" class="nav-link {% if 'Desactivar_orden' in segment %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Desactivar orden</p>
+          </a>
+        </li>
+
         {% endif %}
       <!-- Fin 	Abastecimiento -->
 
@@ -50,7 +80,13 @@
                   <!-- ver solo el supervisor del area aqui -->
         {% endif %}
         {% if request.user|has_group:"e-commerce" or request.user|has_group:"e-commerce_Sup" or request.user|has_group:"admin" %}
-                  <!-- accesos del area aqui -->
+        <!-- accesos del area aqui -->
+        <li class="nav-item">
+          <a href="Control_pedidos" class="nav-link {% if 'Control_pedidos' in segment %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Control pedidos</p>
+          </a>
+        </li>
         {% endif %}
       <!-- Fin 	e-commerce -->          
 
@@ -66,6 +102,15 @@
       <!-- inicio 	Comercial -->
         {% if request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %} 
                   <!-- ver solo el supervisor del area aqui -->
+        {% endif %}
+        {% if request.user|has_group:"Comercial_may" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %}
+        <!-- accesos del area aqui -->
+        <li class="nav-item">
+          <a href="Ventas_sucursales" class="nav-link {% if 'Ventas_sucursales' in segment %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Ventas sucursales</p>
+          </a>
+        </li>
         {% endif %}
         {% if request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %}
                   <!-- accesos del area aqui -->

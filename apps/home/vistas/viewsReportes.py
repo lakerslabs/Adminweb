@@ -16,7 +16,7 @@ from apps.home.vistas.settingsUrls import *
 
 @login_required(login_url="/login/")
 def Pedidos_pendiente_despacho(request):
-    Nombre='Pedidos_pendiente_despacho'
+    Nombre='Despachos pendientes'
     dir_iframe = DIR_REPORTES['Pedidos_pendiente_despacho']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
@@ -33,13 +33,13 @@ def Auditoría_orden(request):
 
 @login_required(login_url="/login/")
 def Stock_Sucursales(request):
-    Nombre='Stock_Sucursales'
+    Nombre='Stock Sucursales'
     dir_iframe = DIR_REPORTES['Stock_Sucursales']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Stock_central(request):
-    Nombre='Stock_central'
+    Nombre='Stock central'
     dir_iframe = DIR_REPORTES['Stock_central']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
@@ -48,7 +48,7 @@ def Stock_central(request):
 
 @login_required(login_url="/login/")
 def Tracking_pedidos_mayoristas(request):
-    Nombre='Tracking_pedidos_mayoristas'
+    Nombre='Tracking pedidos_mayoristas'
     dir_iframe = DIR_REPORTES['Tracking_pedidos_mayoristas']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
@@ -63,12 +63,12 @@ def Pedidos(request):
 
 @login_required(login_url="/login/")
 def Auditoría_Ecommerce(request):
-    Nombre='Auditoría_Ecommerce'
+    Nombre='Auditoría Ecommerce'
     dir_iframe = DIR_REPORTES['Auditoría_Ecommerce']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Auditoría_Prisma(request):
-    Nombre='Auditoría_Prisma'
+    Nombre='Auditoría Prisma'
     dir_iframe = DIR_REPORTES['Auditoría_Prisma']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
