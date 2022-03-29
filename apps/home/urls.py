@@ -63,6 +63,9 @@ urlpatterns = [
     path('Auditoría_Prisma', views.Auditoría_Prisma, name='Reportes'),
     path('Control_pedidos', views.Control_pedidos, name='Herramientas'),
 
+    # Extras
+    path('direccionario', views.direccionario, name='Extras'),
+
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),

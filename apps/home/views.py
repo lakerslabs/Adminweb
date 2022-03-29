@@ -17,6 +17,7 @@ from django.views.generic.list import ListView
 from apps.home.vistas.viewsDash import *
 from apps.home.vistas.viewsReportes import *
 from apps.home.vistas.viewsHerramientas import *
+from apps.home.vistas.viewsExtras import *
 
 
 

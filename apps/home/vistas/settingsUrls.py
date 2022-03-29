@@ -51,3 +51,8 @@ DIR_HERAMIENTAS = {
     'Control_pedidos': 'http://192.168.0.143:8080/logistica/ecommerce/',
     
 }
+
+DIR_EXTRAS = {
+    'direccionario': 'http://192.168.0.143:8080/proyecto_21/direccionario/index.php',
+    
+}
