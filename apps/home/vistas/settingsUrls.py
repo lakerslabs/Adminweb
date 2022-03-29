@@ -38,8 +38,8 @@ DIR_REPORTES = {
 
 DIR_HERAMIENTAS = {
     # Logistica
-    'Gestión_cronograma': 'http://192.168.0.143:8080/sistemas/cronoDespacho/index.php',
-    'Gestión_guías_mayoristas': 'http://192.168.0.143:8080/Despacho/guias.php',
+    'Gestion_cronograma': 'http://192.168.0.143:8080/sistemas/cronoDespacho/index.php',
+    'Gestion_guias_mayoristas': 'http://192.168.0.143:8080/Despacho/guias.php',
     # Abastecimiento
     'Carga_de_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/index.php',
     'Activar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/activaOrdenes.php',

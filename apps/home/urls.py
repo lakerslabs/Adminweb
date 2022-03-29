@@ -5,7 +5,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.urls import path, re_path
 from apps.home import views
-from apps.home.direcciones import *
+
 
 urlpatterns = [
 
@@ -25,9 +25,9 @@ urlpatterns = [
     # Logistica
     path('Kpis_Logistica', views.Kpis_Logistica, name='Dashboard_PowerBI'), 
     path('Pedidos_pendiente_despacho', views.Pedidos_pendiente_despacho, name='Reportes'),
-    path('Gestión_cronograma', views.Gestión_cronograma, name='Herramientas'),
-    path('Gestión_guías_mayoristas', views.Gestión_guías_mayoristas, name='Herramientas'),
-    path('Gestión_cronograma', views.Gestión_cronograma, name='Herramientas'),
+    path('Gestion_cronograma', views.Gestion_cronograma, name='Herramientas'),
+    path('Gestion_guias_mayoristas', views.Gestion_guias_mayoristas, name='Herramientas'),
+    
 
     # Abastecimiento
     path('Auditoría_orden', views.Auditoría_orden, name='Reportes'),

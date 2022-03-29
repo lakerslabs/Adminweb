@@ -21,15 +21,15 @@ from apps.home.vistas.settingsUrls import *
 
 # Logistica
 @login_required(login_url="/login/")
-def Gestión_cronograma(request):
+def Gestion_cronograma(request):
     Nombre='Gestión cronograma'
-    dir_iframe = DIR_HERAMIENTAS['Gestión_cronograma']
+    dir_iframe = DIR_HERAMIENTAS['Gestion_cronograma']
     return render(request,'home/PlantillaHerramientas.html',{'dir_iframe':dir_iframe,})
 
 @login_required(login_url="/login/")
-def Gestión_guías_mayoristas(request):
+def Gestion_guias_mayoristas(request):
     Nombre='Guías mayoristas'
-    dir_iframe = DIR_HERAMIENTAS['Gestión_guías_mayoristas']
+    dir_iframe = DIR_HERAMIENTAS['Gestion_guias_mayoristas']
     return render(request,'home/PlantillaHerramientas.html',{'dir_iframe':dir_iframe,})
 
 # Abastecimiento
