@@ -26,7 +26,7 @@ from apps.home.vistas.settingsUrls import *
 @login_required(login_url="/login/")
 def Kpis_Logistica(request):
     Nombre='Kpis Logistica'
-    dir_iframe = DIR_PBI['Kpis_Logística']
+    dir_iframe = DIR_PBI['Kpis_Logistica']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 # Abastecimiento

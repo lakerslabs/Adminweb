@@ -30,7 +30,7 @@ urlpatterns = [
     
 
     # Abastecimiento
-    path('Auditoría_orden', views.Auditoría_orden, name='Reportes'),
+    path('Auditoria_orden', views.Auditoria_orden, name='Reportes'),
     path('Carga_de_orden', views.Carga_de_orden, name='Herramientas'),
     path('Activar_orden', views.Activar_orden, name='Herramientas'),
     path('Desactivar_orden', views.Desactivar_orden, name='Herramientas'),
@@ -59,8 +59,8 @@ urlpatterns = [
     path('Ventas_Ecommerce', views.Ventas_Ecommerce, name='Dashboard_PowerBI'),
     path('Kpis_Ecommerce', views.Kpis_Ecommerce, name='Dashboard_PowerBI'),
     path('Pedidos', views.Pedidos, name='Reportes'),
-    path('Auditoría_Ecommerce', views.Auditoría_Ecommerce, name='Reportes'),
-    path('Auditoría_Prisma', views.Auditoría_Prisma, name='Reportes'),
+    path('Auditoria_Ecommerce', views.Auditoria_Ecommerce, name='Reportes'),
+    path('Auditoria_Prisma', views.Auditoria_Prisma, name='Reportes'),
     path('Control_pedidos', views.Control_pedidos, name='Herramientas'),
 
     # Extras

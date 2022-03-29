@@ -1,6 +1,6 @@
 DIR_PBI = {
     # Logistica
-    'Kpis_Logística':'https://app.powerbi.com/view?r=eyJrIjoiNTYxZDFlNGEtZTFiNy00ODM1LTk5NzYtZTg3NDljYTM3ZmVhIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
+    'Kpis_Logistica':'https://app.powerbi.com/view?r=eyJrIjoiNTYxZDFlNGEtZTFiNy00ODM1LTk5NzYtZTg3NDljYTM3ZmVhIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     # Abastecimiento
     # Comercial
     'Promociones':'https://app.powerbi.com/view?r=eyJrIjoiYTg5MGFmZmEtZGI3YS00ODcwLWIzMzctNWZiYzg2ZTQ4ZGQ1IiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
@@ -23,7 +23,7 @@ DIR_REPORTES = {
     # Logistica
     'Pedidos_pendiente_despacho':'http://192.168.0.143:8080/sistemas/cronoDespacho/pedidos.php',
     # Abastecimiento
-    'Auditoría_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/listOrdenesComercial.php',
+    'Auditoria_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/listOrdenesComercial.php',
     # Comercial
     'Stock_Sucursales': 'http://192.168.0.143:8080/logistica/stockSuc.php',
     'Stock_central': 'http://192.168.0.143:8080/logistica/stock.php',
@@ -31,8 +31,8 @@ DIR_REPORTES = {
     'Tracking_pedidos_mayoristas': 'http://192.168.0.143:8080/Despacho/tracking.php',
     # Ecommerce
     'Pedidos': 'http://192.168.0.143:8080/ECOMMERCE/',
-    'Auditoría_Ecommerce': 'http://app.xl.com.ar:8080/ecommerce-auditoria/',
-    'Auditoría_Prisma': 'http://app.xl.com.ar:8080/ecommerce/auditoriaPrisma/',
+    'Auditoria_Ecommerce': 'http://app.xl.com.ar:8080/ecommerce-auditoria/',
+    'Auditoria_Prisma': 'http://app.xl.com.ar:8080/ecommerce/auditoriaPrisma/',
 
 }
 

@@ -23,9 +23,9 @@ def Pedidos_pendiente_despacho(request):
 # Abastecimiento
 
 @login_required(login_url="/login/")
-def Auditoría_orden(request):
-    Nombre='Auditoría_orden'
-    dir_iframe = DIR_REPORTES['Auditoría_orden']
+def Auditoria_orden(request):
+    Nombre='Auditoria orden'
+    dir_iframe = DIR_REPORTES['Auditoria_orden']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 
@@ -62,13 +62,13 @@ def Pedidos(request):
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
-def Auditoría_Ecommerce(request):
+def Auditoria_Ecommerce(request):
     Nombre='Auditoría Ecommerce'
-    dir_iframe = DIR_REPORTES['Auditoría_Ecommerce']
+    dir_iframe = DIR_REPORTES['Auditoria_Ecommerce']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
-def Auditoría_Prisma(request):
+def Auditoria_Prisma(request):
     Nombre='Auditoría Prisma'
-    dir_iframe = DIR_REPORTES['Auditoría_Prisma']
+    dir_iframe = DIR_REPORTES['Auditoria_Prisma']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
