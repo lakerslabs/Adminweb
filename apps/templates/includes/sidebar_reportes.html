@@ -1,11 +1,11 @@
 {% load has_group %}  
-  <li class="nav-item has-treeview {% if 'tables-' in segment %} menu-open {% endif %}">
-    <a href="#" class="nav-link {% if 'tables-' in segment %} active {% endif %}">
+  <li class="nav-item has-treeview {% if 'Reportes' in segment %} menu-open {% endif %}">
+    <a href="#" class="nav-link {% if 'Reportes' in segment %} active {% endif %}">
       <i class="nav-icon fas fa-copy"></i>
       <p>
         Reportes
         <i class="right fas fa-angle-left"></i>
-            <!-- <span class="right badge badge-danger">New</span> -->
+            <span class="right badge badge-danger">New</span>
       </p>
     </a>
         <!-- Colocar aqui los link de los submenus, por grupos
@@ -19,6 +19,13 @@
               Logistica 
             colocar dentro de xxxx_sup los submenus de acceso retringido-->
         <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="stockcentral" class="nav-link {% if 'Stock_central' in segment %} active {% endif %}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Stock Central</p>
+                <span class="badge badge-info right">New</span>
+              </a>
+            </li>
           <!-- inicio Logistica -->
             {% if request.user|has_group:"Logistica_Sup" or request.user|has_group:"admin" %} 
             
@@ -106,12 +113,7 @@
                 <p>Stock Sucursales</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="Stock_central" class="nav-link {% if 'Stock_central' in segment %} active {% endif %}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Stock central</p>
-              </a>
-            </li>
+            
             {% endif %}
             {% if request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %}
                       <!-- accesos sucursal aqui -->
@@ -119,7 +121,7 @@
             {% if request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %}
                       <!-- accesos franquisia aqui -->
             {% endif %}
-            {% if request.user|has_group:"Comercial_may" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %}
+            {% if request.user|has_group:"Logistica_Sup" or request.user|has_group:"Comercial_may" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %}
             <!-- accesos mayorista aqui -->
             <li class="nav-item">
               <a href="Tracking_pedidos_mayoristas" class="nav-link {% if 'Tracking_pedidos_mayoristas' in segment %} active {% endif %}">

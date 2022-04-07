@@ -52,3 +52,5 @@ DATABASES = {
             
     },
 }
+
+DATABASE_ROUTERS = ['consultasTango.routers.MiApp2Router']
