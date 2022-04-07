@@ -11,8 +11,6 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from Transportes.models import Transporte
 from Transportes.forms import TransporteForm
-from reservarsala.models import reservaSala
-# from reservarsala.form import reservaForm
 from django.views.generic.list import ListView
 from apps.home.vistas.viewsDash import *
 from apps.home.vistas.viewsReportes import *
@@ -116,96 +114,4 @@ def eliminarTransporte(request, id):
     transporte.delete()
     return redirect('transporte') 
 
-@login_required(login_url="/login/")
-def reservar(request):
-    reserva = reservaSala.objects.all()
-    print(reserva.values())
-    return render(request, 'appReserva/turnos.html', {'reserva': reserva})
 
-
-# @login_required(login_url="/login/")
-# def reservarTurnos(request):
-#     setEventos={
-#         'plugins': [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
-#         'header' : "{left:'prev,next today', center:'title', right:'dayGridMonth,timeGridWeek,timeGridDay'}",
-#         "'themeSystem'": "'bootstrap'",
-#         # //Random default events
-        
-#         'events': '',
-#         'editable': 'true',
-#         'droppable': 'true',
-#         'drop': 'function(info) {if (checkbox.checked) {info.draggedEl.parentNode.removeChild(info.draggedEl);}}'
-#       }
-#     turnos = cargarEventos()
-#     # turnos = [turno for turno in reserva.values('fecha_inicio')]
-#     # turnos=[]
-#     # for turno in reserva:
-#     #     turnos.append(turno.fecha_inicio.strftime('%d'))
-#     # pprint.pprint(turnos)
-#     # print(turnos)
-#     setEventos['events'] = turnos
-#     # pprint.pprint(setEventos)
-#     aux='{'
-#     for clave,valor in setEventos.items():
-#         aux=aux+clave+' : '+str(valor)+','
-
-#     aux=aux + '}'    
-    
-#     # aux=str(setEventos)
-    
-#     # print(type(aux))
-#     # print(aux)
-#     # print(type(setEventos))
-#     return render(request, 'appReserva/calendario.html', {'turnos': aux})
-
-def cargarEventos():
-    # turnos=[]
-    # eventos={}
-    # diccionario={'title':'', 'start':'', 'end':'','backgroundColor':'', 'borderColor':'','allDay':''}
-    diccionario={'allDay' : "false",
-             'backgroundColor' : "'#f39c12'",
-             'borderColor' : "'#f39c12'",
-             'end' : 'new Date(2021,12,27,16,00)',
-             'start' : 'new Date(2021,12,27,15,00)',
-             'title' : "'Sala1'"}
-    reserva = reservaSala.objects.all()
-    # for turno in reserva:
-    #     diccionario['title']=turno.titulo
-    #     y=turno.fecha_inicio.strftime("%Y")
-    #     m=turno.fecha_inicio.strftime("%m")
-    #     d=turno.fecha_inicio.strftime("%d")
-    #     h=turno.fecha_inicio.strftime("%H")
-    #     mi=turno.fecha_inicio.strftime("%M")
-    #     diccionario['start']='new Date('+y+','+m+','+d+','+h+','+mi+')'
-    #     y=turno.fecha_fin.strftime("%Y")
-    #     m=turno.fecha_fin.strftime("%m")
-    #     d=turno.fecha_fin.strftime("%d")
-    #     h=turno.fecha_fin.strftime("%H")
-    #     mi=turno.fecha_fin.strftime("%M")
-    #     diccionario['end']='new Date('+y+','+m+','+d+','+h+','+mi+')'
-    #     diccionario['backgroundColor']=turno.backgroundColor
-    #     diccionario['borderColor']=turno.borderColor
-    #     diccionario['allDay']=turno.allDay
-    #     turnos.append(diccionario)
-    
-    # turnos.append(diccionario)
-    turnos='[{'
-    for clave,valor in diccionario.items():
-        turnos=turnos+clave+' : '+str(valor)+','
-
-    turnos=turnos + '}]'
-    return turnos
-    
-
-# @login_required(login_url="/login/")
-class reservarTurnos2(ListView):
-    model = reservaSala
-    template_name = 'appReserva/calendario.html'
-    # context_object_name = 'reserva'
-    def get_queryset(self):
-        return reservaSala.objects.all()
-
-@login_required(login_url="/login/")
-def reservarTurnos(request):
-    reserva = reservaSala.objects.all()
-    return render(request, 'appReserva/calendario.html', {'turnos': reserva})

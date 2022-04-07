@@ -37,5 +37,18 @@ DATABASES = {
         'PASSWORD': 'root',
         'HOST': 'localhost',
         'DATABASE_PORT': '5432',
-    }
+    },
+    'mi_db_2':{
+            'ENGINE': 'mssql',
+            'NAME': 'LAKER_SA',
+            'USER': 'sa',
+            'PASSWORD': 'Axoft1988',
+            'HOST': 'SERVIDOR',
+            'PORT': '1433',
+
+            'OPTIONS': {
+                'driver': 'ODBC Driver 13 for SQL Server',
+            },
+            
+    },
 }

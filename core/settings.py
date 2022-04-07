@@ -1,4 +1,6 @@
 import os
+
+# from sympy import false
 from decouple import config
 from unipath import Path
 
@@ -28,9 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.home',  # Enable the inner home (home)
-    'reservarsala',
-    # 'aplicaciones.transportes',
+    'django_filters',
+    'bootstrapform',
     'Transportes',
+    'consultasTango',
     
 ]
 

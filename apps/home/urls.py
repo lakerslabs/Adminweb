@@ -18,8 +18,6 @@ urlpatterns = [
     path('eliminarTransporte/<int:id>', views.eliminarTransporte, name='eliminarTransporte'),
     path('transporte/editarTransporte/<int:id>', views.editarTransporte, name='editarTransporte'),
 
-    path('reservarsala', views.reservar, name='reserva'),
-    path('reservarsala2', views.reservarTurnos, name='reserva'),
 
 
     # Logistica
@@ -65,6 +63,7 @@ urlpatterns = [
 
     # Extras
     path('direccionario', views.direccionario, name='Extras'),
+    path('stockcentral', views.stockcentral, name='Extras'),
 
 
     # Matches any html file

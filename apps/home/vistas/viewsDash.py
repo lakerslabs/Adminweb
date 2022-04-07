@@ -7,8 +7,6 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from Transportes.models import Transporte
 from Transportes.forms import TransporteForm
-from reservarsala.models import reservaSala
-# from reservarsala.form import reservaForm
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
 
