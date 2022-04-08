@@ -34,3 +34,6 @@ core/wsgi.py
 manage.py
 
 
+manage.py
+core/asgi.py
+core/wsgi.py
