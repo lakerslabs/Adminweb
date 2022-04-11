@@ -69,7 +69,7 @@
             {% if request.user|has_group:"e-commerce_Sup" or request.user|has_group:"admin" %} 
                       <!-- ver solo el supervisor del area aqui -->
             {% endif %}
-            {% if request.user|has_group:"e-commerce" or request.user|has_group:"e-commerce_Sup" or request.user|has_group:"admin" %}
+            {% if request.user|has_group:"Logistica_Sup" or request.user|has_group:"e-commerce" or request.user|has_group:"e-commerce_Sup" or request.user|has_group:"admin" %}
             <!-- accesos del area aqui -->
             <li class="nav-item">
               <a href="Pedidos" class="nav-link {% if 'Pedidos' in segment %} active {% endif %}">
