@@ -29,11 +29,6 @@ apps/static/assets/node_modules
 apps/static/assets/yarn.lock
 apps/static/assets/.temp
 core/local.py
-core/asgi.py
-core/wsgi.py
-manage.py
-
-
 manage.py
 core/asgi.py
 core/wsgi.py
