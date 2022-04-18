@@ -9,7 +9,7 @@ from django.db import connections
 def filtroTemporada():
     with connections['mi_db_2'].cursor() as cursor:
         cursor.execute('''
-                        select  ISNULL(TEMPORADA,'SIN')TEMPORADA from STOCK_CENTRAL
+                        select  ISNULL(TEMPORADA,'SIN')TEMPORADA from STOCK_CENTRAL_EDU
                         group by TEMPORADA
                         order by TEMPORADA desc
                         ''')
@@ -19,7 +19,7 @@ def filtroTemporada():
 def filtroDeposito():
     with connections['mi_db_2'].cursor() as cursor:
         cursor.execute('''
-                        select  COD_DEPOSI from STOCK_CENTRAL
+                        select  COD_DEPOSI from STOCK_CENTRAL_EDU
                         group by COD_DEPOSI
                         order by COD_DEPOSI
                         ''')
