@@ -8,7 +8,7 @@ DIR_PBI = {
     'Conteos':'https://app.powerbi.com/view?r=eyJrIjoiNTU2YjAxNWQtMjRhOC00NzFkLTgyZmUtYTFmNzJkNDE2MmIyIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     'Geodatos':'https://app.powerbi.com/view?r=eyJrIjoiYjAyMmZmZTctZDgyMy00NzM5LTg2YjAtZjcwMjk1MTRhOGRmIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     'Notas_de_credito':'https://app.powerbi.com/view?r=eyJrIjoiYjk1ZWNiNzgtZGZjMS00MzA5LTgzNzUtMDU1OTFjMTJiN2RjIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
-    'Ventas_Franquicias':'https://app.powerbi.com/view?r=eyJrIjoiMDYxOTc1MzItMTYyZS00ODhkLTk3NjktOGMwMmQ1NjNhM2Y1IiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
+    'Ventas_Franquicias':'https://app.powerbi.com/view?r=eyJrIjoiZDk1ZDUwMjktMzNhMS00YmNmLWFjZmYtNjU5Mzc2MmZhMmRmIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     'Ventas_Sucursales':'https://app.powerbi.com/view?r=eyJrIjoiYjRiYzQ0NTAtODA5NS00YTZmLWEwMGMtNjNmZTM1ZDhmNDRkIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     'Velocidad_de_Ventas':'https://app.powerbi.com/view?r=eyJrIjoiZTc3M2Y5MjMtZDMxYi00NmEwLTllZDgtNzJlYzY3NGZmMDRjIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     # Mayoristas
