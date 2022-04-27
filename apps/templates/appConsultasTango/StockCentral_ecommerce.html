@@ -72,17 +72,15 @@
                     <tr>
                       <th>ARTICULO</th>
                       <th>DESCRIPCION</th>
+                      <th class="text-primary">DISPONIBLE</th>
+                      <th>TOTAL</th>
+                      <th>CANTIDAD COMPROMETIDA</th>
+                      <th>RESERVA ECOMMERCE</th>
+                      <th>RESERVA VTEX</th>
+                      <th>STOCK EXCLUIDO</th>
+                      <th>STOCK DE SEGURIDAD</th>
                       <th>DEPOSITO</th>
                       <th>RUBRO</th>
-                      <th>DISP</th>
-                      <th>RES</th>
-                      <th>COMP</th>
-                      <th>TOTAL</th>
-                      <th>DESTINO</th>
-                      <th>CATEGORIA</th>
-                      <th>COLOR</th>
-                      <th>TEMPORADA</th>
-                      <th>EXCLUIDO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -90,17 +88,15 @@
                       <tr>
                         <td><b>{{ articulo.articulo }}</b></td>
                         <td>{{ articulo.descripcion }}</td>
+                        <td class="text-primary"><b>{{ articulo.stock_disponible|floatformat  }}</b></td>
+                        <td><b>{{ articulo.total|floatformat }}</b></td>
+                        <td>{{ articulo.cant_comp|floatformat }}</td>
+                        <td>{{ articulo.reserva_ecommerce|floatformat }}</td>
+                        <td>{{ articulo.stock_reserva_vtex|floatformat }}</td>
+                        <td>{{ articulo.stock_excluido|floatformat }}</td>
+                        <td>{{ articulo.stock_seguridad|floatformat }}</td>
                         <td>{{ articulo.deposito }}</td>
                         <td>{{ articulo.rubro }}</td>
-                        <td><b>{{ articulo.disponible|floatformat }}</b></td>
-                        <td>{{ articulo.reserva }}</td>
-                        <td>{{ articulo.comp|floatformat }}</td>
-                        <td class="text-primary"><b>{{ articulo.total|floatformat }}</b></td>
-                        <td>{{ articulo.destino }}</td>
-                        <td>{{ articulo.categoria }}</td>
-                        <td>{{ articulo.color }}</td>
-                        <td>{{ articulo.temporada }}</td>
-                        <td>{{ articulo.excluido }}</td>
                       </tr>
                     {% endfor %}
                   </tbody>

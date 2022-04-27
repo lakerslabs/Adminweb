@@ -16,26 +16,27 @@
   {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
-<body class="hold-transition {% block body_class %}{% endblock body_class %}">
-<div class="wrapper">
-  
-
+<body class="hold-transition sidebar-mini sidebar-collapse">
+  <div class="wrapper">
     
 
-    {% include 'includes/sidebar.html' %}
-                    
+      
 
-    {% block content %}{% endblock content %}
+      {% include 'includes/sidebar.html' %}
+                      
 
-    {% include 'includes/footer.html' %}
+      {% block content %}{% endblock content %}
 
+      {% include 'includes/footer.html' %}
+
+      
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
+      <!-- Control sidebar content goes here -->
+      <h1>Hola mundo</h1>
     </aside>
     <!-- /.control-sidebar -->
-
-</div>
+  </div>
 <!-- ./wrapper -->
 
 <!-- Specific Page JS goes HERE  -->

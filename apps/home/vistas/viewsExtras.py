@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.shortcuts import render, redirect
-from consultasTango.models import StockCentral
+from consultasTango.models import StockCentral,SjStockDisponibleEcommerce
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
 from core.filters import *
@@ -33,3 +33,17 @@ def stockcentral(request):
     # stock = OrderFilter(request.GET, queryset=StockCentral.objects.all())
 
     return render(request,'appConsultasTango/StockCentral.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockcentral_ecommerce(request):
+    Nombre='Stock Central ecommerce'
+    
+    stock = SjStockDisponibleEcommerce.objects.all()
+    myFilter = filtro_stock_ecommerce(request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = SjStockDisponibleEcommerce.objects.filter(deposito='01')
+    
+    
+    return render(request,'appConsultasTango/StockCentral_ecommerce.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})

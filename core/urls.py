@@ -10,5 +10,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path("", include("apps.authentication.urls")), # Auth routes - login / register
     path("", include("apps.home.urls")),             # UI Kits Html files
-    # path("", include("Transportes.urls")),
+    path("Dashboard/", include("apps.home.direcciones.urls_Dashboard")),
+    path("Reportes/", include("apps.home.direcciones.urls_Reportes")),
+    path("Herramientas/", include("apps.home.direcciones.urls_Herramientas")),
+    path("Extras/", include("apps.home.direcciones.urls_Extras")),
 ]

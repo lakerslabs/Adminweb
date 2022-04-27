@@ -5,9 +5,7 @@
     <a href="/" class="brand-link">
       <img src="/static/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">LAKERS Labs</span>
-    </a>
-
-    <!-- Sidebar -->
+    </a><!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       
@@ -41,15 +39,26 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+    
           {% include 'includes/sidebar_Dashboard.html' %}
-          {% include 'includes/sidebar_reportes.html' %}
+          <li class="nav-item has-treeview {% if '/Reportes/' in request.path %} menu-open {% endif %}">
+            <a href="#" class="nav-link {% if '/Reportes/' in request.path %} active {% endif %}">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Reportes
+                <i class="right fas fa-angle-left"></i>
+                    <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+            {% include 'includes/sidebar_reportes.html' %}
+          </li>
           {% include 'includes/sidebar_herramientas.html' %}
              
 
           <li class="nav-header">EXTRAS</li>
           {% include 'includes/sidebar_extras.html' %}
           
-          
+        </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

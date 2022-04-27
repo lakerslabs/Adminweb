@@ -28,3 +28,20 @@ class StockCentral(models.Model):
 
     def __str__(self):
         return self.articulo
+
+class SjStockDisponibleEcommerce(models.Model):
+    articulo = models.CharField(db_column='COD_ARTICU', max_length=15,primary_key=True,unique=False)  # Field name made lowercase.
+    descripcion = models.CharField(db_column='DESCRIPCION', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    deposito = models.CharField(db_column='COD_DEPOSI', max_length=2)  # Field name made lowercase.
+    total = models.FloatField(db_column='STOCK', blank=True, null=True)  # Field name made lowercase.
+    stock_seguridad = models.FloatField(db_column='STOCK_SEGURIDAD', blank=True, null=True)  # Field name made lowercase.
+    cant_comp = models.FloatField(db_column='CANT_COMP', blank=True, null=True)  # Field name made lowercase.
+    reserva_ecommerce = models.FloatField(db_column='RESERVA_ECOMMERCE', blank=True, null=True)  # Field name made lowercase.
+    stock_reserva_vtex = models.FloatField(db_column='STOCK_RESERVA_VTEX', blank=True, null=True)  # Field name made lowercase.
+    stock_excluido = models.FloatField(db_column='STOCK_EXCLUIDO', blank=True, null=True)  # Field name made lowercase.
+    stock_disponible = models.FloatField(db_column='STOCK_DISPONIBLE', blank=True, null=True)  # Field name made lowercase.
+    rubro = models.CharField(db_column='RUBRO', max_length=40, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'SJ_STOCK_DISPONIBLE_ECOMMERCE'
