@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 from consultasTango.models import StockCentral,SjStockDisponibleEcommerce
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
-from core.filters import *
+from consultasTango.filters import *
 
 @login_required(login_url="/login/")
 def direccionario(request):

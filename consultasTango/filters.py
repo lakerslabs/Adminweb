@@ -65,6 +65,9 @@ class OrderFilter(django_filters.FilterSet):
     # Cargar los items de los filtros en la variable Temporada
     consulta = filtroTemporada()
     TEMPORADA = itemsFiltros(consulta)
+    # Cargar los items de los filtros en la variable Rubro
+    consulta = filtroRubro()
+    RUBRO = itemsFiltros(consulta)
     
     class Meta:
         model = StockCentral
@@ -73,8 +76,9 @@ class OrderFilter(django_filters.FilterSet):
         # }
         exclude = ['articulo','descripcion','deposito','total','comp','reserva','excluido','disponible','destino','rubro','categoria','temporada','color']
 
-    deposito = django_filters.ChoiceFilter(label='Deposito', choices=DEPOSITO)
-    temporada = django_filters.ChoiceFilter(label='Temporada', choices=TEMPORADA)
+    deposito = django_filters.ChoiceFilter(label='DEPOSITO ', choices=DEPOSITO)
+    temporada = django_filters.ChoiceFilter(label='TEMPORADA ', choices=TEMPORADA)
+    rubro = django_filters.ChoiceFilter(label='RUBRO ', choices=RUBRO)
 
 # Clase para aplicar filtros a la consulta de stock central ecommerce
 class filtro_stock_ecommerce(django_filters.FilterSet):
