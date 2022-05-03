@@ -65,4 +65,22 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  <script>
+    window.addEventListener('load',iniciarEscucha);
+   
+   function iniciarEscucha(){
+    console.log('hola');
+    let nav=document.querySelectorAll('.nav-item.has-treeview');
+    console.log(nav);
+    nav.forEach(el=>{el.addEventListener('click',()=>{
+      if(el.classList.contains('menu-is-opening'))
+      {
+          el.classList.remove('menu-is-opening');
+          el.classList.remove('menu-open');
+         
+      }
+    })});
+  }
+
+  </script>
   
