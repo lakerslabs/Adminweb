@@ -39,6 +39,19 @@ DATABASES = {
             },
             
     },
+    'mi_db_3':{
+            'ENGINE': 'mssql',
+            'NAME': 'UbicacionesStockMvc',
+            'USER': 'sa',
+            'PASSWORD': 'Axoft1988',
+            'HOST': '192.168.0.226\SQL2016',
+            'PORT': '1433',
+
+            'OPTIONS': {
+                'driver': 'ODBC Driver 13 for SQL Server',
+            },
+            
+    },
 }
 
 DATABASE_ROUTERS = ['consultasTango.routers.MiApp2Router']

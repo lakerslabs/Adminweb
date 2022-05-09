@@ -38,7 +38,7 @@ def stockcentral(request):
 def stockcentral_ecommerce(request):
     Nombre='Stock Central ecommerce'
     
-    stock = SjStockDisponibleEcommerce.objects.all()
+    stock = SjStockDisponibleEcommerce.objects.filter(total__gt=0)
     myFilter = filtro_stock_ecommerce(request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
