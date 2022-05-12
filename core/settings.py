@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'Transportes',
     'consultasTango',
+    'consultasWMS',
     
 ]
 

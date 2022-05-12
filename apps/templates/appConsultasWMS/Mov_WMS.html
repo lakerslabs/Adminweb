@@ -1,0 +1,173 @@
+{% extends "layouts/base.html" %}
+{% load bootstrap %}
+
+{% block title %} {{Nombre}} {% endblock %} 
+
+<!-- Element injected in the BODY element -->
+{% block body_class %} sidebar-mini sidebar-collapse {% endblock body_class %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/static/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/static/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/static/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
+
+{% endblock stylesheets %}
+
+{% block content %} 
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{Nombre}}</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">{{Nombre}}</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-body">
+              <form method="get">
+                {{myFilter.form}}
+                <button type="submit" class="btn btn-primary">Buscar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <!-- <form method="get">
+                  {{articulos.form}}
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+              </div> -->
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>TAREA</th>
+                      <th>FECHA</th>
+                      <th>TIPO DE MOVIMIENTO</th>
+                      <th>CODIGO DE ARTICULO</th>
+                      <th>DESCRIPCION</th>
+                      <th>CANTIDAD</th>
+                      <th>UBI_ORIGEN</th>
+                      <th>UBI_DESTINO</th>
+                      <th>DEP_ORIGEN</th>
+                      <th>DEP_DESTINO</th>
+                      <th>MOVIMIENTO</th>
+                      <th>HORA</th>
+                      <th>USUARIO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for campo in registros.qs %}
+                      <tr>
+                        <td><b>{{ campo.nro_tarea }}</b></td>
+                        <td>{{ campo.fecha }}</td>
+                        <td>{{ campo.tipo_movimiento }}</td>
+                        <td>{{ campo.cod_articulo }}</td>
+                        <td>{{ campo.descripcion }}</td>
+                        <td>{{ campo.cantidad }}</td>
+                        <td>{{ campo.ubic_origen }}</td>
+                        <td>{{ campo.ubic_destino }}</td>
+                        <td>{{ campo.depo_origen }}</td>
+                        <td>{{ campo.depo_destino }}</td>
+                        <td>{{ campo.nro_movim }}</td>
+                        <td>{{ campo.hora }}</td>
+                        <td>{{ campo.usuario }}</td>
+                        
+                        <!-- <td>{{ articulo.comp|floatformat }}</td>
+                        <td class="text-primary"><b>{{ articulo.total|floatformat }}</b></td> -->
+                        
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                  
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <!-- jQuery -->
+  <script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- DataTables  & Plugins -->
+<script src="/static/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/static/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/static/assets/plugins/jszip/jszip.min.js"></script>
+<script src="/static/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/static/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/static/assets/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/static/assets/js/demo.js"></script>
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": true, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+
+{% endblock javascripts %}

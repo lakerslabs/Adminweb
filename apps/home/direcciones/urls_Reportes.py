@@ -11,6 +11,7 @@ urlpatterns = [
         # Logistica
             path('stockcentral', views.stockcentral, name='stockcentral'),
             path('pendiente_despacho', views.Pedidos_pendiente_despacho, name='Reportes'),
+            path('MovimientosWms', views.MovimientosWms, name='MovimientosWms'),
         # Abastecimiento
             path('Auditoria_orden', views.Auditoria_orden, name='Reportes'),
         # Comercial
