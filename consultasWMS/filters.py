@@ -5,6 +5,7 @@ from django_filters import DateFilter
 
 from consultasWMS.models import *
 from django.db import connections
+from django.forms.widgets import DateInput
 
 # Consultas sql para traer los items de los filtros 
 def filtroUsuario():
@@ -70,8 +71,8 @@ class OrderFilter(django_filters.FilterSet):
         exclude = ['nro_tarea','nro_movim','fecha','hora','cod_articulo','descripcion','cantidad','tipo_movimiento','ubic_origen','depo_origen','ubic_destino','depo_destino','usuario']
 
     nro_tarea=django_filters.CharFilter(field_name='nro_tarea', label='TAREA N° ', lookup_expr='icontains')
-    fecha_desde = DateFilter(field_name='fecha', lookup_expr='gte',label='DESDE ')
-    fecha_hasta = DateFilter(field_name='fecha', lookup_expr='lte',label='HASTA ')
+    fecha_desde = DateFilter(field_name='fecha', lookup_expr='gte',label='DESDE ', widget=DateInput(attrs={'type': 'date'}))
+    fecha_hasta = DateFilter(field_name='fecha', lookup_expr='lte',label='HASTA ', widget=DateInput(attrs={'type': 'date'}))
     usuario = django_filters.ChoiceFilter(label='USUARIO ', choices=USER)
     depo_destino = django_filters.ChoiceFilter(label='DEPOSITO ', choices=DEPOSITO)
     tipo_movimiento = django_filters.ChoiceFilter(label='TIPO DE MOVIMIENTO ', choices=MOVIMIENTOS)
