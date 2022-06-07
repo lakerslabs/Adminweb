@@ -32,6 +32,12 @@ def Gestion_guias_mayoristas(request):
 
 # Abastecimiento
 @login_required(login_url="/login/")
+def Stock_excluido(request):
+    Nombre='Stock excluido'
+    dir_iframe = DIR_HERAMIENTAS['Stock_excluido']
+    return render(request,'home/PlantillaHerramientas.html',{'dir_iframe':dir_iframe,})
+
+@login_required(login_url="/login/")
 def Carga_de_orden(request):
     Nombre='Carga de orden'
     dir_iframe = DIR_HERAMIENTAS['Carga_de_orden']
@@ -57,6 +63,12 @@ def Ventas_sucursales(request):
     return render(request,'home/PlantillaHerramientas.html',{'dir_iframe':dir_iframe,})
 
 # Mayoristas
+@login_required(login_url="/login/")
+def Adm_Pedido(request):
+    Nombre='Adm Pedido'
+    dir_iframe = DIR_HERAMIENTAS['Adm_Pedido']
+    return render(request,'home/PlantillaHerramientas.html',{'dir_iframe':dir_iframe,})
+
 # Ecommerce
 @login_required(login_url="/login/")
 def Control_pedidos(request):

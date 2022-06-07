@@ -26,3 +26,24 @@ class RoMovimientosWms(models.Model):
     class Meta:
         managed = False  # Created from a view. Don't remove.
         db_table = 'RO_MOVIMIENTOS_WMS'
+
+class Ubicacion(models.Model):
+    id_ubicacion = models.AutoField(db_column='id_Ubicacion', primary_key=True)  # Field name made lowercase.
+    cod_ubicacion = models.CharField(db_column='Cod_Ubicacion', max_length=10)  # Field name made lowercase.
+    nombre_ubicacion = models.CharField(db_column='Nombre_Ubicacion', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    tipo_ubicacion = models.CharField(db_column='Tipo_Ubicacion', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    num_deposito = models.CharField(db_column='Num_Deposito', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    estado = models.BooleanField(db_column='Estado')  # Field name made lowercase.
+    estado_u = models.CharField(db_column='Estado_U', max_length=4, blank=True, null=True)  # Field name made lowercase.
+    rack = models.IntegerField(db_column='Rack', blank=True, null=True)  # Field name made lowercase.
+    modulo = models.IntegerField(db_column='Modulo', blank=True, null=True)  # Field name made lowercase.
+    altura = models.IntegerField(db_column='Altura', blank=True, null=True)  # Field name made lowercase.
+    anc_rubro = models.TextField(db_column='Anc_Rubro', blank=True, null=True)  # Field name made lowercase.
+    anc_destino = models.TextField(db_column='Anc_Destino', blank=True, null=True)  # Field name made lowercase.
+    anc_linea = models.TextField(db_column='Anc_Linea', blank=True, null=True)  # Field name made lowercase.
+    anc_temporada = models.TextField(db_column='Anc_Temporada', blank=True, null=True)  # Field name made lowercase.
+    anc_categoria = models.TextField(db_column='Anc_Categoria', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = True
+        db_table = 'Ubicacion'

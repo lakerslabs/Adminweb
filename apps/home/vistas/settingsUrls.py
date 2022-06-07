@@ -41,12 +41,14 @@ DIR_HERAMIENTAS = {
     'Gestion_cronograma': 'http://192.168.0.143:8080/sistemas/cronoDespacho/index.php',
     'Gestion_guias_mayoristas': 'http://192.168.0.143:8080/Despacho/guias.php',
     # Abastecimiento
+    'Stock_excluido': 'http://192.168.0.143:8080/sistemas/stockExcluido/index.php',
     'Carga_de_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/index.php',
     'Activar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/activaOrdenes.php',
     'Desactivar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/desactivaOrdenes.php',
     # Comercial
     'Ventas_sucursales': 'http://192.168.0.143:8080/proyecto_21/ventas-canales/ventas_comercial/index.php',
     # Mayoristas
+    'Adm_Pedido':'http://192.168.0.143:8080/sistemas/despachoMayorista/index.php',
     # Ecommerce
     'Control_pedidos': 'http://192.168.0.143:8080/logistica/ecommerce/',
     
