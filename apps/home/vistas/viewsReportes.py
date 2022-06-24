@@ -25,16 +25,11 @@ def MovimientosWms(request):
     Nombre='Movimientos WMS'
     
     stock = RoMovimientosWms.objects.all()
-    print("Esto es Spartaaaaa")
-    # print(stock)
     myFilter = OrderFilter(request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:
         datos = RoMovimientosWms.objects.filter(ubic_destino='01')
-    # stock = myFilter
-    # stock = OrderFilter(request.GET, queryset=StockCentral.objects.all())
-    print(datos)
 
     return render(request,'appConsultasWMS/Mov_WMS.html',{'myFilter':myFilter,'registros':datos,'Nombre':Nombre})
 

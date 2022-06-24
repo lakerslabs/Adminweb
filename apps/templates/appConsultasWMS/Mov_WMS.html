@@ -52,6 +52,7 @@
               <form method="get">
                 {{myFilter.form}}
                 <button type="submit" class="btn btn-primary">Buscar</button>
+                <button type="button" class="btn btn-dark disabled" role="button" style="float: right;">Total: <b><span id="Total" class="badge badge-light"></span></b></button>
               </form>
             </div>
           </div>
@@ -93,7 +94,7 @@
                         <td>{{ campo.tipo_movimiento }}</td>
                         <td>{{ campo.cod_articulo }}</td>
                         <td>{{ campo.descripcion }}</td>
-                        <td>{{ campo.cantidad }}</td>
+                        <td class="text-primary" id="cant"><b>{{ campo.cantidad }}</b></td>
                         <td>{{ campo.ubic_origen }}</td>
                         <td>{{ campo.ubic_destino }}</td>
                         <td>{{ campo.depo_origen }}</td>
@@ -153,20 +154,20 @@
   <script src="/static/assets/js/demo.js"></script>
   <!-- page script -->
   <script>
+    var suma = 0;
+    $(document).ready(function(){
+      $("#example1 tbody tr").each(function(){
+        var cant = $(this).find("td:eq(5)").text();
+        // var cant = $(this).find("id:eq('cant')").text();
+        suma += parseFloat(cant);
+      });
+      $("#Total").text(suma);
+    });
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": true, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
     });
   </script>
 
