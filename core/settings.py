@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'Transportes',
     'consultasTango',
     'consultasWMS',
+    'import_export',
     
 ]
 
@@ -115,6 +116,11 @@ STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [CORE_DIR + '/apps/static']
+
+# IMPORT_EXPORT_USE_TRANSACTIONS = True # Use Django transactions 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 
