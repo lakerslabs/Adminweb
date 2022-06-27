@@ -14,4 +14,5 @@ urlpatterns = [
     path("Reportes/", include("apps.home.direcciones.urls_Reportes")),
     path("Herramientas/", include("apps.home.direcciones.urls_Herramientas")),
     path("Extras/", include("apps.home.direcciones.urls_Extras")),
+    path("Mob/", include("apps.home.direcciones.urls_Mob")),
 ]

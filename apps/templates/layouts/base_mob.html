@@ -1,0 +1,38 @@
+{% load static %}
+<!-- {% load has_group %} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/assets/aprendizaje.png" type="image/x-icon">
+  <link rel="canonical" href="https://AS1DO.com"/>
+
+  <title>
+    Admin Lakers - {% block title %}{% endblock %} | AS1DO
+  </title> 
+  
+  {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body class="layout-top-nav layout-navbar-fixed" style="height: auto;">
+  <div class="wrapper">
+    
+
+      
+
+      {% include 'includes/navigation.html' %}
+                      
+
+      {% block content %}{% endblock content %}
+
+      
+    
+  </div>
+<!-- ./wrapper -->
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+</body>
+</html>

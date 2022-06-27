@@ -13,7 +13,13 @@ def login_view(request):
     form = LoginForm(request.POST or None)
 
     msg = None
-
+    #esta parte recolecta lo de next para hacer la redireccion claro si hay un next
+    try:
+        meta = request.META['QUERY_STRING'].split('=')[1]
+    except IndexError:
+        meta = None
+    
+    # print('Meta: ' + meta)
     if request.method == "POST":
 
         if form.is_valid():
@@ -22,7 +28,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                return redirect(meta)
             else:
                 msg = 'Invalid credentials'
         else:

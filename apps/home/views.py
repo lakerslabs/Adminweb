@@ -16,6 +16,7 @@ from apps.home.vistas.viewsDash import *
 from apps.home.vistas.viewsReportes import *
 from apps.home.vistas.viewsHerramientas import *
 from apps.home.vistas.viewsExtras import *
+from apps.home.vistas.viewsMob import *
 
 
 
@@ -24,6 +25,7 @@ def index(request):
     context = {'segment': 'index'}
 
     html_template = loader.get_template('home/index.html')
+
     return HttpResponse(html_template.render(context, request))
 
 
