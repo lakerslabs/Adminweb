@@ -47,6 +47,8 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <div class="overlay-wrapper">
+          <div class="overlay dark" id="spiner"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
         <div class="row">
           <!-- left column -->
           <div class="col-md-6">
@@ -88,7 +90,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Cargar</button>
+                  <button type="submit" class="btn btn-primary" id="botonCargar">Cargar</button>
                   <a style="float: right;" href="/static/PlantillaCierrePedidos.xlsx" download="PlantillaCierrePedidos.xlsx">Descargar Plantilla</a>
                 </div>
               </form>
@@ -101,6 +103,7 @@
           <!-- right column -->
           
           <!--/.col (right) -->
+        </div>
         </div>
         
         <div class="row">
@@ -178,7 +181,18 @@
   //       "responsive": true, "lengthChange": true, "autoWidth": false,
   //       // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
   //     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  //   });  
+  //   }); 
+  window.onload = function(){
+    var loading = document.getElementById('spiner');
+    loading.style.visibility = 'hidden';
+    // loading.style.opacity = '0';
+  } 
+  $('#botonCargar').click(function(){
+    var loading = document.getElementById('spiner');
+    loading.style.visibility = 'visible';
+    // loading.style.opacity = '0';
+  })
+  
   $(function () {
     bsCustomFileInput.init();
   });
