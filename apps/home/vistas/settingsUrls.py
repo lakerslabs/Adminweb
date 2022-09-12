@@ -51,6 +51,7 @@ DIR_HERAMIENTAS = {
     'Adm_Pedido':'http://192.168.0.143:8080/sistemas/despachoMayorista/index.php',
     # Ecommerce
     'Control_pedidos': 'http://192.168.0.143:8080/logistica/ecommerce/',
+    'StockSegVtex': 'http://192.168.0.143:8080/ecommerce/stockSeguridad/index.php',
     
 }
 
