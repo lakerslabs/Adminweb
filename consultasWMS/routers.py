@@ -34,5 +34,5 @@ class MiApp3Router(object):
         database.
         """
         if app_label == 'consultasWMS':
-            return db == 'mi_db_2'
+            return db == 'mi_db_3'
         return None 

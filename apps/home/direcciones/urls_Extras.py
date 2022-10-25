@@ -15,7 +15,9 @@ urlpatterns = [
         # Logistica
         # Abastecimiento
         # Comercial
-            path('direccionario', views.direccionario, name='Extras'),
+            path('direccionario', views.agenda, name='direccionario'),
+            path('direccionario/AltaSucursal', views.registraSucursal, name='altadireccionario'),
+            path('direccionario/editarSucursal/<int:id>', views.editarSucursal, name='editarSucursal'),
         # Mayoristas
         # Ecommerce
         # Gerencia

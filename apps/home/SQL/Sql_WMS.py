@@ -33,7 +33,7 @@ def actualizar_ubicacion(Id_ubicacion,nombre_ubicacion,tipo_ubicacion,estado_u,r
     sql = instruccion + datos + condicion
     print(sql)
     # La instruccion siguiente actuañiza los valores en la base de datos
-    # with connections['mi_db_3'].cursor() as cursor:
-    #     cursor.execute(sql)
+    with connections['mi_db_3'].cursor() as cursor:
+        cursor.execute(sql)
     #     # resulatado = cursor.fetchone()
     return 

@@ -1,0 +1,355 @@
+
+{% if formulario.errors  %}
+    <div class="panel-footer">
+        <div class="alert alert-danger">
+            <strong>¡Campos requeridos!</strong><br>
+            {% for err in formulario.errors %}
+                <a>{{ err }}</a><br>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}	
+<form enctype="multipart/form-data" method="post" class="needs-validation mt-4" autocomplete="off" novalidate>
+    {% csrf_token %}
+    <div class="container cont_group mt-4 mb-2 pb-2">
+        
+        <h2 id="titulo">Alta de sucursales</h2>
+        <div class="container cont_1">
+
+
+            <div class="row">
+                <div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div>
+                                <label class="label_form" for="uname">{{ formulario.nro_sucursal.label }}:</label>
+                                <input 
+                                    type="{{ formulario.nro_sucursal.field.widget.input_type }}" 
+                                    name="{{ formulario.nro_sucursal.name }}"
+                                    class="form-control soloNum"
+                                    oninput="validarTextoEntrada(this, '[0-9]')" 
+                                    id="{{ formulario.nro_sucursal.name }}"
+                                    placeholder="{{ formulario.nro_sucursal.label }}" 
+                                    required
+                                    value="{{ formulario.nro_sucursal.value | default:'' }}"
+                                    {{ Disabled }}>
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                            <div>
+                                <label class="label_form_2 ml-5" for="pwd">{{ formulario.cod_client.label }}:</label>
+                                <input 
+                                    type="text" 
+                                    id="{{ formulario.cod_client.name }}" 
+                                    name="{{ formulario.cod_client.name }}"
+                                    class="form-control ml-5 input_2 soloText mayusc" 
+                                    autocapitalize="characters"
+                                    oninput="validarTextoEntrada(this, '[a-záéíóúñ ]')" 
+                                    placeholder="Ingrese código"
+                                    required
+                                    value="{{ formulario.cod_client.value | default:'' }}"
+                                    >
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+
+                            <div>
+                                <label class="label_form" for="uname">{{ formulario.desc_sucursal.label }}:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control input_1 soloText mayusc"
+                                    oninput="validarTextoEntrada(this, '[a-záéíóúñ ]')" 
+                                    id="{{ formulario.desc_sucursal.name }}"
+                                    name="{{ formulario.desc_sucursal.name }}"
+                                    placeholder="Ingrese nombre" 
+                                    required
+                                    value="{{ formulario.desc_sucursal.value | default:'' }}"
+                                    {{ Disabled }}>
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                            <div>
+                                <label class="label_form_2 ml-5" for="pwd">{{ formulario.direccion.label }}:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control ml-5 input_2 mayusc" 
+                                    id="{{ formulario.direccion.name }}"
+                                    name="{{ formulario.direccion.name }}"
+                                    placeholder="Ingrese calle y número" 
+                                    required
+                                    value="{{ formulario.direccion.value | default:'' }}">
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                            
+                            <div>
+                                <label class="label_form" for="uname">{{ formulario.localidad.label }}:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control input_1 soloText mayusc"
+                                    oninput="validarTextoEntrada(this, '[a-záéíóúñ ]')" 
+                                    id="{{ formulario.localidad.name }}"
+                                    name="{{ formulario.localidad.name }}"
+                                    placeholder="Ingrese localidad" 
+                                    required
+                                    value="{{ formulario.localidad.value | default:'' }}">
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                            <div>
+                                <label class="label_form_2 ml-5" for="pwd">{{ formulario.provincia.label }}:</label>
+                                <select 
+                                    type="text" 
+                                    class="custom-select  form-control ml-5" 
+                                    value="" 
+                                    id="{{ formulario.provincia.name }}"
+                                    name="{{ formulario.provincia.name }}"
+                                    required>
+                                    {% if formulario.provincia.value %}
+                                    <option value="{{ formulario.provincia.value }}"  selected>{{ formulario.provincia.value }}</option>
+                                    {% else %}
+                                    <option value="" disabled selected>- - -</option>
+                                    {% endif %}
+                                    <option value="BUENOS AIRES">BUENOS AIRES</option>
+                                    <option value="CAPITAL FEDERAL">CAPITAL FEDERAL</option>
+                                    <option value="CATAMARCA">CATAMARCA</option>
+                                    <option value="CHACO">CHACO</option>
+                                    <option value="CHUBUT">CHUBUT</option>
+                                    <option value="CORDOBA">CORDOBA</option>
+                                    <option value="CORRIENTES">CORRIENTES</option>
+                                    <option value="ENTRE RIOS">ENTRE RIOS</option>
+                                    <option value="FORMOSA">FORMOSA</option>
+                                    <option value="JUJUY">JUJUY</option>
+                                    <option value="LA PAMPA">LA PAMPA</option>
+                                    <option value="LA RIOJA">LA RIOJA</option>
+                                    <option value="MENDOZA">MENDOZA</option>
+                                    <option value="MISIONES">MISIONES</option>
+                                    <option value="NEUQUEN">NEUQUEN</option>
+                                    <option value="RIO NEGRO">RIO NEGRO</option>
+                                    <option value="SALTA">SALTA</option>
+                                    <option value="SAN JUAN">SAN JUAN</option>
+                                    <option value="SAN LUIS">SAN LUIS</option>
+                                    <option value="SANTA CRUZ">SANTA CRUZ</option>
+                                    <option value="SANTA FE">SANTA FE</option>
+                                    <option value="SANTIAGO DEL ESTERO">SANTIAGO DEL ESTERO</option>
+                                    <option value="IERRA DEL FUEGO">TIERRA DEL FUEGO</option>
+                                    <option value="TUCUMAN">TUCUMAN</option>
+                                </select>
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+
+                            <div>
+                                <label class="label_form" for="uname">{{ formulario.telefono.label }}:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control input_1 soloNum mayusc"
+                                    oninput="validarTextoEntrada(this, '[0-9]')" 
+                                    id="{{ formulario.telefono.name }}" 
+                                    name="{{ formulario.telefono.name }}"
+                                    placeholder="Ingrese numero"
+                                    required
+                                    value="{{ formulario.telefono.value | default:'' }}">
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                            <div>
+                                <label class="label_form_2 ml-5" for="pwd">e-{{ formulario.mail.label }}:</label>
+                                <input 
+                                    type="mail" 
+                                    class="form-control ml-5 input_2 email" 
+                                    id="{{ formulario.mail.name }}" 
+                                    name="{{ formulario.mail.name }}"
+                                    placeholder="Ingrese direccion de correo" 
+                                    required
+                                    value="{{ formulario.mail.value | default:'' }}">
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+
+                            <div>
+                                <label class="label_form" for="uname">{{ formulario.tipo_local.label }}:</label>
+                                <select 
+                                    type="text" 
+                                    class="custom-select  form-control input_1" 
+                                    value="" 
+                                    id="{{ formulario.tipo_local.name }}"
+                                    name="{{ formulario.tipo_local.name }}"
+                                    required>
+                                    {% if formulario.tipo_local.value %}
+                                    <option value="{{ formulario.tipo_local.value }}"  selected>{{ formulario.tipo_local.value }}</option>
+                                    {% else %}
+                                    <option value="" disabled selected>- - -</option>
+                                    {% endif %}
+                                    <option value="CALLE">CALLE</option>
+                                    <option value="SHOPPING">SHOPPING</option>
+                                </select>
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                            <div>
+                                <label class="label_form_2 ml-5" for="pwd">{{ formulario.canal.label }}:</label>
+                                <select 
+                                    type="text" 
+                                    class="custom-select  form-control ml-5" 
+                                    value="" 
+                                    id="{{ formulario.canal.name }}"
+                                    name="{{ formulario.canal.name }}"
+                                    required>
+                                    {% if formulario.canal.value %}
+                                    <option value="{{ formulario.canal.value }}"  selected>{{ formulario.canal.value }}</option>
+                                    {% else %}
+                                    <option value="" disabled selected>- - -</option>
+                                    {% endif %}
+                                    <option value="PROPIO">PROPIO</option>
+                                    <option value="FRANQUICIA">FRANQUICIA</option>
+                                    <option value="CERRADO">CERRADO</option>
+                                </select>
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                        </div>
+                        <div class="input-group">
+                            <div class="pb-2 mt-2 boton-check">
+                                <label class="label_form">Ferreteria</label>
+                                {{ navigation }}
+                                <input 
+                                    id="{{ formulario.empresa_ferreteria.name }}"
+                                    name="{{ formulario.empresa_ferreteria.name }}"
+                                    type="checkbox" 
+                                    data-toggle="toggle" 
+                                    data-style="ios" 
+                                    data-height="10"
+                                    unchecked
+                                    data-on="SI" 
+                                    data-off="NO"
+                                    value="{{ formulario.empresa_ferreteria.value | default:'true' }}">
+                                <div id="console-event"></div>
+                                <label class="label_form">N° sucursal madre:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control input_1 soloNum" 
+                                    oninput="validarTextoEntrada(this, '[0-9]')"
+                                    id="{{ formulario.nro_suc_madre.name }}" 
+                                    name="{{ formulario.nro_suc_madre.name }}"
+                                    placeholder="Ingrese número"
+                                    value="{{ formulario.nro_suc_madre.value | default:'' }}"
+                                    disabled>                
+                            </div> 
+                            <div>
+                                <label class="label_form_2 ml-5" for="pwd">{{ formulario.horario.label }}:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control ml-5 input_2 mayusc" 
+                                    id="{{ formulario.horario.name }}"
+                                    name="{{ formulario.horario.name }}"
+                                    placeholder="Ingrese dias y horarios de atencion" 
+                                    required
+                                    value="{{ formulario.horario.value | default:'' }}">
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group form-check ml-5">
+            <div class="icheck-primary d-inline">
+                <input  
+                    type="checkbox" 
+                    name="{{ formulario.habilitado.name }}"
+                    id="{{ formulario.habilitado.name }}"
+                    value="{{ formulario.habilitado.value | default:'true' }}"
+                    unchecked
+                    >{{ formulario.habilitado.label }}
+                <label for="checkboxPrimary2">
+                </label>
+            </div>
+
+            <label class="form-check-label label_check">
+                <input 
+                    id="{{ formulario.tango.name }}"
+                    name="{{ formulario.tango.name }}"
+                    class="form-check-input" 
+                    type="checkbox" 
+                    value="{{ formulario.tango.value | default:'true' }}"
+                    unchecked> {{ formulario.tango.label }}
+            </label>
+
+            <label class="form-check-label label_check">
+                <input 
+                    id="{{ formulario.dashboard_bi.name }}"
+                    name="{{ formulario.dashboard_bi.name }}" 
+                    class="form-check-input" 
+                    type="checkbox"
+                    value="{{ formulario.dashboard_bi.value | default:'true' }}"
+                    unchecked> Dashboard PBI
+                    
+            </label>
+
+        </div>
+
+        <input 
+            name="" 
+            id="guardar" 
+            class="btn btn-success" 
+            type="submit" 
+            value="Guardar">
+            
+        <a name="" id="" class="btn btn-secondary" href="/../Extras/direccionario" role="button">Cancelar</a>
+    </div>
+</form>
+
+<script>
+window.onload = function(){
+    $(".toggle").click(function(){
+        var findClass = 'toggle.btn-light.off';
+        if ( $(this).is( "."+findClass ) ) {
+            $("#nro_suc_madre").removeAttr("disabled");
+            console.log('removeAttr')
+        }else if($(this).is( ".toggle.btn-primary" ) ){            
+            $("#nro_suc_madre").attr("disabled","");
+            console.log('addAttr')
+        }
+    })
+    $("#guardar").click(function(){
+        $('input:disabled').removeAttr('disabled'); 
+    })
+    var ferreteria = "{{ formulario.empresa_ferreteria.value }}"
+    var tango = "{{ formulario.tango.value }}"
+    var dashboard_bi = "{{ formulario.dashboard_bi.value }}"
+    var habilitado = "{{ formulario.habilitado.value  }}"
+    if(tango==true || tango!="None"){
+        var id = "{{ formulario.tango.name }}"
+        $("#"+id).removeAttr("unchecked");
+        $("#"+id).attr("checked","");
+    }
+    if(dashboard_bi==true || dashboard_bi!="None"){
+        var id = "{{ formulario.dashboard_bi.name }}"
+        $("#"+id).removeAttr("unchecked");
+        $("#"+id).attr("checked","");
+    }
+    if(habilitado==true || habilitado!="None"){
+        var id = "{{ formulario.habilitado.name }}"
+        $("#"+id).removeAttr("unchecked");
+        $("#"+id).attr("checked","");
+    }
+    if(ferreteria==true || ferreteria!="None"){
+            $(".toggle").removeClass("btn-light off");
+            $(".toggle").addClass("btn-primary");
+            $(".toggle").attr("value","true");
+            $("#nro_suc_madre").removeAttr("disabled");
+            
+        }
+};
+
+
+function toggleOn() {
+    console.log(document.getElementById('toggle-state').checked)
+    
+};
+
+</script>

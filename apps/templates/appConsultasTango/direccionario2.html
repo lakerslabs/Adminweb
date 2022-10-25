@@ -1,0 +1,225 @@
+{% extends "layouts/base.html" %}
+{% load has_group %}
+
+{% block title %} {{Nombre}} {% endblock %} 
+
+<!-- Element injected in the BODY element -->
+{% block body_class %} sidebar-mini layout-navbar-fixed {% endblock body_class %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
+
+  <link rel="stylesheet" href="/static/assets/css/direccionario/BotonFlotante.css">
+
+
+  <style>
+    
+    .category_item{
+      text-align: left;
+      border-color:gray;
+    }
+    
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content-wrapper">
+  <section class="content"></section>
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark"> {{Nombre}} </h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">{{Nombre}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="card-widget col-sm-3">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">FILTROS</h3>
+              <div class="input-group">
+                <input type="search" class="form-control form-control-lg input-search" placeholder="Buscar">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-lg btn-default btn-filtrar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
+              <div id="accordion" class="category_list">
+                <button type="button" class="btn btn-block btn-outline-secondary category_item_all" style="margin-bottom: 15px; text-align: left;" cat="all">TODOS</button>
+                <div class="card card-info">
+                  <div class="card-header">
+                    <h4 class="card-title w-100">
+                      <a class="d-block w-100 " data-toggle="collapse" href="#collapseOne">
+                        CANAL
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                      <ul class="list-group category_list">
+                          {% for c in canal %}
+                          <button type="button" class="btn btn-light btn-block category_item" category='{{ c }}'>{{ c }}</button>
+                          {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card card-olive">
+                  <div class="card-header">
+                    <h4 class="card-title w-100">
+                      <a class="d-block w-100 " data-toggle="collapse" href="#collapseThree">
+                        TIPO PDV
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseThree" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                      <ul class="list-group category_list">
+                        {% for local in tipo_local %}
+                          <button type="button" class="btn btn-light btn-block category_item" tipoLocal='{{ local }}'>{{ local }}</button>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card card-secondary">
+                  <div class="card-header">
+                    <h4 class="card-title w-100">
+                      <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
+                        GRUPO
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                      <ul class="list-group category_list">
+                        {% for G in grupo %}
+                          <button type="button" class="btn btn-light btn-block category_item" grupo='{{ G }}'>{{ G }}</button>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="row products-list">
+            {% for dato in datos %}
+            <div class="col-4 col-sm-6 product-item" category='{{ dato.canal }}' sucursal='{{ dato.nro_sucursal }}' tipoLocal='{{ dato.tipo_local }}' grupo='{{ dato.grupo_empresario }}'>
+              <div class="card card-widget collapsed-card">
+                <div class="card-header">
+                  <div class="user-block">
+                    <span class="username" sucursal="3"><a>({{ dato.nro_sucursal }}){{ dato.cod_client }}-{{ dato.desc_sucursal }}</a></span>
+                    <span class="description"><i class="fas fa-phone"></i><b> Telefono:</b> {{ dato.telefono }}</span>
+                    <span class="description"><i class="fas fa-envelope"></i><b> e-mail:</b> {{ dato.mail }}</span>
+                    <span class="description"><i class="fas fa-building"></i><b> Direccion:</b> {{ dato.direccion }}</span>
+                  </div>
+                  <!-- /.user-block -->
+                  <div class="card-tools">
+                    {% if request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_may" %}
+                    <a title="Editar" name="" id="" class="fas fa-pencil-alt btn-tool" href="http:/../Extras/direccionario/editarSucursal/{{ dato.nro_sucursal }}" role="button"></a>
+                    {% endif %}
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5><b>Datos adicionales 
+                  </b></h5>
+                  <ul class="list-unstyled">
+                    <li>
+                      <a class="text-secondary"> Atencion: <b>{{ dato.horario }}</b></a>
+                    </li>
+                    <li>
+                      <a class="text-secondary"> Canal: <b>{{ dato.canal }}</b></a>
+                    </li>
+                    <li>
+                      <a href="" class="btn-link text-secondary"> Tipo de Local: <b>{{ dato.tipo_local }}</b></a>
+                    </li>
+                    <li>
+                      <a href="" class="btn-link text-secondary"> Tienda: <b>{{ dato.tienda }}</b></a>
+                    </li>
+                    <li>
+                      <a class="text-secondary"> Tango: <b>{{ dato.tango }}</b></a>
+                    </li>
+                    <li>
+                      <a class="text-secondary"> Base: <b>{{ dato.base_nombre }}</b></a>
+                    </li>
+                  </ul>
+                </div>
+                {% if request.user|has_group:"admin" %}
+                <!-- /.card-body -->
+                <div class="card-footer card-comments">
+                  <div class="card-comment">
+                    <ul class="list-unstyled">
+                      <li>
+                        <a class="text-secondary"> Conexion: <b>{{ dato.conexion_dns }}</b></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.card-footer -->
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% if request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_may" %}
+<div class="contenedor">
+  <a href="http:/../Extras/direccionario/AltaSucursal" class="btn botonF1" role="button">+</a>
+  
+</div>
+{% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <!-- jQuery -->
+  <script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/static/assets/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/static/assets/js/demo.js"></script>
+  <!-- Scripts personalizados -->
+  <script src="/static/assets/js/Scripts.js"></script>
+
+{% endblock javascripts %}

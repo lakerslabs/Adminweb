@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'Transportes',
     'consultasTango',
     'consultasWMS',
+    'consultasLakersBis',
     'import_export',
     
 ]

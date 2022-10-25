@@ -12,11 +12,13 @@ from django.shortcuts import render, redirect
 from numpy import int64, isnan
 from consultasTango.models import StockCentral,SjStockDisponibleEcommerce
 from consultasWMS.models import Ubicacion
+from consultasLakersBis.models import Direccionario
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_WMS import validar_ubicacion,actualizar_ubicacion
 from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido
 from consultasTango.filters import *
+from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario
 from django.contrib import messages
 import openpyxl
 import pandas as pd
@@ -26,7 +28,47 @@ import pandas as pd
 from django.shortcuts import render, redirect 
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from consultasLakersBis.models import SucursalesLakers
+from consultasLakersBis.forms import sucursalesform
 import os
+
+@login_required(login_url="/login/")
+def editarSucursal(request,id):
+    suc = SucursalesLakers.objects.get(nro_sucursal=id)
+    sucForm = sucursalesform(request.POST or None, request.FILES or None, instance=suc)
+    Disabled='disabled'
+    print(id)
+    if sucForm.is_valid() and request.POST:
+        suc = sucForm.save(commit=False)
+        suc.save()
+        infForm = sucForm.cleaned_data
+        print(infForm)
+        return redirect('/../Extras/direccionario')
+
+    return  render(request,'appConsultasTango/editarSucursal.html',{'formulario':sucForm,'Disabled':Disabled})
+
+@login_required(login_url="/login/")
+def registraSucursal(request):
+    if request.method=='POST':
+        formulario=sucursalesform(request.POST)
+        if formulario.is_valid():
+            sucursal = formulario.save(commit=False)
+            sucursal.save()
+            print('El formulario SI es valido')
+            error='Formulario valido'
+            print('-------********-------')
+            infForm = formulario.cleaned_data
+            print(infForm)
+            return redirect('/../Extras/direccionario')
+        # else:
+        #     error='Formulario NO valido'
+            # formulario=sucursalesform()
+            # return  render(request,'appConsultasTango/registraSucursal.html',{'formulario':formulario,'mensaje_error':error})
+        
+    else: 
+        formulario=sucursalesform()
+
+    return  render(request,'appConsultasTango/registraSucursal.html',{'formulario':formulario})
 
 
 @login_required(login_url="/login/")
@@ -246,6 +288,16 @@ def direccionario(request):
     Nombre='Pedidos'
     dir_iframe = DIR_EXTRAS['direccionario']
     return render(request,'home/direccionario.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def agenda(request):
+    Nombre='Direccionario'
+    datos = Direccionario.objects.all()
+    canal = filtroCanal()
+    tipo_local = filtroTipoLocal()
+    grupo = filtroGrupoEmpresario()
+
+    return render(request,'appConsultasTango/direccionario2.html',{'datos': datos,'canal':canal,'tipo_local':tipo_local,'grupo':grupo,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def stockcentral(request):

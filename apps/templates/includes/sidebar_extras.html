@@ -85,15 +85,7 @@
   
   {% if request.user|has_group:"admin" %}
     
-    <li class="nav-item">
-      <a href="/../Extras/direccionario" class="nav-link {% if '/direccionario' in request.path %} active {% endif %}">
-        <i class="nav-icon fas fa-search"></i>
-        <p>
-          Direccionario
-          <!-- <span class="badge badge-info right">2</span> -->
-        </p>
-      </a>
-    </li>
+    
   {% endif %}
   <!-- inicio 	Abastecimiento -->
   {% if request.user|has_group:"Abastecimiento_sup" or request.user|has_group:"admin" %} 
@@ -110,4 +102,13 @@
     </li>
   {% endif %}
   <!-- Fin 	Abastecimiento -->
+  <li class="nav-item">
+    <a href="/../Extras/direccionario" class="nav-link {% if '/direccionario' in request.path %} active {% endif %}">
+      <i class="nav-icon fas fa-search"></i>
+      <p>
+        Direccionario
+        <!-- <span class="badge badge-info right">2</span> -->
+      </p>
+    </a>
+  </li>
   
