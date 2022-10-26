@@ -17,6 +17,8 @@ class Direccionario(models.Model):
     tienda = models.CharField(db_column='TIENDA', max_length=2)  # Field name made lowercase.
     mail = models.CharField(db_column='MAIL', max_length=50, blank=True, null=True)  # Field name made lowercase.
     horario = models.CharField(db_column='HORARIO', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    localidad = models.CharField(db_column='LOCALIDAD', max_length=50)  # Field name made lowercase.
+    provincia = models.CharField(db_column='PROVINCIA', max_length=50)  # Field name made lowercase.
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
