@@ -30,40 +30,13 @@
   <!-- summernote -->
   <link rel="stylesheet" href="/static/assets/plugins/summernote/summernote-bs4.min.css">
 
+  <link rel="stylesheet" href="/static/assets/css/styledesk.css">
+
 {% endblock stylesheets %}
 
 {% block content %}
   
-  <div class="content-wrapper">
-
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark"></h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"></li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <img src="/static/assets/img/distributio.png"  height="700" sizes="(max-width: 1280px) 100vw, 1280px" width="1100">
-        
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-
-  </div>
+<div id="root"></div>
 
 {% endblock content %}
 
@@ -104,5 +77,10 @@
   <script src="/static/assets/js/pages/dashboard.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="/static/assets/js/demo.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.production.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js'></script>
+  <script src="/static/assets/js/scriptdesk.js"></script>
 
 {% endblock javascripts %}

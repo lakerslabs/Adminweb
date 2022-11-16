@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/static/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
   <link rel="stylesheet" href="/static/assets/css/direccionario/BotonFlotante.css">
 
@@ -188,7 +190,11 @@
                         <a class="text-secondary"> Base: <b>{{ dato.base_nombre }}</b></a>
                       </li>
                       <li>
-                        <a class="text-secondary"> Conexion: <b>{{ dato.conexion_dns }}</b></a>
+                        <a class="text-secondary"> Conexion: <b id="copy_to_clipboard">{{ dato.conexion_dns }} </b></a>
+                        <button type="button" class="btn btn-tool copy_to_clipboard swalDefaultSuccess" address="{{ dato.conexion_dns }}">
+                          <i class="fa fa-copy"></i>
+                        </button>
+                        <span class="mensaje" id="mensaje"></span>
                       </li>
                     </ul>
                   </div>
@@ -225,6 +231,37 @@
   <!-- AdminLTE for demo purposes -->
   <script src="/static/assets/js/demo.js"></script>
   <!-- Scripts personalizados -->
-  <script src="/static/assets/js/Scripts.js"></script>
+  <script src="/static/assets/js/scripts.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="/static/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
+  <script>
+  $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    $('.copy_to_clipboard').click(function(){
+      let str = $(this).attr('address');
+      const el = document.createElement('textarea');
+
+      el.value = str;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Texto copiado.'
+      });
+    })
+
+  })
+</script>
 {% endblock javascripts %}
