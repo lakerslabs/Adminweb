@@ -43,9 +43,9 @@
                                     type="text" 
                                     id="{{ formulario.cod_client.name }}" 
                                     name="{{ formulario.cod_client.name }}"
-                                    class="form-control ml-5 input_2 soloText mayusc" 
+                                    class="form-control ml-5 input_2 textNum mayusc" 
                                     autocapitalize="characters"
-                                    oninput="validarTextoEntrada(this, '[a-záéíóúñ ]')" 
+                                    oninput="validarTextoEntrada(this, '[0-9a-z]')" 
                                     placeholder="Ingrese código"
                                     required
                                     value="{{ formulario.cod_client.value | default:'' }}"
