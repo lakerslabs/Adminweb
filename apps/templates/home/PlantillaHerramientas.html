@@ -41,15 +41,29 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Info boxes -->
-        
-        <iframe width="1200" height="650" src={{dir_iframe}} frameborder="0" allowFullScreen="false"></iframe>
-                
-      </div><!--/. container-fluid -->
-    </section>
+    <script>
+      if (window.innerHeight){
+         //navegadores basados en mozilla
+         largo = window.innerHeight - 80
+         ancho = window.innerWidth - 80
+      }else{
+         if (document.body.clientHeight){
+             //Navegadores basados en IExplorer, es que no tengo innerheight
+             largo = document.body.clientHeight - 80
+             ancho = document.body.clientWidth - 80
+         }else{
+             //otros navegadores
+             largo = 700
+             ancho = 1200
+         }
+      }
+      document.write ('<iframe frameborder="0" src={{dir_iframe}} width="' + ancho + '" height="' + largo + '">')
+      document.write ('</iframe>')
+    </script>
+    <!-- siguinete por si si los navegadores no entienden Javascript, o está deshabilitado -->
+    <noscript>
+      <iframe frameborder="0" src={{dir_iframe}} width="1200" height=700></iframe>
+    </noscript>
     
     <!-- /.content -->
   </div>

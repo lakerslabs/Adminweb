@@ -61,11 +61,13 @@
          }else{
              //otros navegadores
              largo = 700
+             ancho = 1200
          }
       }
       document.write ('<iframe frameborder="0" src={{dir_iframe}} width="' + ancho + '" height="' + largo + '">')
       document.write ('</iframe>')
     </script>
+    <!-- siguinete por si si los navegadores no entienden Javascript, o está deshabilitado -->
     <noscript>
       <iframe frameborder="0" src={{dir_iframe}} width="1200" height=700></iframe>
     </noscript>
