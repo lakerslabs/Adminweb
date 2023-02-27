@@ -33,6 +33,8 @@ DIR_REPORTES = {
     'Pedidos': 'http://192.168.0.143:8080/ECOMMERCE/',
     'Auditoria_Ecommerce': 'http://app.xl.com.ar:8080/ecommerce-auditoria/',
     'Auditoria_Prisma': 'http://app.xl.com.ar:8080/ecommerce/auditoriaPrisma/',
+    # Administracion
+    'VentasXmedio_pago':'http://192.168.0.143:8080/administracion/controlSucursales/resumenVentas.php',
 
 }
 

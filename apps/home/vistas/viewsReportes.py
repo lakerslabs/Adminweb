@@ -85,3 +85,12 @@ def Auditoria_Prisma(request):
     Nombre='Auditoría Prisma'
     dir_iframe = DIR_REPORTES['Auditoria_Prisma']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+
+# Administracion
+
+@login_required(login_url="/login/")
+def VentasXmedio_pago(request):
+    Nombre='Resumen de Ventas'
+    dir_iframe = DIR_REPORTES['VentasXmedio_pago']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
