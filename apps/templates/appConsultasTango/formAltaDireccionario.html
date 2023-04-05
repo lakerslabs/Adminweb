@@ -289,6 +289,17 @@
                     unchecked> Dashboard PBI
                     
             </label>
+            
+            <label class="form-check-label label_check">
+                <input 
+                    id="{{ formulario.integra_vtex.name }}"
+                    name="{{ formulario.integra_vtex.name }}" 
+                    class="form-check-input" 
+                    type="checkbox"
+                    value="{{ formulario.integra_vtex.value | default:'true' }}"
+                    unchecked> {{ formulario.integra_vtex.label }}
+                    
+            </label>
 
         </div>
 
@@ -325,6 +336,8 @@ window.onload = function(){
     var tango = "{{ formulario.tango.value }}"
     var dashboard_bi = "{{ formulario.dashboard_bi.value }}"
     var habilitado = "{{ formulario.habilitado.value  }}"
+    var integra_vtex = "{{ formulario.integra_vtex.value  }}"
+    
     if(tango==true || tango!="None"){
         var id = "{{ formulario.tango.name }}"
         $("#"+id).removeAttr("unchecked");
@@ -337,6 +350,11 @@ window.onload = function(){
     }
     if(habilitado==true || habilitado!="None"){
         var id = "{{ formulario.habilitado.name }}"
+        $("#"+id).removeAttr("unchecked");
+        $("#"+id).attr("checked","");
+    }
+    if(integra_vtex==true || integra_vtex!="None"){
+        var id = "{{ formulario.integra_vtex.name }}"
         $("#"+id).removeAttr("unchecked");
         $("#"+id).attr("checked","");
     }

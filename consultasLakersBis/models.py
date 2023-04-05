@@ -19,6 +19,7 @@ class Direccionario(models.Model):
     horario = models.CharField(db_column='HORARIO', max_length=20, blank=True, null=True)  # Field name made lowercase.
     localidad = models.CharField(db_column='LOCALIDAD', max_length=50)  # Field name made lowercase.
     provincia = models.CharField(db_column='PROVINCIA', max_length=50)  # Field name made lowercase.
+    integra_vtex = models.CharField(db_column='INTEGRA_VTEX', max_length=2)  # Field name made lowercase.
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
@@ -69,6 +70,7 @@ class SucursalesLakers(models.Model):
     mail = models.CharField(db_column='MAIL', max_length=50, blank=True, null=True)  # Field name made lowercase.
     fecha_cierre = models.DateField(db_column='FECHA_CIERRE', blank=True, null=True)  # Field name made lowercase.
     horario = models.CharField(db_column='HORARIO', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    integra_vtex = models.BooleanField(db_column='INTEGRA_VTEX', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = True

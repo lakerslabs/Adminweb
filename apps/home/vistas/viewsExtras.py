@@ -283,7 +283,7 @@ def upload_file_ubi(path_filname):
 
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/login/") # DESABILITADO
 def direccionario(request):
     Nombre='Pedidos'
     dir_iframe = DIR_EXTRAS['direccionario']
