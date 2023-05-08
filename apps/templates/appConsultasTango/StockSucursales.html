@@ -74,17 +74,16 @@
                     <tr>
                       <th>ARTICULO</th>
                       <th>DESCRIPCION</th>
+                      <th>COD SUCURSAL</th>
+                      <th>SUCURSAL</th>
                       <th>DEPOSITO</th>
+                      <th>STOCK</th>
                       <th>RUBRO</th>
-                      <th>DISP</th>
-                      <th>RES</th>
-                      <th>COMP</th>
-                      <th>TOTAL</th>
-                      <th>DESTINO</th>
                       <th>CATEGORIA</th>
-                      <th>COLOR</th>
                       <th>TEMPORADA</th>
-                      <th>EXCLUIDO</th>
+                      <th>DESTINO</th>
+                      <th>PRECIO</th>
+                      <!-- <th>NRO SUCURSAL</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -92,17 +91,16 @@
                       <tr>
                         <td><b>{{ articulo.articulo }}</b></td>
                         <td>{{ articulo.descripcion }}</td>
-                        <td>{{ articulo.deposito }}</td>
+                        <td><b>{{ articulo.cod_client }}</b></td>
+                        <td>{{ articulo.desc_sucursal }}</td>
+                        <td>{{ articulo.cod_deposi }}</td>
+                        <td class="text-primary" id="cant"><b>{{ articulo.cant_stock|floatformat }}</b></td>
                         <td>{{ articulo.rubro }}</td>
-                        <td><b>{{ articulo.disponible|floatformat }}</b></td>
-                        <td>{{ articulo.reserva }}</td>
-                        <td>{{ articulo.comp|floatformat }}</td>
-                        <td class="text-primary" id="cant"><b>{{ articulo.total|floatformat }}</b></td>
-                        <td>{{ articulo.destino }}</td>
                         <td>{{ articulo.categoria }}</td>
-                        <td>{{ articulo.color }}</td>
                         <td>{{ articulo.temporada }}</td>
-                        <td>{{ articulo.excluido }}</td>
+                        <td>{{ articulo.destino }}</td>
+                        <td>{{ articulo.precio|floatformat }}</td>
+                        <!-- <td>{{ articulo.nro_sucursal }}</td> -->
                       </tr>
                     {% endfor %}
                   </tbody>
@@ -163,12 +161,13 @@
     })
 
     var suma = 0;
-    $(document).ready(function(){
+    $(document).ready(function(){    
       $("#example1 tbody tr").each(function(){
-        var cant = $(this).find("td:eq(7)").text();
+        var cant = $(this).find("td:eq(5)").text();
         suma += parseFloat(cant);
       });
       $("#Total").text(suma);
+      
     });
     $(function () {
       $("#example1").DataTable({
@@ -176,6 +175,8 @@
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
+    
+
   </script>
 
 {% endblock javascripts %}

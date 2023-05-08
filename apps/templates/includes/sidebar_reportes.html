@@ -59,6 +59,7 @@
             <p>Auditoría orden</p>
           </a>
         </li>
+        
         {% endif %}
       <!-- Fin 	Abastecimiento -->
 
@@ -71,7 +72,6 @@
           <a href="/../Reportes/VentasXmedio_pago" class="nav-link {% if '/VentasXmedio_pago' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Resumen de Ventas</p>
-            <span class="badge badge-info right">New</span>
           </a>
         </li>
         {% endif %}
@@ -130,6 +130,13 @@
           <a href="/../Reportes/Stock_Sucursales" class="nav-link {% if 'Stock_Sucursales' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Stock Sucursales</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/Stock_Suc_Articulos" class="nav-link {% if 'Stock_Suc_Articulos' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Stock sucursales X Art.</p>
+            <span class="badge badge-info right">New</span>
           </a>
         </li>
         

@@ -12,13 +12,13 @@ from django.shortcuts import render, redirect
 from numpy import int64, isnan
 from consultasTango.models import StockCentral,SjStockDisponibleEcommerce
 from consultasWMS.models import Ubicacion
-from consultasLakersBis.models import Direccionario
+from consultasLakersBis.models import Direccionario, SofStockLakers
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_WMS import validar_ubicacion,actualizar_ubicacion
 from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido
 from consultasTango.filters import *
-from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario
+from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,SucFilter
 from django.contrib import messages
 import openpyxl
 import pandas as pd
@@ -38,6 +38,7 @@ def editarSucursal(request,id):
     sucForm = sucursalesform(request.POST or None, request.FILES or None, instance=suc)
     Disabled='disabled'
     print(id)
+    print(sucForm.errors)
     if sucForm.is_valid() and request.POST:
         suc = sucForm.save(commit=False)
         suc.save()
@@ -327,3 +328,18 @@ def stockcentral_ecommerce(request):
     
     
     return render(request,'appConsultasTango/StockCentral_ecommerce.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockLakers(request):
+    Nombre='Stock Sucursales'
+    
+    stock = SofStockLakers.objects.all()
+    myFilter = SucFilter(request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = SofStockLakers.objects.all()
+    # stock = myFilter
+    # stock = OrderFilter(request.GET, queryset=StockCentral.objects.all())
+
+    return render(request,'appConsultasTango/StockSucursales.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})

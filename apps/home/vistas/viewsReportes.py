@@ -50,7 +50,7 @@ def Stock_Sucursales(request):
     dir_iframe = DIR_REPORTES['Stock_Sucursales']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
-@login_required(login_url="/login/")
+@login_required(login_url="/login/")#---> Discontinuado
 def Stock_central(request):
     Nombre='Stock central'
     dir_iframe = DIR_REPORTES['Stock_central']

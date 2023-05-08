@@ -1,6 +1,23 @@
 from email.policy import default
 from django.db import models
 
+class SofStockLakers(models.Model):
+    articulo = models.CharField(db_column='ARTICULO', max_length=15,primary_key=True,unique=False)  # Field name made lowercase.
+    descripcion = models.CharField(db_column='DESCRIPCION', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    nro_sucursal = models.IntegerField(db_column='NRO_SUCURSAL')  # Field name made lowercase.
+    cod_client = models.CharField(db_column='COD_CLIENT', max_length=8)  # Field name made lowercase.
+    desc_sucursal = models.CharField(db_column='DESC_SUCURSAL', max_length=50)  # Field name made lowercase.
+    cod_deposi = models.CharField(db_column='COD_DEPOSI', max_length=3)  # Field name made lowercase.
+    cant_stock = models.FloatField(db_column='CANT_STOCK', blank=True, null=True)  # Field name made lowercase.
+    rubro = models.CharField(db_column='RUBRO', max_length=40, blank=True, null=True)  # Field name made lowercase.
+    categoria = models.CharField(db_column='CATEGORIA', max_length=50)  # Field name made lowercase.
+    temporada = models.CharField(db_column='TEMPORADA', max_length=20)  # Field name made lowercase.
+    destino = models.CharField(db_column='DESTINO', max_length=20)  # Field name made lowercase.
+    precio = models.FloatField(db_column='PRECIO', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'SOF_STOCK_LAKERS'
 
 class Direccionario(models.Model):
     nro_sucursal = models.IntegerField(db_column='NRO_SUCURSAL',primary_key=True,unique=False)  # Field name made lowercase.

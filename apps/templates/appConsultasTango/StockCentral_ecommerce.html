@@ -46,12 +46,14 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <div class="overlay-wrapper">
+          <div class="overlay dark" id="spiner"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
         <div class="row">
           <div class="col-md-12">
             <div class="card card-body">
               <form method="get">
                 {{myFilter.form}}
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <button id="botonBuscar" type="submit" class="btn btn-primary">Buscar</button>
                 <button type="button" class="btn btn-dark disabled" role="button" style="float: right;">Total Disponible: <b><h5><span id="Total" class="badge badge-light"></span></h5></b></button>
               </form>
             </div>
@@ -146,6 +148,17 @@
   <script src="/static/assets/js/demo.js"></script>
   <!-- page script -->
   <script>
+    window.onload = function(){
+      var loading = document.getElementById('spiner');
+      loading.style.visibility = 'hidden';
+      // loading.style.opacity = '0';
+    }
+    $('#botonBuscar').click(function(){
+      var loading = document.getElementById('spiner');
+      loading.style.visibility = 'visible';
+      // loading.style.opacity = '0';
+    })
+
     var suma = 0;
     $(document).ready(function(){
       $("#example1 tbody tr").each(function(){
