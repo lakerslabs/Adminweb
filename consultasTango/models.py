@@ -45,3 +45,27 @@ class SjStockDisponibleEcommerce(models.Model):
     class Meta:
         managed = False  # Created from a view. Don't remove.
         db_table = 'SJ_STOCK_DISPONIBLE_ECOMMERCE'
+
+class Turno(models.Model):
+    IdTurno = models.AutoField(primary_key=True)
+    CodigoProveedor = models.CharField(max_length=6,null=False, blank=False)
+    FechaAsignacion = models.DateTimeField()
+    OrdenCompra = models.CharField(max_length=14,null=False, blank=False)
+    Remitos = models.CharField(max_length=100,null=False, blank=False)
+    CantidadUnidades = models.IntegerField(null=False, blank=False)
+    CantidadBultos = models.IntegerField(null=True, blank=True)
+    Recepcionado = models.BooleanField(default=False)
+    Auditado = models.BooleanField(default=False)
+    Posicionado = models.BooleanField(default=False)
+    Observaciones = models.CharField(max_length=300, null=True, blank=True)
+    CodigoError = models.IntegerField(null=True, blank=True)
+    RecepcionadoFechaHora = models.DateTimeField(null=True, blank=True)
+    AuditadoFechaHora = models.DateTimeField(null=True, blank=True)
+    PosicionadoFechaHora = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.IdTurno} - {self.OrdenCompra}'
+
+class CodigosError(models.Model):
+    CodigoError = models.IntegerField(primary_key=True)
+    DescripcionError = models.CharField(max_length=100)

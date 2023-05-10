@@ -1,0 +1,24 @@
+<h1>Lista de turnos</h1>
+<ul>
+{% for turno in turnos %}
+  <li>
+    <a href="http:/../Herramientas/Calendario/EditarTurnoProveedor/{{ turno.IdTurno }}">{{ turno.CodigoProveedor }} - {{ turno.FechaAsignacion }} </a>
+    <!-- <a href="">{{ turno.FechaAsignacion }} - {{ turno.CodigoProveedor }}</a> -->
+  </li>
+{% endfor %}
+</ul>
+{% if is_paginated %}
+  <div class="pagination">
+    <span class="page-links">
+      {% if page_obj.has_previous %}
+        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Anterior</a>
+      {% endif %}
+      <span class="page-current">
+        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+      </span>
+      {% if page_obj.has_next %}
+        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Siguiente</a>
+      {% endif %}
+    </span>
+  </div>
+{% endif %}
