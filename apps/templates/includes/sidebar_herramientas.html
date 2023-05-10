@@ -117,7 +117,14 @@
     <!-- ver solo el supervisor del area aqui -->
     {% endif %}
     {% if request.user|has_group:"Gerencia" or request.user|has_group:"Gerencia_Adm" or request.user|has_group:"admin" %}
-    <!-- accesos del area aqui -->
+    <li class="nav-item">
+      <a href="http:/../Herramientas/rendircobranzas/{{ request.user.username }}"
+        class="nav-link {% if 'rendircobranzas' in request.path %} active {% endif %}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Rendir Cobranzas</p>
+        <span class="badge badge-info right">2</span>
+      </a>
+    </li>
     {% endif %}
     <!-- Fin 	Gerencia -->
 

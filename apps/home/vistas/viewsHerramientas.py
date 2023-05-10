@@ -9,6 +9,8 @@ from Transportes.models import Transporte
 from Transportes.forms import TransporteForm
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
+from consultasTango.forms import TurnoForm
+from consultasTango.models import Turno
 
 # @login_required(login_url="/login/")
 # def (request):
@@ -18,6 +20,50 @@ from apps.home.vistas.settingsUrls import *
 
 
 # Logistica
+@login_required(login_url="/login/")
+def Eliminar_Turno(request):
+    if request.method == 'POST':
+        IdTurno = request.POST.get('IdTurno')
+        datos = Turno.objects.get(IdTurno=IdTurno)
+        datos.delete()
+        # Redirigir a la página de éxito
+        return redirect('/../Herramientas/Calendario/TurnoListView')
+    else:
+        IdTurno = request.GET.get('IdTurno')
+        datos = Turno.objects.get(IdTurno=IdTurno)
+        return render(request, 'appConsultasTango/Eliminar_turno.html', {'datos': datos})
+
+@login_required(login_url="/login/")
+def Editar_Turno(request,IdTurno):
+    datos = Turno.objects.get(IdTurno=IdTurno)
+    if request.method == 'POST':
+        form = TurnoForm(request.POST or None, request.FILES or None, instance=datos)
+        if form.is_valid():
+            form.save()
+            # Redirigir a la página de éxito
+            return redirect('/../Herramientas/Calendario/TurnoListView')
+    else:
+        form = TurnoForm(instance=datos)
+    return render(request, 'appConsultasTango/Editar_turno.html', {'form': form})
+
+@login_required(login_url="/login/")
+def Listar_turno(request):
+    datos = Turno.objects.all()   
+    return render(request,'appConsultasTango/turno_list.html', {'turnos': datos})
+
+@login_required(login_url="/login/")
+def Crear_turno(request):
+    if request.method == 'POST':
+        form = TurnoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirigir a la página de éxito
+            return redirect('/../Herramientas/Calendario/TurnoListView')
+    else:
+        form = TurnoForm()
+    return render(request, 'appConsultasTango/Crear_turno.html', {'form': form})
+
+
 @login_required(login_url="/login/")
 def Gestion_cronograma(request):
     Nombre = 'Gestión cronograma'
@@ -94,3 +140,10 @@ def StockSegVtex(request):
     Nombre = 'Adm. Stock Seguridad Vtex'
     dir_iframe = DIR_HERAMIENTAS['StockSegVtex']
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe, })
+
+# Gerencia
+@login_required(login_url="/login/")
+def rendircobranzas(request,UserName):
+    url='http://192.168.0.143:8080/sistemas/599/valoresrendir.php?UserName=' + UserName
+    # return render(request, url)
+    return redirect(url)

@@ -8,6 +8,9 @@ from apps.home import views
 
 urlpatterns = [
     # Logistica
+    path("Calendario/TurnoListView", views.Listar_turno, name="Herramientas"),
+    path('Calendario/NuevoTurnoProveedor', views.Crear_turno, name='Herramientas'),
+    path('Calendario/EditarTurnoProveedor/<int:IdTurno>', views.Editar_Turno, name='Herramientas'),
     path('Gestion_cronograma', views.Gestion_cronograma, name='Herramientas'),
     path('Gestion_guias_mayoristas',
          views.Gestion_guias_mayoristas, name='Herramientas'),
@@ -24,4 +27,6 @@ urlpatterns = [
     path('Control_pedidos', views.Control_pedidos, name='Herramientas'),
     path('StockSegVtex', views.StockSegVtex, name='Herramientas'),
     # Gerencia
+    path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
+
 ]
