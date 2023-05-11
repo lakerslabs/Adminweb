@@ -26,6 +26,8 @@ urlpatterns = [
             path('Auditoria_Ecommerce', views.Auditoria_Ecommerce, name='Reportes'),
             path('Auditoria_Prisma', views.Auditoria_Prisma, name='Reportes'),
         # Gerencia
+            path('DetalleRemitos599', views.DetalleRemitos599, name='Reportes'),
+            path('ChequesRecibidos', views.ChequesRecibidos, name='Reportes'),
         # Administracion
             path('VentasXmedio_pago', views.VentasXmedio_pago, name='Reportes'),
 ]

@@ -116,7 +116,22 @@
                   <!-- ver solo el supervisor del area aqui -->
         {% endif %}
         {% if request.user|has_group:"Gerencia" or request.user|has_group:"Gerencia_Adm" or request.user|has_group:"admin" %}
-                  <!-- accesos del area aqui -->
+        <li class="nav-item">
+          <a href="http:/../Reportes/DetalleRemitos599"
+            class="nav-link {% if 'DetalleRemitos599' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Detalle Rem599</p>
+            <!-- <span class="badge badge-info right">2</span> -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="http:/../Reportes/ChequesRecibidos"
+            class="nav-link {% if 'ChequesRecibidos' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Cheques Recibidos</p>
+            <!-- <span class="badge badge-info right">2</span> -->
+          </a>
+        </li>
         {% endif %}
       <!-- Fin 	Gerencia -->          
 

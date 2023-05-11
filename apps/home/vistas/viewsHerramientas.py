@@ -144,6 +144,12 @@ def StockSegVtex(request):
 # Gerencia
 @login_required(login_url="/login/")
 def rendircobranzas(request,UserName):
-    url='http://192.168.0.143:8080/sistemas/599/valoresrendir.php?UserName=' + UserName
-    # return render(request, url)
+    url='http://192.168.0.143:8080/sistemas/599/valoresrendir.php?userName=' + UserName
     return redirect(url)
+
+@login_required(login_url="/login/")
+def GestionarCobro(request):
+    url='http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php'
+    return redirect(url)
+
+

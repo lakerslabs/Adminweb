@@ -28,5 +28,6 @@ urlpatterns = [
     path('StockSegVtex', views.StockSegVtex, name='Herramientas'),
     # Gerencia
     path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
+    path('GestionarCobro', views.GestionarCobro, name='Herramientas'),
 
 ]

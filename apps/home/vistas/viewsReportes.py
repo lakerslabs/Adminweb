@@ -94,3 +94,15 @@ def VentasXmedio_pago(request):
     Nombre='Resumen de Ventas'
     dir_iframe = DIR_REPORTES['VentasXmedio_pago']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+# Gerencia
+
+@login_required(login_url="/login/")
+def DetalleRemitos599(request):
+    url='http://192.168.0.143:8080/sistemas/599/consultaderemitos.php'
+    return redirect(url)
+
+@login_required(login_url="/login/")
+def ChequesRecibidos(request):
+    url='http://192.168.0.143:8080/sistemas/599/reportedecheques.php'
+    return redirect(url)
