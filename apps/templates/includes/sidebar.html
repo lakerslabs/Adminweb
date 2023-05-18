@@ -1,4 +1,5 @@
 
+{% load has_group %}
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -7,17 +8,16 @@
       <span class="brand-text font-weight-light">LAKERS Labs</span>
     </a><!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="info">
-            <a href="{% url 'logout' %}" class="d-block text-warning">
-              {{ request.user.username|upper }}
-            </a>
-            <a></a>
-              <a href="/admin/" class="fas fa-user-cog text-succes"> - Admin</a>
-          </div>
+      <!-- Sidebar user panel (optional) -->      
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a href="{% url 'logout' %}" class="d-block text-warning">
+            {{ request.user.username|upper }}
+          </a>
+          <a></a>
+            <a href="/admin/" class="fas fa-user-cog text-succes"> - Admin</a>
         </div>
+      </div>
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -32,24 +32,16 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-    
-          {% include 'includes/sidebar_Dashboard.html' %}
-          <li class="nav-item has-treeview {% if '/Reportes/' in request.path %} menu-open {% endif %}">
-            <a href="#" class="nav-link {% if '/Reportes/' in request.path %} active {% endif %}">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Reportes
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            {% include 'includes/sidebar_reportes.html' %}
-          </li>
+          {% include 'includes/sidebar_Dashboard.html' %}          
+          {% if request.user|has_group:"admin" %}
+          {% include 'includes/sidebar_reportesAdmin.html' %}
+          {% else %}
+          {% include 'includes/sidebar_reportes.html' %}
+          {% endif %}
           {% include 'includes/sidebar_herramientas.html' %}
-             
-
           <li class="nav-header">EXTRAS</li>
           {% include 'includes/sidebar_extras.html' %}
           
@@ -60,22 +52,5 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  <!-- <script>
-    window.addEventListener('load',iniciarEscucha);
-   
-   function iniciarEscucha(){
-    console.log('hola');
-    let nav=document.querySelectorAll('.nav-item.has-treeview');
-    console.log(nav);
-    nav.forEach(el=>{el.addEventListener('click',()=>{
-      if(el.classList.contains('menu-is-opening'))
-      {
-          el.classList.remove('menu-is-opening');
-          el.classList.remove('menu-open');
-         
-      }
-    })});
-  }
 
-  </script> -->
   

@@ -112,8 +112,10 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-
-
+# Cierra la sesión al cerrar el navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# Para que las sesiones duren 1 día:
+SESSION_COOKIE_AGE = 24 * 60 * 60
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [CORE_DIR + '/apps/static']

@@ -152,4 +152,14 @@ def GestionarCobro(request):
     url='http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php'
     return redirect(url)
 
+# Administracion
+@login_required(login_url="/login/")
+def Controlgastos(request):
+    url='http://192.168.0.143:8080/administracion/contabilidad/controlGastos.php'
+    return redirect(url)
+
+@login_required(login_url="/login/")
+def Cargargastos(request):
+    url='http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php'
+    return redirect(url)
 

@@ -29,5 +29,9 @@ urlpatterns = [
     # Gerencia
     path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
     path('GestionarCobro', views.GestionarCobro, name='Herramientas'),
+    # Administracion
+    path('Controlgastos', views.Controlgastos, name='Herramientas'),
+    path('Cargargastos', views.Cargargastos, name='Herramientas'),
+
 
 ]

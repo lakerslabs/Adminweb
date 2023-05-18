@@ -1,0 +1,178 @@
+{% load has_group %}  
+<li class="nav-item{% if '/Reportes/' in request.path %} menu-open {% endif %}">
+  <a href="#" class="nav-link {% if '/Reportes/' in request.path %} active {% endif %}">
+    <i class="nav-icon fas fa-copy"></i>
+    <p>
+      Reportes
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="#" class="nav-link ">
+        <i class="nav-icon fas fa-circle"></i>
+        <p>
+          Logistica
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/../Reportes/stockcentral" class="nav-link {% if '/stockcentral' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Stock Central</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/pendiente_despacho" class="nav-link {% if 'pendiente_despacho' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Despachos Pendientes</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/MovimientosWms" class="nav-link {% if 'MovimientosWms' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Movimientos Wms</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link ">
+        <i class="nav-icon fas fa-circle"></i>
+        <p>
+          Abastecimiento
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/../Reportes/Auditoria_orden" class="nav-link {% if 'Auditoria_orden' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Auditoría orden</p>
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+    <li class="nav-item Nivel02">
+      <a href="#" class="nav-link ">
+        <i class="nav-icon fas fa-circle"></i>
+        <p>
+          Administracion
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview Nivel03">
+        <li class="nav-item">
+          <a href="/../Reportes/VentasXmedio_pago" id="level3" class="nav-link {% if 'VentasXmedio_pago' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Resumen de Ventas</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/Consultagastos" class="nav-link {% if 'Consultagastos' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Consulta de gastos</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link ">
+        <i class="nav-icon fas fa-circle"></i>
+        <p>
+          e-commerce
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/../Reportes/stock_ecommerce" class="nav-link {% if '/stock_ecommerce' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Stock e-commerce</p>
+            <!-- <span class="badge badge-info right">New</span> -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/Pedidos" class="nav-link {% if '/Pedidos' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Pedidos</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/Auditoria_Ecommerce" class="nav-link {% if 'Auditoria_Ecommerce' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Auditoría Ecommerce</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/Auditoria_Prisma" class="nav-link {% if 'Auditoria_Prisma' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Track Auditoría Prisma</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link ">
+        <i class="nav-icon fas fa-circle"></i>
+        <p>
+          Gerencia
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="http:/../Reportes/DetalleRemitos599"
+            class="nav-link {% if 'DetalleRemitos599' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Detalle Rem599</p>
+            <!-- <span class="badge badge-info right">2</span> -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="http:/../Reportes/ChequesRecibidos"
+            class="nav-link {% if 'ChequesRecibidos' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Cheques Recibidos</p>
+            <!-- <span class="badge badge-info right">2</span> -->
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-circle"></i>
+        <p>
+          Comercial
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/../Reportes/Stock_Sucursales" class="nav-link {% if 'Stock_Sucursales' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Stock Sucursales</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/Stock_Suc_Articulos" class="nav-link {% if 'Stock_Suc_Articulos' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Stock sucursales X Art.</p>
+            <span class="badge badge-info right">New</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/Tracking_pedidos_mayoristas" class="nav-link {% if 'Tracking_pedidos_mayoristas' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Track Ped Mayoristas</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
