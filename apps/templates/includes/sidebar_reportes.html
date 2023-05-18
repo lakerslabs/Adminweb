@@ -1,24 +1,12 @@
 {% load has_group %}  
-<!-- <li class="nav-item has-treeview {% if 'Reportes' in request.path %} menu-open {% endif %}">
+<li class="nav-item {% if 'Reportes' in request.path %} menu-open {% endif %}">
   <a href="#" class="nav-link {% if 'Reportes' in request.path %} active {% endif %}">
     <i class="nav-icon fas fa-copy"></i>
     <p>
       Reportes
       <i class="right fas fa-angle-left"></i>
-          <span class="right badge badge-danger">New</span>
     </p>
-  </a> -->
-      <!-- Colocar aqui los link de los submenus, por grupos
-        dentro de la clase nav nav-treeview
-        cada bloque de grupo esta identificado del siguiente modo:
-          Comercial
-          Gerencia
-          e-commerce
-          Administracion
-          Abastecimiento
-          Logistica 
-        colocar dentro de xxxx_sup los submenus de acceso retringido
-      -->
+  </a>
   <ul class="nav nav-treeview">
         <li class="nav-item">
           <a href="/../Reportes/stockcentral" class="nav-link {% if '/stockcentral' in request.path %} active {% endif %}">
@@ -181,5 +169,5 @@
 
 
   </ul>    
-<!-- </li> -->
+</li>
 
