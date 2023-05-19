@@ -71,7 +71,7 @@
     <!-- Fin 	Abastecimiento -->
 
     <!-- inicio 	Administracion -->
-    {% if request.user|has_group:"Administracion_Sup" or request.user|has_group:"admin" %}
+    {% if request.user|has_group:"AdministracionSup" or request.user|has_group:"admin" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/Controlgastos"
         class="nav-link {% if 'Controlgastos' in request.path %} active {% endif %}">
@@ -81,7 +81,7 @@
       </a>
     </li>
     {% endif %}
-    {% if request.user|has_group:"Administracion" or request.user|has_group:"Administracion_Sup" or request.user|has_group:"admin" %}
+    {% if request.user|has_group:"Administracion" or request.user|has_group:"AdministracionSup" or request.user|has_group:"admin" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/Cargargastos"
         class="nav-link {% if 'Cargargastos' in request.path %} active {% endif %}">
@@ -94,10 +94,10 @@
     <!-- Fin 	Administracion -->
 
     <!-- inicio 	e-commerce -->
-    {% if request.user|has_group:"e-commerce_Sup" or request.user|has_group:"admin" %}
+    {% if request.user|has_group:"e-commerce_sup" or request.user|has_group:"admin" %}
     <!-- ver solo el supervisor del area aqui -->
     {% endif %}
-    {% if request.user|has_group:"e-commerce" or request.user|has_group:"e-commerce_Sup" or request.user|has_group:"admin" %}
+    {% if request.user|has_group:"e-commerce" or request.user|has_group:"e-commerce_sup" or request.user|has_group:"admin" %}
     <!-- accesos del area aqui -->
     <li class="nav-item">
       <a href="/../Herramientas/Control_pedidos"

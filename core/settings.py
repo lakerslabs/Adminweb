@@ -13,7 +13,7 @@ CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
 ALLOWED_HOSTS = ['192.168.0.13','localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
@@ -114,7 +114,7 @@ STATIC_URL = '/static/'
 # Cierra la sesión al cerrar el navegador
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Para que las sesiones duren 1 día:
-SESSION_COOKIE_AGE = 24 * 60 * 60
+SESSION_COOKIE_AGE = 12 * 60 * 60
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [CORE_DIR + '/apps/static']
