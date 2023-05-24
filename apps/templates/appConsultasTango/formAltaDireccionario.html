@@ -209,9 +209,22 @@
                             </div>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                            
                         </div>
                         <div class="input-group">
-                            <div class="pb-2 mt-2 boton-check">
+                            <div>
+                                <label class="label_form" for="uname">{{ formulario.cod_deposi.label }}:</label>
+                                <input 
+                                    
+                                    name="{{ formulario.cod_deposi.name }}"
+                                    class="form-control soloNum"
+                                    oninput="validarTextoEntrada(this, '[0-9]')" 
+                                    id="{{ formulario.cod_deposi.name }}"
+                                    placeholder="{{ formulario.cod_deposi.label }}" 
+                                    required
+                                    value="{{ formulario.cod_deposi.value | default:'' }}">
+                            </div>
+                            <div class="pb-2 ml-5 boton-check">
                                 <label class="label_form">Ferreteria</label>
                                 {{ navigation }}
                                 <input 
@@ -238,10 +251,10 @@
                                     disabled>                
                             </div> 
                             <div>
-                                <label class="label_form_2 ml-5" for="pwd">{{ formulario.horario.label }}:</label>
+                                <label class="label_form_2" for="pwd">{{ formulario.horario.label }}:</label>
                                 <input 
                                     type="text" 
-                                    class="form-control ml-5 input_2 mayusc" 
+                                    class="form-control  input_2 mayusc" 
                                     id="{{ formulario.horario.name }}"
                                     name="{{ formulario.horario.name }}"
                                     placeholder="Ingrese dias y horarios de atencion" 
@@ -249,7 +262,8 @@
                                     value="{{ formulario.horario.value | default:'' }}">
                             </div>
                             <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>                           
+                            <div class="invalid-feedback mt-4">Este campo es obligatorio</div>
+                                                      
                         </div>
                     </div>
                 </div>
@@ -314,6 +328,9 @@
     </div>
 </form>
 
+
+
+
 <script>
 window.onload = function(){
     $(document).ready(function(){
@@ -372,5 +389,6 @@ function toggleOn() {
     console.log(document.getElementById('toggle-state').checked)
     
 };
+
 
 </script>

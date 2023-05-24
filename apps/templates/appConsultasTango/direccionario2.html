@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="/static/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
   <link rel="stylesheet" href="/static/assets/css/direccionario/BotonFlotante.css">
+  <!-- Toastr -->
+  <link href="/static/assets/plugins/toastr/toastr.css" rel="stylesheet"/>
 
 
   <style>
@@ -52,7 +54,13 @@
       </div>
     </div>
     <div class="container">
+      {% if messages %}
+          {% for message in messages %}
+          <div class="panel-footer {% if message.tags == 'success' %}toastrDefaultSuccess {% else %}toastrDefaultSuccess{% endif %}"></div>
+          {% endfor %}
+      {% endif %}
       <div class="row">
+        
         <div class="card-widget col-sm-3">
           <div class="card">
             <div class="card-header">
@@ -240,6 +248,8 @@
   <script src="/static/assets/js/scripts.js"></script>
   <!-- SweetAlert2 -->
   <script src="/static/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+  <!-- Toastr -->
+  <script src="/static/assets/plugins/toastr/toastr.min.js"></script>
 
   <script>
   $(function() {
@@ -269,5 +279,11 @@
     })
 
   })
+  $('.toastrDefaultSuccess').each(function() {
+      toastr.success("Se ha guardado con exito")
+  });
+  $('.toastrDefaultError').each(function () {
+    toastr.error("A ocurrido un error, volver a intentarlo")
+  });
 </script>
 {% endblock javascripts %}

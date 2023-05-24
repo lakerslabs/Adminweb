@@ -8,12 +8,14 @@
     </p>
   </a>
   <ul class="nav nav-treeview">
+        {% if not request.user|has_group:"Gerencia" %}
         <li class="nav-item">
           <a href="/../Reportes/stockcentral" class="nav-link {% if '/stockcentral' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Stock Central</p>
           </a>
         </li>
+        {% endif %}
         <!-- inicio Logistica -->
         {% if request.user|has_group:"Logistica_Sup" or request.user|has_group:"admin" %} 
         
@@ -66,6 +68,12 @@
           <a href="/../Reportes/VentasXmedio_pago" class="nav-link {% if '/VentasXmedio_pago' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Resumen de Ventas</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/../Reportes/VentaVscobranza" class="nav-link {% if '/VentaVscobranza' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Venta Vs cobranza</p>
           </a>
         </li>
         {% endif %}

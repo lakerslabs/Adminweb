@@ -42,8 +42,9 @@ def editarSucursal(request,id):
     if sucForm.is_valid() and request.POST:
         suc = sucForm.save(commit=False)
         suc.save()
+        messages.success(request, 'OK')        
         infForm = sucForm.cleaned_data
-        print(infForm)
+        # print(infForm)
         return redirect('/../Extras/direccionario')
 
     return  render(request,'appConsultasTango/editarSucursal.html',{'formulario':sucForm,'Disabled':Disabled})
@@ -55,11 +56,9 @@ def registraSucursal(request):
         if formulario.is_valid():
             sucursal = formulario.save(commit=False)
             sucursal.save()
-            print('El formulario SI es valido')
-            error='Formulario valido'
-            print('-------********-------')
+            messages.success(request, 'OK')
             infForm = formulario.cleaned_data
-            print(infForm)
+            # print(infForm)
             return redirect('/../Extras/direccionario')
         # else:
         #     error='Formulario NO valido'
@@ -68,6 +67,7 @@ def registraSucursal(request):
         
     else: 
         formulario=sucursalesform()
+        # mensaje_error='Algo salio mal !!, verifique la informacion'
 
     return  render(request,'appConsultasTango/registraSucursal.html',{'formulario':formulario})
 

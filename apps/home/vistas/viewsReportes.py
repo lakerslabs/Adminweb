@@ -100,6 +100,11 @@ def Consultagastos(request):
     url='http://192.168.0.143:8080/administracion/contabilidad/consultaGastos.php'
     return redirect(url)
 
+@login_required(login_url="/login/")
+def VentaVscobranza(request):
+    url='http://192.168.0.143:8080/administracion/controlSucursales/ventaVsCobranza.php'
+    return redirect(url)
+
 # Gerencia
 
 @login_required(login_url="/login/")
