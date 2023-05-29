@@ -163,3 +163,14 @@ def Cargargastos(request):
     url='http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php'
     return redirect(url)
 
+# Administracion_CE             ***Comercio Exterior***
+@login_required(login_url="/login/")
+def Cargarcontenedor(request):
+    url='http://192.168.0.143:8080/administracion/comercioExterior/cargaInicial.php'
+    return redirect(url)
+
+@login_required(login_url="/login/")
+def EditarContenedor(request):
+    url='http://192.168.0.143:8080/administracion/comercioExterior/mostrarOrden.php'
+    return redirect(url)
+

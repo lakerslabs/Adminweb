@@ -33,5 +33,9 @@ urlpatterns = [
     path('Controlgastos', views.Controlgastos, name='Herramientas'),
     path('Cargargastos', views.Cargargastos, name='Herramientas'),
 
+    # Administracion_CE             ***Comercio Exterior***
+    path('Cargarcontenedor', views.Cargarcontenedor, name='Herramientas'),
+    path('EditarContenedor', views.EditarContenedor, name='Herramientas'),
+
 
 ]
