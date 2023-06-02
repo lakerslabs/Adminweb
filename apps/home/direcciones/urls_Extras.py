@@ -21,6 +21,9 @@ urlpatterns = [
         # Mayoristas
         # Ecommerce
         # Gerencia
+        # Correr Script de python
+        path('runscript', views.runscript, name='runScript'),
+        path('runscriptResult', views.runscriptResult, name='runscriptResult'),
 
 ]
 

@@ -31,6 +31,36 @@ from django.core.files.storage import FileSystemStorage
 from consultasLakersBis.models import SucursalesLakers
 from consultasLakersBis.forms import sucursalesform
 import os
+import subprocess
+from django.templatetags.static import static
+
+@login_required(login_url="/login/")
+def runscript(request):
+    # script_path = 'ruta_al_script/script.py'
+    # # Ejecutar el script utilizando subprocess
+    # output = subprocess.check_output(['python', script_path])
+    return render(request, 'appConsultasTango/runScript.html')
+
+
+def runscriptResult(request):
+    ruta_actual = r'X:\Logistica\1. Logistica Interno\Historiales_de_Logistica'
+    archivo = r'\hora.py'
+    # script_path = static(r'Scripts\hora.py')
+    # script_path= ruta_actual + '\Scripts\hora.py'
+    # script_path = r'C:\Users\eduardo.berga\Desktop\Proyectos\Lakers_Lab\Adminweb\apps\static\Scripts\hora.py'
+    script_path = ruta_actual + archivo
+    print('Ruta actual: ' + script_path)
+    # # Ejecutar el script utilizando subprocess
+    resultado = subprocess.run(['python', script_path], capture_output=True, text=True)
+    salida = resultado.returncode
+    if salida == 0:
+        mensaje_success = "La ejecucion fue un exito"
+        output = resultado.stdout
+    print(resultado)
+    # output = subprocess.check_output(['python', script_path])
+    # output = "Hola Mundo"
+    return render(request, 'appConsultasTango/runScriptResult.html', {'mensaje_success': mensaje_success,'output': output})
+
 
 @login_required(login_url="/login/")
 def editarSucursal(request,id):
