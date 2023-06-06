@@ -43,9 +43,11 @@ def runscript(request):
 
 
 def runscriptResult(request):
-    ruta_actual = r'X:\Logistica\1. Logistica Interno\Historiales_de_Logistica'
+    mensaje_success=''
+    output=''
+    ruta_actual = r'C:\Users\eduardo.berga\Desktop\Proyectos_Django\Intranet\Adminweb\apps\static\Scripts'
     archivo = r'\hora.py'
-    # script_path = static(r'Scripts\hora.py')
+    # script_path = static(r'Scripts\Imprimir_Etiquetas_Andreani2.py')
     # script_path= ruta_actual + '\Scripts\hora.py'
     # script_path = r'C:\Users\eduardo.berga\Desktop\Proyectos\Lakers_Lab\Adminweb\apps\static\Scripts\hora.py'
     script_path = ruta_actual + archivo
@@ -55,7 +57,7 @@ def runscriptResult(request):
     salida = resultado.returncode
     if salida == 0:
         mensaje_success = "La ejecucion fue un exito"
-        output = resultado.stdout
+        output = 'El resultado del script es la hora actual: ' + resultado.stdout
     print(resultado)
     # output = subprocess.check_output(['python', script_path])
     # output = "Hola Mundo"
