@@ -144,33 +144,53 @@ def StockSegVtex(request):
 # Gerencia
 @login_required(login_url="/login/")
 def rendircobranzas(request,UserName):
-    url='http://192.168.0.143:8080/sistemas/599/valoresrendir.php?userName=' + UserName
-    return redirect(url)
+    Nombre = 'Rendir Cobranzas'
+    dir_iframe = DIR_HERAMIENTAS['rendircobranzas'] + UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 @login_required(login_url="/login/")
 def GestionarCobro(request):
-    url='http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php'
-    return redirect(url)
+    Nombre = 'Gestionar Cobro'
+    dir_iframe = DIR_HERAMIENTAS['gestionarCobro'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 # Administracion
 @login_required(login_url="/login/")
 def Controlgastos(request):
-    url='http://192.168.0.143:8080/administracion/contabilidad/controlGastos.php'
-    return redirect(url)
+    Nombre = 'Control Gastos'
+    dir_iframe = DIR_HERAMIENTAS['controlGastos'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    # url='http://192.168.0.143:8080/administracion/contabilidad/controlGastos.php'
+    # return redirect(url)
 
 @login_required(login_url="/login/")
 def Cargargastos(request):
-    url='http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php'
-    return redirect(url)
+    Nombre = 'Gestionar Cobro'
+    dir_iframe = DIR_HERAMIENTAS['cargaGastos'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    # url='http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php'
+    # return redirect(url)
 
 # Administracion_CE             ***Comercio Exterior***
 @login_required(login_url="/login/")
 def Cargarcontenedor(request):
-    url='http://192.168.0.143:8080/administracion/comercioExterior/cargaInicial.php'
-    return redirect(url)
+    Nombre = 'Cargar Contenedor'
+    dir_iframe = DIR_HERAMIENTAS['cargaInicial'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    # url='http://192.168.0.143:8080/administracion/comercioExterior/cargaInicial.php'
+    # return redirect(url)
 
 @login_required(login_url="/login/")
 def EditarContenedor(request):
-    url='http://192.168.0.143:8080/administracion/comercioExterior/mostrarOrden.php'
-    return redirect(url)
+    Nombre = 'Editar Contenedor'
+    dir_iframe = DIR_HERAMIENTAS['mostrarOrden'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    # url='http://192.168.0.143:8080/administracion/comercioExterior/mostrarOrden.php'
+    # return redirect(url)
+
+@login_required(login_url="/login/")
+def Controlcajasdiario(request):
+    Nombre = 'Editar Contenedor'
+    dir_iframe = DIR_HERAMIENTAS['Controlcajasdiario'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 

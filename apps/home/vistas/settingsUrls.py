@@ -35,6 +35,12 @@ DIR_REPORTES = {
     'Auditoria_Prisma': 'http://app.xl.com.ar:8080/ecommerce/auditoriaPrisma/',
     # Administracion
     'VentasXmedio_pago':'http://192.168.0.143:8080/administracion/controlSucursales/resumenVentas.php',
+    'consultaGastos':'http://192.168.0.143:8080/administracion/contabilidad/consultaGastos.php',
+    'ventaVsCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/ventaVsCobranza.php',
+    'Controlcajasmensual':'http://192.168.0.143:8080/administracion/controlSucursales/controlMensualCajaSucursales.php',
+    # Gerencia
+    'DetalleRemitos599':'http://192.168.0.143:8080/sistemas/599/consultaderemitos.php',
+    'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php',
 
 }
 
@@ -54,6 +60,15 @@ DIR_HERAMIENTAS = {
     # Ecommerce
     'Control_pedidos': 'http://192.168.0.143:8080/logistica/ecommerce/',
     'StockSegVtex': 'http://192.168.0.143:8080/ecommerce/stockSeguridad/index.php',
+    # Gerencia
+    'rendircobranzas': 'http://192.168.0.143:8080/sistemas/599/valoresrendir.php?userName=',
+    'gestionarCobro':'http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php',
+    # Administracion
+    'controlGastos':'http://192.168.0.143:8080/administracion/contabilidad/controlGastos.php',
+    'cargaGastos':'http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php',
+    'cargaInicial':'http://192.168.0.143:8080/administracion/comercioExterior/cargaInicial.php',
+    'mostrarOrden':'http://192.168.0.143:8080/administracion/comercioExterior/mostrarOrden.php',
+    'Controlcajasdiario':'http://192.168.0.143:8080/administracion/controlSucursales/controlDiarioCajaSucursales.php',
     
 }
 
