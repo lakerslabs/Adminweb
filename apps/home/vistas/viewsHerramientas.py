@@ -171,6 +171,12 @@ def Cargargastos(request):
     # url='http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php'
     # return redirect(url)
 
+@login_required(login_url="/login/")
+def Controlcajasdiario(request):
+    Nombre = 'Control cajas Diario'
+    dir_iframe = DIR_HERAMIENTAS['Controlcajasdiario'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
 # Administracion_CE             ***Comercio Exterior***
 @login_required(login_url="/login/")
 def Cargarcontenedor(request):
@@ -188,9 +194,5 @@ def EditarContenedor(request):
     # url='http://192.168.0.143:8080/administracion/comercioExterior/mostrarOrden.php'
     # return redirect(url)
 
-@login_required(login_url="/login/")
-def Controlcajasdiario(request):
-    Nombre = 'Editar Contenedor'
-    dir_iframe = DIR_HERAMIENTAS['Controlcajasdiario'] #+ UserName
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
 
