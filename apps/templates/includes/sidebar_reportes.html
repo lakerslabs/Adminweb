@@ -125,7 +125,7 @@
         {% endif %}
         {% if request.user|has_group:"Gerencia" or request.user|has_group:"Gerencia_Adm" or request.user|has_group:"admin" %}
         <li class="nav-item">
-          <a href="http:/../Reportes/DetalleRemitos599"
+          <a href="http:/../Reportes/DetalleRemitos599/{{ request.user.username }}"
             class="nav-link {% if 'DetalleRemitos599' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Detalle Rem599</p>
@@ -133,7 +133,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="http:/../Reportes/ChequesRecibidos"
+          <a href="http:/../Reportes/ChequesRecibidos/{{ request.user.username }}"
             class="nav-link {% if 'ChequesRecibidos' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Reporte de cheques</p>

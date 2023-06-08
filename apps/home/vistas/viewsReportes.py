@@ -120,13 +120,13 @@ def Controlcajasmensual(request):
 # Gerencia
 
 @login_required(login_url="/login/")
-def DetalleRemitos599(request):
+def DetalleRemitos599(request,UserName):
     Nombre='Detalle Remitos 599'
-    dir_iframe = DIR_REPORTES['DetalleRemitos599']
+    dir_iframe = DIR_REPORTES['DetalleRemitos599'] + UserName
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
-def ChequesRecibidos(request):
+def ChequesRecibidos(request,UserName):
     Nombre='Reporte de cheques'
-    dir_iframe = DIR_REPORTES['ChequesRecibidos']
+    dir_iframe = DIR_REPORTES['ChequesRecibidos'] + UserName
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})

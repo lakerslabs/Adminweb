@@ -39,8 +39,8 @@ DIR_REPORTES = {
     'ventaVsCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/ventaVsCobranza.php',
     'Controlcajasmensual':'http://192.168.0.143:8080/administracion/controlSucursales/controlMensualCajaSucursales.php',
     # Gerencia
-    'DetalleRemitos599':'http://192.168.0.143:8080/sistemas/599/consultaderemitos.php',
-    'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php',
+    'DetalleRemitos599':'http://192.168.0.143:8080/sistemas/599/consultaderemitos.php?userName=',
+    'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php?userName=',
 
 }
 
