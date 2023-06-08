@@ -149,9 +149,9 @@ def rendircobranzas(request,UserName):
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 @login_required(login_url="/login/")
-def GestionarCobro(request):
+def GestionarCobro(request,UserName):
     Nombre = 'Gestionar Cobro'
-    dir_iframe = DIR_HERAMIENTAS['gestionarCobro'] #+ UserName
+    dir_iframe = DIR_HERAMIENTAS['gestionarCobro'] + UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 # Administracion

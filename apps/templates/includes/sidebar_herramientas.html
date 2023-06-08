@@ -156,7 +156,7 @@
     {% endif %}
     {% if request.user|has_group:"Gerencia" or request.user|has_group:"Gerencia_Adm" or request.user|has_group:"admin" %}
     <li class="nav-item">
-      <a href="http:/../Herramientas/GestionarCobro"
+      <a href="http:/../Herramientas/GestionarCobro/{{ request.user.username }}"
         class="nav-link {% if 'GestionarCobro' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
         <p>Gestionar Cobro</p>

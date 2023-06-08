@@ -28,7 +28,7 @@ urlpatterns = [
     path('StockSegVtex', views.StockSegVtex, name='Herramientas'),
     # Gerencia
     path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
-    path('GestionarCobro', views.GestionarCobro, name='Herramientas'),
+    path('GestionarCobro/<str:UserName>', views.GestionarCobro, name='Herramientas'),
     # Administracion
     path('Controlgastos', views.Controlgastos, name='Herramientas'),
     path('Cargargastos', views.Cargargastos, name='Herramientas'),
