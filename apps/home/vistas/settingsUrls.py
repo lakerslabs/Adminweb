@@ -55,7 +55,7 @@ DIR_HERAMIENTAS = {
     'Desactivar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/desactivaOrdenes.php',
     # Comercial
     'Ventas_sucursales': 'http://192.168.0.143:8080/proyecto_21/ventas-canales/ventas_comercial/index.php',
-    'Gestion_categoría_productos':'http://192.168.0.143:8080/administracion/comercial/gestionCategoriaProductos.php',
+    'Gestion_categoria_productos':'http://192.168.0.143:8080/administracion/comercial/gestionCategoriaProductos.php',
     # Mayoristas
     'Adm_Pedido':'http://192.168.0.143:8080/sistemas/despachoMayorista/index.php',
     # Ecommerce

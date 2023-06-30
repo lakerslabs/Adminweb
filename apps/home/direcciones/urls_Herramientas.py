@@ -21,7 +21,7 @@ urlpatterns = [
     path('Desactivar_orden', views.Desactivar_orden, name='Herramientas'),
     # Comercial
     path('Ventas_sucursales', views.Ventas_sucursales, name='Herramientas'),
-    path('GestionCategoríaProductos', views.Gestion_categoría_productos, name='Herramientas'),
+    path('GestionCategoriaProductos', views.Gestion_categoria_productos, name='Herramientas'),
     # Mayoristas
     path('Adm_Pedido', views.Adm_Pedido, name='Herramientas'),
     # Ecommerce
