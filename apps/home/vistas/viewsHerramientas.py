@@ -115,9 +115,9 @@ def Ventas_sucursales(request):
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe, })
 
 @login_required(login_url="/login/")
-def Gestion_categoría_productos(request):
+def Gestion_categoria_productos(request):
     Nombre = ''
-    dir_iframe = DIR_HERAMIENTAS['Gestion_categoría_productos'] #+ UserName
+    dir_iframe = DIR_HERAMIENTAS['Gestion_categoria_productos'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 # Mayoristas
