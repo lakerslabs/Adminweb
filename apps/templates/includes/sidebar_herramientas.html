@@ -98,6 +98,22 @@
         <!-- <span class="badge badge-info right">2</span> -->
       </a>
     </li>
+    <li class="nav-item">
+      <a href="http:/../Herramientas/GestionDeAlquileres"
+        class="nav-link {% if 'GestionDeAlquileres' in request.path %} active {% endif %}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Gestion De Alquileres</p>
+        <!-- <span class="badge badge-info right">2</span> -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="http:/../Herramientas/CargaGastosAlquileres"
+        class="nav-link {% if 'CargaGastosAlquileres' in request.path %} active {% endif %}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Carga Gastos Alquileres</p>
+        <!-- <span class="badge badge-info right">2</span> -->
+      </a>
+    </li>
     {% endif %}
     <!-- Administracion_CE   ***Comercio Exterior*** -->
     {% if request.user|has_group:"Administracion_CE" or request.user|has_group:"AdministracionSup" or request.user|has_group:"admin" %}

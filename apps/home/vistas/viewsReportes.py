@@ -100,21 +100,23 @@ def Consultagastos(request):
     Nombre='Consulta de gastos'
     dir_iframe = DIR_REPORTES['consultaGastos']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
-    # url='http://192.168.0.143:8080/administracion/contabilidad/consultaGastos.php'
-    # return redirect(url)
 
 @login_required(login_url="/login/")
 def VentaVscobranza(request):
     Nombre='Venta Vs cobranza'
     dir_iframe = DIR_REPORTES['ventaVsCobranza']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
-    # url='http://192.168.0.143:8080/administracion/controlSucursales/ventaVsCobranza.php'
-    # return redirect(url)
 
 @login_required(login_url="/login/")
 def Controlcajasmensual(request):
     Nombre='Control cajas Mensual'
     dir_iframe = DIR_REPORTES['Controlcajasmensual']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def ResumenMensualAlquileres(request):
+    Nombre='Resumen Mensual de Alquileres'
+    dir_iframe = DIR_REPORTES['ResumenMensualAlquileres']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 # Gerencia

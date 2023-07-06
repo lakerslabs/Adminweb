@@ -38,6 +38,7 @@ DIR_REPORTES = {
     'consultaGastos':'http://192.168.0.143:8080/administracion/contabilidad/consultaGastos.php',
     'ventaVsCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/ventaVsCobranza.php',
     'Controlcajasmensual':'http://192.168.0.143:8080/administracion/controlSucursales/controlMensualCajaSucursales.php',
+    'ResumenMensualAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/consultaAlquileres.php',
     # Gerencia
     'DetalleRemitos599':'http://192.168.0.143:8080/sistemas/599/consultaderemitos.php?userName=',
     'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php?userName=',
@@ -70,7 +71,8 @@ DIR_HERAMIENTAS = {
     'cargaInicial':'http://192.168.0.143:8080/administracion/comercioExterior/cargaInicial.php',
     'mostrarOrden':'http://192.168.0.143:8080/administracion/comercioExterior/mostrarOrden.php',
     'Controlcajasdiario':'http://192.168.0.143:8080/administracion/controlSucursales/controlDiarioCajaSucursales.php',
-    
+    'CargaGastosAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaAlquileres.php',
+    'GestionDeAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/porcGastosAlquileres.php',
 }
 
 DIR_EXTRAS = {

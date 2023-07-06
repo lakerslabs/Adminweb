@@ -162,21 +162,29 @@ def Controlgastos(request):
     Nombre = 'Control Gastos'
     dir_iframe = DIR_HERAMIENTAS['controlGastos'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
-    # url='http://192.168.0.143:8080/administracion/contabilidad/controlGastos.php'
-    # return redirect(url)
 
 @login_required(login_url="/login/")
 def Cargargastos(request):
     Nombre = 'Gestionar Cobro'
     dir_iframe = DIR_HERAMIENTAS['cargaGastos'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
-    # url='http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php'
-    # return redirect(url)
 
 @login_required(login_url="/login/")
 def Controlcajasdiario(request):
     Nombre = 'Control cajas Diario'
     dir_iframe = DIR_HERAMIENTAS['Controlcajasdiario'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
+@login_required(login_url="/login/")
+def CargaGastosAlquileres(request):
+    Nombre = 'Carga Gastos Alquileres'
+    dir_iframe = DIR_HERAMIENTAS['CargaGastosAlquileres'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
+@login_required(login_url="/login/")
+def GestionDeAlquileres(request):
+    Nombre = 'Gestión % De Alquileres'
+    dir_iframe = DIR_HERAMIENTAS['GestionDeAlquileres'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 # Administracion_CE             ***Comercio Exterior***
@@ -185,16 +193,12 @@ def Cargarcontenedor(request):
     Nombre = 'Cargar Contenedor'
     dir_iframe = DIR_HERAMIENTAS['cargaInicial'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
-    # url='http://192.168.0.143:8080/administracion/comercioExterior/cargaInicial.php'
-    # return redirect(url)
 
 @login_required(login_url="/login/")
 def EditarContenedor(request):
     Nombre = 'Editar Contenedor'
     dir_iframe = DIR_HERAMIENTAS['mostrarOrden'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
-    # url='http://192.168.0.143:8080/administracion/comercioExterior/mostrarOrden.php'
-    # return redirect(url)
 
 
 
