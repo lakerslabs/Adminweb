@@ -38,11 +38,6 @@ def filtroRubro():
         row = list(cursor.fetchall())
     return row
 
-
-
-
-
-
 # Funcion que arma una tupla con los parametros de filtros
 def itemsFiltros(consulta):
     lista=[]
@@ -50,12 +45,6 @@ def itemsFiltros(consulta):
         lista.append(tuple([c[0],c[0].lower()]))
         opciones=tuple(lista)   
     return opciones
-
-
-
-
-
-
 
 # Clase para aplicar filtros a la consulta de stock central
 class OrderFilter(django_filters.FilterSet):

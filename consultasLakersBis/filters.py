@@ -1,5 +1,5 @@
 import django_filters
-from consultasLakersBis.models import SofStockLakers
+from consultasLakersBis.models import SofStockLakers,Direccionario
 from django.db import connections
 
 # Consultas sql para traer los items de los filtros 
@@ -10,11 +10,20 @@ def filtroCanal():
                         group by CANAL
                         ''')
         consulta = cursor.fetchall()
-
+        
         lista=[]
         for c in consulta:
             lista.append(c[0])
     return lista
+
+def filtroCanal_2():
+    with connections['mi_db_4'].cursor() as cursor:
+        cursor.execute('''
+                        select CANAL from DIRECCIONARIO
+                        group by CANAL
+                        ''')
+        row = list(cursor.fetchall())
+    return row
 
 def filtroTipoLocal():
     with connections['mi_db_4'].cursor() as cursor:
@@ -28,6 +37,15 @@ def filtroTipoLocal():
         for c in consulta:
             lista.append(c[0])
     return lista
+
+def filtroTipoLocal_2():
+    with connections['mi_db_4'].cursor() as cursor:
+        cursor.execute('''
+                        select TIPO_LOCAL from DIRECCIONARIO
+                        group by TIPO_LOCAL
+                        ''')
+        row = list(cursor.fetchall())
+    return row
 
 def filtroGrupoEmpresario():
     with connections['mi_db_4'].cursor() as cursor:
@@ -82,6 +100,13 @@ def itemsFiltros(consulta):
         opciones=tuple(lista)   
     return opciones
 
+def itemsFiltros_upper(consulta):
+    lista=[]
+    for c in consulta:
+        lista.append(tuple([c[0],c[0]]))
+        opciones=tuple(lista)   
+    return opciones
+
 # Clase para aplicar filtros a la consulta de stock
 class SucFilter(django_filters.FilterSet):
     # Cargar los items de los filtros en la variable Deposito
@@ -101,3 +126,18 @@ class SucFilter(django_filters.FilterSet):
     desc_sucursal = django_filters.ChoiceFilter(label='SUCURSAL ', choices=SUCURSAL)
     temporada = django_filters.ChoiceFilter(label='TEMPORADA ', choices=TEMPORADA)
     rubro = django_filters.ChoiceFilter(label='RUBRO ', choices=RUBRO)
+
+class DireccionarioFilter(django_filters.FilterSet):
+    consulta = filtroCanal_2()
+    CANAL = itemsFiltros_upper(consulta)
+
+    consulta = filtroTipoLocal_2()
+    TIPO_LOCAL = itemsFiltros_upper(consulta)
+
+    class Meta:
+        model = Direccionario
+        fields = ['canal']
+        ordering = ('nro_sucursal',)
+        
+    canal = django_filters.ChoiceFilter(label='CANAL ', choices=CANAL)
+    tipo_local = django_filters.ChoiceFilter(label='TIPO LOCAL ', choices=TIPO_LOCAL)

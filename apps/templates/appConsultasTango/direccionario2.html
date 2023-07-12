@@ -19,19 +19,15 @@
   <link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="/static/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-
-  <link rel="stylesheet" href="/static/assets/css/direccionario/BotonFlotante.css">
+  <!-- Boton Flotante -->
+  <link rel="stylesheet" href="/static/assets/css/direccionario/BotonFlotante2.css">
   <!-- Toastr -->
   <link href="/static/assets/plugins/toastr/toastr.css" rel="stylesheet"/>
-
-
   <style>
-    
     .category_item{
       text-align: left;
       border-color:gray;
     }
-    
   </style>
 {% endblock stylesheets %}
 
@@ -147,8 +143,19 @@
                   <div class="user-block">
                     <span class="username" sucursal="3"><a>({{ dato.nro_sucursal }}){{ dato.cod_client }}-{{ dato.desc_sucursal }}</a></span>
                     <span class="description"><i class="fas fa-phone"></i><b> Telefono:</b> {{ dato.telefono }}</span>
-                    <span class="description"><i class="fas fa-envelope"></i><b> e-mail:</b> {{ dato.mail }}</span>
-                    
+                    <span class="description">
+                      <button type="button" class="btn btn-tool copy_to_clipboard swalDefaultSuccess" address="{{ dato.mail }}">
+                        <i class="fas fa-envelope"></i>
+                      </button>
+                      <b> e-mail:</b> 
+                      {{ dato.mail }}
+                    </span>
+                    <span class="mensaje" id="mensaje"></span>
+                    <!-- <a class="text-secondary"> Conexion: <b id="copy_to_clipboard">{{ dato.conexion_dns }} </b></a>
+                        <button type="button" class="btn btn-tool copy_to_clipboard swalDefaultSuccess" address="{{ dato.conexion_dns }}">
+                          <i class="fa fa-copy"></i>
+                        </button>
+                        <span class="mensaje" id="mensaje"></span> -->
                   </div>
                   <!-- /.user-block -->
                   <div class="card-tools">
@@ -192,7 +199,6 @@
                     <li>
                       <a class="text-secondary"> Deposito: <b>{{ dato.deposito }}</b></a>
                     </li>
-                    
                   </ul>
                 </div>
                 {% if request.user|has_group:"admin" %}
@@ -218,19 +224,30 @@
               </div>
             </div>
             {% endfor %}
-            
           </div>
         </div>
       </div>
     </div>
   </section>
 </div>
-{% if request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_may" %}
-<div class="contenedor">
-  <a href="http:/../Extras/direccionario/AltaSucursal" class="btn botonF1" role="button">+</a>
-  
+<div id="container-floating">
+  {% if request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_may" %}
+  <div class="nd3 nds"><img class="reminder">
+    <a href="http:/../Extras/direccionario/AltaSucursal">
+      <img class="reminder" src="/static/assets/img/lapiz.png" />
+    </a>
+  </div>
+  {% endif %}
+  <div class="nd1 nds">
+    <a href="http:/../Extras/direccionarioTabla">
+      <img class="reminder" src="/static/assets/img/excel.png" />
+    </a>
+  </div>
+  <div id="floating-button">
+    <p class="plus">+</p>
+    <img class="edit" src="/static/assets/img/flechaarriba3.png">
+  </div>
 </div>
-{% endif %}
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
@@ -250,6 +267,8 @@
   <script src="/static/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- Toastr -->
   <script src="/static/assets/plugins/toastr/toastr.min.js"></script>
+  <!-- Boton Flotante -->
+  <script src="/static/assets/css/direccionario/BotonFlotante.js"></script>
 
   <script>
   $(function() {

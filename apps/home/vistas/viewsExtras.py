@@ -18,7 +18,7 @@ from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_WMS import validar_ubicacion,actualizar_ubicacion
 from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido
 from consultasTango.filters import *
-from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,SucFilter
+from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,SucFilter,DireccionarioFilter
 from django.contrib import messages
 import openpyxl
 import pandas as pd
@@ -92,14 +92,9 @@ def registraSucursal(request):
             infForm = formulario.cleaned_data
             # print(infForm)
             return redirect('/../Extras/direccionario')
-        # else:
-        #     error='Formulario NO valido'
-            # formulario=sucursalesform()
-            # return  render(request,'appConsultasTango/registraSucursal.html',{'formulario':formulario,'mensaje_error':error})
         
     else: 
         formulario=sucursalesform()
-        # mensaje_error='Algo salio mal !!, verifique la informacion'
 
     return  render(request,'appConsultasTango/registraSucursal.html',{'formulario':formulario})
 
@@ -314,8 +309,6 @@ def upload_file_ubi(path_filname):
         
         actualizar_ubicacion(id_Ubi,nom_ubi,tipo,estado_ubi,orden_rack,orden_modulo,orden_altura)
 
-
-
 @login_required(login_url="/login/") # DESABILITADO
 def direccionario(request):
     Nombre='Pedidos'
@@ -323,7 +316,7 @@ def direccionario(request):
     return render(request,'home/direccionario.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
-def agenda(request):
+def agenda(request):    # <<<----- Direccionario Cards -->
     Nombre='Direccionario'
     datos = Direccionario.objects.all()
     canal = filtroCanal()
@@ -333,45 +326,50 @@ def agenda(request):
     return render(request,'appConsultasTango/direccionario2.html',{'datos': datos,'canal':canal,'tipo_local':tipo_local,'grupo':grupo,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
+def DireccionarioTabla(request):    # <<<----- Direccionario Tabla -->
+    Nombre='Direccionario'
+    stock = Direccionario.objects.all()
+    myFilter = DireccionarioFilter(request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = Direccionario.objects.all()
+
+    return render(request,'appConsultasTango/direccionarioTabla.html',{'myFilter':myFilter,'datos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
 def stockcentral(request):
     Nombre='Stock Central'
-    
     stock = StockCentral.objects.all()
     myFilter = OrderFilter(request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:
         datos = StockCentral.objects.filter(deposito='05')
-    # stock = myFilter
-    # stock = OrderFilter(request.GET, queryset=StockCentral.objects.all())
 
     return render(request,'appConsultasTango/StockCentral.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def stockcentral_ecommerce(request):
     Nombre='Stock Central ecommerce'
-    
     stock = SjStockDisponibleEcommerce.objects.filter(total__gt=0)
     myFilter = filtro_stock_ecommerce(request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:
         datos = SjStockDisponibleEcommerce.objects.filter(deposito='01')
-    
-    
+
     return render(request,'appConsultasTango/StockCentral_ecommerce.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def stockLakers(request):
     Nombre='Stock Sucursales'
-    
     stock = SofStockLakers.objects.all()
     myFilter = SucFilter(request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:
         datos = SofStockLakers.objects.all()
-    # stock = myFilter
-    # stock = OrderFilter(request.GET, queryset=StockCentral.objects.all())
 
+    print(myFilter.form)
     return render(request,'appConsultasTango/StockSucursales.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})

@@ -18,6 +18,7 @@ urlpatterns = [
             path('direccionario', views.agenda, name='direccionario'),
             path('direccionario/AltaSucursal', views.registraSucursal, name='altadireccionario'),
             path('direccionario/editarSucursal/<int:id>', views.editarSucursal, name='editarSucursal'),
+            path('direccionarioTabla', views.DireccionarioTabla, name='direccionarioTabla'),
         # Mayoristas
         # Ecommerce
         # Gerencia
