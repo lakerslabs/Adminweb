@@ -41,6 +41,11 @@ def Auditoria_orden(request):
     dir_iframe = DIR_REPORTES['Auditoria_orden']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
+@login_required(login_url="/login/")
+def CategoriasDeProductos(request):
+    Nombre='Categorias de Productos'
+    dir_iframe = DIR_REPORTES['CategoriasDeProductos']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 # Comercial
 

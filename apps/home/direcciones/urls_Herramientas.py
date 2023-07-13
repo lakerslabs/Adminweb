@@ -22,6 +22,7 @@ urlpatterns = [
     # Comercial
     path('Ventas_sucursales', views.Ventas_sucursales, name='Herramientas'),
     path('GestionCategoriaProductos', views.Gestion_categoria_productos, name='Herramientas'),
+    path('AdministrarCuotas', views.AdministrarCuotas, name='Herramientas'),
     # Mayoristas
     path('Adm_Pedido', views.Adm_Pedido, name='Herramientas'),
     # Ecommerce

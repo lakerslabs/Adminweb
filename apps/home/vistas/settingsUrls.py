@@ -24,6 +24,7 @@ DIR_REPORTES = {
     'Pedidos_pendiente_despacho':'http://192.168.0.143:8080/sistemas/cronoDespacho/pedidos.php',
     # Abastecimiento
     'Auditoria_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/listOrdenesComercial.php',
+    'CategoriasDeProductos':'http://192.168.0.143:8080/administracion/comercial/consultaCategoriaProductos.php',
     # Comercial
     'Stock_Sucursales': 'http://app.xl.com.ar:8080/stockArticulos/index.php',
     'Stock_central': 'http://192.168.0.143:8080/logistica/stock.php',
@@ -57,6 +58,7 @@ DIR_HERAMIENTAS = {
     # Comercial
     'Ventas_sucursales': 'http://192.168.0.143:8080/proyecto_21/ventas-canales/ventas_comercial/index.php',
     'Gestion_categoria_productos':'http://192.168.0.143:8080/administracion/comercial/gestionCategoriaProductos.php',
+    'AdministrarCuotas':'http://192.168.0.143:8080/cuotas/',
     # Mayoristas
     'Adm_Pedido':'http://192.168.0.143:8080/sistemas/despachoMayorista/index.php',
     # Ecommerce

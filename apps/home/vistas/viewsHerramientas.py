@@ -120,6 +120,12 @@ def Gestion_categoria_productos(request):
     dir_iframe = DIR_HERAMIENTAS['Gestion_categoria_productos'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
+@login_required(login_url="/login/")
+def AdministrarCuotas(request):
+    Nombre = 'Administrar Cuotas'
+    dir_iframe = DIR_HERAMIENTAS['AdministrarCuotas'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
 # Mayoristas
 @login_required(login_url="/login/")
 def Adm_Pedido(request):
