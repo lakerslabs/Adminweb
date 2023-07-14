@@ -371,5 +371,4 @@ def stockLakers(request):
     else:
         datos = SofStockLakers.objects.all()
 
-    print(myFilter.form)
     return render(request,'appConsultasTango/StockSucursales.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})

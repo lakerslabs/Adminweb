@@ -125,7 +125,7 @@ class SucFilter(django_filters.FilterSet):
     
     desc_sucursal = django_filters.ChoiceFilter(label='SUCURSAL ', choices=SUCURSAL)
     temporada = django_filters.ChoiceFilter(label='TEMPORADA ', choices=TEMPORADA)
-    rubro = django_filters.ChoiceFilter(label='RUBRO ', choices=RUBRO)
+    rubro = django_filters.MultipleChoiceFilter(label='RUBRO ', choices=RUBRO)
 
 class DireccionarioFilter(django_filters.FilterSet):
     consulta = filtroCanal_2()
