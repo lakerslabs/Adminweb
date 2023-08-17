@@ -16,7 +16,7 @@ DIR_PBI = {
     # Ecommerce
     'Ventas_Ecommerce':'https://app.powerbi.com/view?r=eyJrIjoiNmUyZDQyNjctZWJlOC00YWFkLWEwMDYtZjYwODRiZmIyMDNmIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     'Kpis_Ecommerce':'https://app.powerbi.com/view?r=eyJrIjoiMWQyMDA5ZDMtNjRjMi00NWU4LTlhZDgtYzZhY2E0ZTE0YTE3IiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
-    
+    'PromocionesEcommerce':'https://app.powerbi.com/view?r=eyJrIjoiN2VlNWMyMzgtMWMyMC00NmJhLThiMDUtZDA1YjI2MzBjZjg5IiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9',
     }
 
 DIR_REPORTES = {

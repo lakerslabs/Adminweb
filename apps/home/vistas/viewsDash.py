@@ -98,5 +98,11 @@ def Kpis_Ecommerce(request):
     dir_iframe = DIR_PBI['Kpis_Ecommerce']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
+@login_required(login_url="/login/")
+def PromocionesEcommerce(request):
+    Nombre='Promociones Ecommerce'
+    dir_iframe = DIR_PBI['PromocionesEcommerce']
+    return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 
 

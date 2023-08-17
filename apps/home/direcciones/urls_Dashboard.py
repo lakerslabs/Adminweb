@@ -24,5 +24,6 @@ urlpatterns = [
         # Ecommerce
             path('Ventas_Ecommerce', views.Ventas_Ecommerce, name='Dashboard_PowerBI'),
             path('Kpis_Ecommerce', views.Kpis_Ecommerce, name='Dashboard_PowerBI'),
+            path('PromocionesEcommerce', views.PromocionesEcommerce, name='Dashboard_PowerBI'),
         # Gerencia
 ]
