@@ -31,6 +31,7 @@ urlpatterns = [
     # Gerencia
     path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
     path('GestionarCobro/<str:UserName>', views.GestionarCobro, name='Herramientas'),
+    path('RegistrarEfectivo/<str:UserName>', views.RegistrarEfectivo, name='Herramientas'),
     # Administracion
     path('Controlgastos', views.Controlgastos, name='Herramientas'),
     path('Cargargastos', views.Cargargastos, name='Herramientas'),

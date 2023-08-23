@@ -68,6 +68,7 @@ DIR_HERAMIENTAS = {
     # Gerencia
     'rendircobranzas': 'http://192.168.0.143:8080/sistemas/599/valoresrendir.php?userName=',
     'gestionarCobro':'http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php?userName=',
+    'registrarEfectivo':'http://192.168.0.143:8080/administracion/controlSucursales/controlRecepcionEfectivo.php?userName=',
     # Administracion
     'controlGastos':'http://192.168.0.143:8080/administracion/contabilidad/controlGastos.php',
     'cargaGastos':'http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php',

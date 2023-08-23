@@ -162,6 +162,12 @@ def GestionarCobro(request,UserName):
     dir_iframe = DIR_HERAMIENTAS['gestionarCobro'] + UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
+@login_required(login_url="/login/")
+def RegistrarEfectivo(request,UserName):
+    Nombre = 'Registrar Efectivo'
+    dir_iframe = DIR_HERAMIENTAS['registrarEfectivo'] + UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
 # Administracion
 @login_required(login_url="/login/")
 def Controlgastos(request):
