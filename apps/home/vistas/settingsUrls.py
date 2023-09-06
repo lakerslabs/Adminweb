@@ -78,6 +78,7 @@ DIR_HERAMIENTAS = {
     'CargaGastosAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaAlquileres.php',
     'GestionDeAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/porcGastosAlquileres.php',
     'ControlEgresosDeCaja':'http://192.168.0.143:8080/administracion/controlSucursales/controlEgresosCajaSucursales.php',
+    'ControlMasivoCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/controlMasivoCaja.php',
 }
 
 DIR_EXTRAS = {
