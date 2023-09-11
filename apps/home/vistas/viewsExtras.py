@@ -45,8 +45,8 @@ def runscript(request):
 def runscriptResult(request):
     mensaje_success=''
     output=''
-    ruta_actual = r'C:\Users\eduardo.berga\Desktop\Proyectos_Django\Intranet\Adminweb\apps\static\Scripts'
-    archivo = r'\hora.py'
+    ruta_actual = r'C:\Users\eduardo.berga\Desktop\Proyectos\Lakers_Lab\Adminweb\apps\static\Scripts'
+    archivo = r'\miTareaPy.py'
     # script_path = static(r'Scripts\Imprimir_Etiquetas_Andreani2.py')
     # script_path= ruta_actual + '\Scripts\hora.py'
     # script_path = r'C:\Users\eduardo.berga\Desktop\Proyectos\Lakers_Lab\Adminweb\apps\static\Scripts\hora.py'
