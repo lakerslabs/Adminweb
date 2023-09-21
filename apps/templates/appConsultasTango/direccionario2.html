@@ -201,7 +201,7 @@
                     </li>
                   </ul>
                 </div>
-                {% if request.user|has_group:"admin" %}
+                {% if request.user|has_group:"admin" or request.user|has_group:"soporteExt" %}
                 <!-- /.card-body -->
                 <div class="card-footer card-comments">
                   <div class="card-comment">
