@@ -211,6 +211,12 @@ def ControlEgresosDeCaja(request):
     dir_iframe = DIR_HERAMIENTAS['ControlEgresosDeCaja'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
+@login_required(login_url="/login/")
+def CargarContratosDeAlquiler(request):
+    Nombre = 'Cargar Contratos De Alquiler'
+    dir_iframe = DIR_HERAMIENTAS['CargarContratosDeAlquiler'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
 # Administracion_CE             ***Comercio Exterior***
 @login_required(login_url="/login/")
 def Cargarcontenedor(request):

@@ -130,6 +130,12 @@ def CargaGastosTesoreria(request):
     dir_iframe = DIR_REPORTES['CargaGastosTesoreria']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
+@login_required(login_url="/login/")
+def DetalleContratosDeAlquiler(request):
+    Nombre='Detalle Contratos De Alquiler'
+    dir_iframe = DIR_REPORTES['DetalleContratosDeAlquiler']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 # Gerencia
 
 @login_required(login_url="/login/")

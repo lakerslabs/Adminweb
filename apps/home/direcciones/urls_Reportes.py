@@ -36,4 +36,5 @@ urlpatterns = [
             path('Controlcajasmensual', views.Controlcajasmensual, name='Reportes'),
             path('ResumenMensualAlquileres', views.ResumenMensualAlquileres, name='Reportes'),
             path('CargaGastosTesoreria', views.CargaGastosTesoreria, name='Reportes'),
+            path('DetalleContratosDeAlquiler', views.DetalleContratosDeAlquiler, name='Reportes'),
 ]

@@ -41,6 +41,7 @@ DIR_REPORTES = {
     'Controlcajasmensual':'http://192.168.0.143:8080/administracion/controlSucursales/controlMensualCajaSucursales.php',
     'ResumenMensualAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/consultaAlquileres.php',
     'CargaGastosTesoreria':'http://192.168.0.143:8080/administracion/controlSucursales/cargaGastosTesoreria.php',
+    'DetalleContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/detalleContratosAlquiler.php',
     # Gerencia
     'DetalleRemitos599':'http://192.168.0.143:8080/sistemas/599/consultaderemitos.php?userName=',
     'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php?userName=',
@@ -79,6 +80,7 @@ DIR_HERAMIENTAS = {
     'GestionDeAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/porcGastosAlquileres.php',
     'ControlEgresosDeCaja':'http://192.168.0.143:8080/administracion/controlSucursales/controlEgresosCajaSucursales.php',
     'ControlMasivoCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/controlMasivoCaja.php',
+    'CargarContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaContratoAlquileres.php',
 }
 
 DIR_EXTRAS = {

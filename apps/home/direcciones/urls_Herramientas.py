@@ -40,6 +40,7 @@ urlpatterns = [
     path('CargaGastosAlquileres', views.CargaGastosAlquileres, name='Herramientas'),
     path('ControlEgresosDeCaja', views.ControlEgresosDeCaja, name='Herramientas'),
     path('ControlMasivoCobranza', views.ControlMasivoCobranza, name='Herramientas'),
+    path('CargarContratosDeAlquiler', views.CargarContratosDeAlquiler, name='Herramientas'),
 
     # Administracion_CE             ***Comercio Exterior***
     path('Cargarcontenedor', views.Cargarcontenedor, name='Herramientas'),
