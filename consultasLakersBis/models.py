@@ -38,6 +38,7 @@ class Direccionario(models.Model):
     provincia = models.CharField(db_column='PROVINCIA', max_length=50)  # Field name made lowercase.
     integra_vtex = models.CharField(db_column='INTEGRA_VTEX', max_length=2)  # Field name made lowercase.
     deposito = models.CharField(db_column='COD_DEPOSI', max_length=2, blank=True, null=True)
+    n_llave_tango = models.CharField(db_column='N_LLAVE_TANGO', max_length=20, blank=True, null=True)
 
     class Meta:
         managed = False  # Created from a view. Don't remove.

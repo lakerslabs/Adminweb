@@ -216,6 +216,13 @@
                         </button>
                         <span class="mensaje" id="mensaje"></span>
                       </li>
+                      <li>
+                        <a class="text-secondary"> Llave Tango: <b id="copy_to_clipboard">{{ dato.n_llave_tango }} </b></a>
+                        <button type="button" class="btn btn-tool copy_to_clipboard swalDefaultSuccess" address="{{ dato.n_llave_tango }}">
+                          <i class="fa fa-copy"></i>
+                        </button>
+                        <span class="mensaje" id="mensaje"></span>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -293,7 +300,8 @@
 
       Toast.fire({
         icon: 'success',
-        title: 'Texto copiado.'
+        title: 'Texto copiado.',
+        timer: 10000
       });
     })
 

@@ -197,10 +197,28 @@
     bsCustomFileInput.init();
   });
   $('.toastrDefaultError').each(function () {
-      toastr.error("{{ mensaje_error }}")
+    toastr.options = {
+      "closeButton": true,
+      "progressBar": true,
+      "positionClass": "toast-top-center",
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "10000",
+      "extendedTimeOut": "5000",
+    }
+    toastr.error("{{ mensaje_error }}")
   });
   $('.toastrDefaultSuccess').each(function() {
-      toastr.success("{{ mensaje_Success }}")
+    toastr.options = {
+      "closeButton": true,
+      "progressBar": true,
+      "positionClass": "toast-top-center",
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "10000",
+      "extendedTimeOut": "5000",
+    }  
+    toastr.success("{{ mensaje_Success }}")
     });
   // $(document).ready($(function(){ 
   //   var search = $("td").filter(function() { return $(this).text() == "G2502Z05"; }).closest("tr");

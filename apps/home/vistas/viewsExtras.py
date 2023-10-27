@@ -163,7 +163,7 @@ def import_file_cierrePedidos(request):
             wb.save(path_filname)
             if not(mensaje_error):
                 upload_file_CierrePedidos(path_filname) #Ejecuta ejuste en base de datos
-                mensaje_Success = 'Se importo correctamente el archivo'
+                mensaje_Success = 'Pedidos anulados correctamente'
                 os.remove(filesys.path(uploadfilename))
                 
             else:
