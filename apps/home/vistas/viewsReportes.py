@@ -67,8 +67,8 @@ def Stock_central(request):
 @login_required(login_url="/login/")
 def Tracking_pedidos_mayoristas(request):
     Nombre='Tracking pedidos_mayoristas'
-    dir_iframe = DIR_REPORTES['Tracking_pedidos_mayoristas']
-    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+    # dir_iframe = DIR_REPORTES['Tracking_pedidos_mayoristas']
+    return render(request,'home/page-404.html')
 
 
 # Ecommerce

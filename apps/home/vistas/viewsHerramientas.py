@@ -74,8 +74,8 @@ def Gestion_cronograma(request):
 @login_required(login_url="/login/")
 def Gestion_guias_mayoristas(request):
     Nombre = 'Guías mayoristas'
-    dir_iframe = DIR_HERAMIENTAS['Gestion_guias_mayoristas']
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe, })
+    # dir_iframe = DIR_HERAMIENTAS['Gestion_guias_mayoristas']
+    return render(request,'home/page-404.html')
 
 # Abastecimiento
 

@@ -337,17 +337,69 @@ def DireccionarioTabla(request):    # <<<----- Direccionario Tabla -->
 
     return render(request,'appConsultasTango/direccionarioTabla.html',{'myFilter':myFilter,'datos':datos,'Nombre':Nombre})
 
+def cambiar_base_datos(request):
+    if request.method=='GET':
+        nombre_db='TASKY_SA'
+        settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+        print('Cambiando base de datos a TASKY_SA')
+        # return render(request,'/../Reportes/stockcentral')
+        return redirect('/../Reportes/stockcentral')
+    
+def cambiar_conexion(nombre_db):
+    settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+
 @login_required(login_url="/login/")
 def stockcentral(request):
+    # myFilter=None
+    parametro=''
     Nombre='Stock Central'
+    nombre_db='LAKER_SA'
+    settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+    check = request.GET.getlist('modelo_seleccionado')
+    parametro = 'mi_db_2'
+    print('Cambiando base de datos a mi_db_2 - LAKER_SA')
     stock = StockCentral.objects.all()
-    myFilter = OrderFilter(request.GET, queryset=stock)
+    consulta = Utilidades.filtroDepo(parametro)
+    filtroDepo = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroTemp(parametro)
+    filtroTemp = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = OrderFilter(filtroDepo,filtroTemp,filtroRub,request.GET, queryset=stock)
+    
+    
     if request.GET:
         datos = myFilter
     else:
         datos = StockCentral.objects.filter(deposito='05')
 
     return render(request,'appConsultasTango/StockCentral.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockcUY(request):
+    myFilter=None
+    parametro=''
+    Nombre=''
+    # nombre_db='LAKER_SA'
+    cambiar_conexion('TASKY_SA')
+    parametro = 'mi_db_5'
+    print('Cambiando base de datos a mi_db_5 - TASKY_SA')
+    stock = StockCentral.objects.all()
+    consulta = Utilidades.filtroDepo(parametro)
+    filtroDepo = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroTemp(parametro)
+    filtroTemp = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = OrderFilter(filtroDepo,filtroTemp,filtroRub,request.GET, queryset=stock)
+    
+    
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = StockCentral.objects.filter(deposito='05')
+
+    return render(request,'appConsultasTango/StockUY.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def stockcentral_ecommerce(request):

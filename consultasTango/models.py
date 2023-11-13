@@ -23,7 +23,7 @@ class StockCentral(models.Model):
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
-        db_table = 'STOCK_CENTRAL_EDU'
+        db_table = 'STOCK_CENTRAL'
 
 
     def __str__(self):

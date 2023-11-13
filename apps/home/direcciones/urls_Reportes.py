@@ -10,6 +10,8 @@ from apps.home import views
 urlpatterns = [
         # Logistica
             path('stockcentral', views.stockcentral, name='stockcentral'),
+            path('stockcUY', views.stockcUY, name='stockcUY'),
+            path('cambiar_base_datos', views.cambiar_base_datos, name='cambiar_base_datos'),
             path('pendiente_despacho', views.Pedidos_pendiente_despacho, name='Reportes'),
             path('MovimientosWms', views.MovimientosWms, name='MovimientosWms'),
         # Abastecimiento

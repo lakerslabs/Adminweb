@@ -58,7 +58,7 @@
 
               </form> -->
               <form method="get">
-                <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: left;"  data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
+                <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: left;" checked data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
                 {{myFilter.form}}
                 <button id="botonBuscar" type="submit" class="btn btn-primary">Buscar</button>
                 <button type="button" class="btn btn-dark disabled" role="button" style="float: right;">Total: <b><span id="Total" class="badge badge-light"></span></b></button>
@@ -169,6 +169,8 @@
       $("#id_origen").attr("data-bootstrap-switch");
       // $('#modelo_seleccionado').removeAttr("unchecked");
       // $('#modelo_seleccionado').attr("checked","");
+      // $('#modelo_seleccionado').removeClass("off");
+      // $('#modelo_seleccionado').addClass("on");
     }
     $('#botonBuscar').click(function(){
       var loading = document.getElementById('spiner');
@@ -176,14 +178,15 @@
       // loading.style.opacity = '0';
     })
     $('#modelo_seleccionado').change(function(){
-      // $('#modelo_seleccionado').removeAttr("unchecked");
+      // $('#modelo_seleccionado').removeAttr("checked");
       // $('#modelo_seleccionado').attr("checked","");
       // $('#modelo_seleccionado').removeAttr("value");
       // $('#modelo_seleccionado').attr("value","true");
       // location.reload();
-      if(this.checked) {
-        window.location.href = '/../Reportes/stockcUY';
-    }
+      window.location.href = '/../Reportes/stockcentral';
+    //   if(this.unchecked) {
+    //     window.location.href = '/../Reportes/stockcentral';
+    // }
     })
     
     var suma = 0;
