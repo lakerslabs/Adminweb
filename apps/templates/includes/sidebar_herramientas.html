@@ -85,7 +85,7 @@
         class="nav-link {% if 'CargarContratosDeAlquiler' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
         <p>Cargar Contratos De Alquiler</p>
-        <span class="badge badge-info right">New</span>
+        <!-- <span class="badge badge-info right">New</span> -->
       </a>
     </li>
     {% endif %}
@@ -136,6 +136,14 @@
         <i class="far fa-circle nav-icon"></i>
         <p>Control Masivo de Cobranza</p>
         <!-- <span class="badge badge-info right">New</span> -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="http:/../Herramientas/RelacionesCtaCont"
+        class="nav-link {% if 'RelacionesCtaCont' in request.path %} active {% endif %}">
+        <i class="nav-icon far fa-circle text-warning"></i>
+        <p>Gestion relaciones Cta/Cont</p>
+        <!-- <span class="badge badge-info top">New</span> -->
       </a>
     </li>
     {% endif %}

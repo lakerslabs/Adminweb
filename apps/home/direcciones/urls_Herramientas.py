@@ -41,6 +41,7 @@ urlpatterns = [
     path('ControlEgresosDeCaja', views.ControlEgresosDeCaja, name='Herramientas'),
     path('ControlMasivoCobranza', views.ControlMasivoCobranza, name='Herramientas'),
     path('CargarContratosDeAlquiler', views.CargarContratosDeAlquiler, name='Herramientas'),
+    path('RelacionesCtaCont', views.RelacionesCtaCont, name='Herramientas'),
 
     # Administracion_CE             ***Comercio Exterior***
     path('Cargarcontenedor', views.Cargarcontenedor, name='Herramientas'),

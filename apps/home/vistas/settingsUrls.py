@@ -81,6 +81,7 @@ DIR_HERAMIENTAS = {
     'ControlEgresosDeCaja':'http://192.168.0.143:8080/administracion/controlSucursales/controlEgresosCajaSucursales.php',
     'ControlMasivoCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/controlMasivoCaja.php',
     'CargarContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaContratoAlquileres.php',
+    'RelacionesCtaCont':'http://192.168.0.143:8080/administracion/contabilidad/gestionRelacionesCuenta.php',
 }
 
 DIR_EXTRAS = {
