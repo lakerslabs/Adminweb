@@ -105,21 +105,14 @@ class OrderFilter(django_filters.FilterSet):
     class Meta:
         model = StockCentral
         fields = ['deposito','temporada','rubro']
-        # exclude = ['articulo','descripcion','deposito','total','comp','reserva','excluido','disponible','destino','rubro','categoria','temporada','color']
 
 # Clase para aplicar filtros a la consulta de stock central ecommerce
 class filtro_stock_ecommerce(django_filters.FilterSet):
-    # Cargar los items de los filtros en la variable Deposito
-    consulta = filtroDeposito()
-    DEPOSITO = itemsFiltros(consulta)
-    # Cargar los items de los filtros en la variable Rubro
-    consulta = filtroRubro()
-    RUBRO = itemsFiltros(consulta)
+    rubro = django_filters.ChoiceFilter()
+    def __init__(self,RUBRO, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters['rubro'].extra.update(choices=RUBRO)
     
     class Meta:
         model = SjStockDisponibleEcommerce
-        # fields = [...]
-        exclude = ['articulo','descripcion','deposito','total','stock_seguridad','cant_comp','reserva_ecommerce','stock_reserva_vtex','stock_excluido','stock_disponible','rubro']
-
-    # deposito = django_filters.ChoiceFilter(label='DEPOSITO ', choices=DEPOSITO)
-    rubro = django_filters.ChoiceFilter(label='RUBRO ', choices=RUBRO)
+        fields = ['rubro']

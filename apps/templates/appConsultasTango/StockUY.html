@@ -53,10 +53,6 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card card-body">
-              <!-- <form action="{% url 'cambiar_base_datos' %}" method="get">
-                <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="true" style="float: left;" checked="unchecked" data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info" onchange="this.form.submit()">
-
-              </form> -->
               <form method="get">
                 <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: left;" checked data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
                 {{myFilter.form}}
@@ -167,10 +163,6 @@
       // loading.style.opacity = '0';
       $("#id_origen").addClass("form-check-input");
       $("#id_origen").attr("data-bootstrap-switch");
-      // $('#modelo_seleccionado').removeAttr("unchecked");
-      // $('#modelo_seleccionado').attr("checked","");
-      // $('#modelo_seleccionado').removeClass("off");
-      // $('#modelo_seleccionado').addClass("on");
     }
     $('#botonBuscar').click(function(){
       var loading = document.getElementById('spiner');
@@ -178,26 +170,13 @@
       // loading.style.opacity = '0';
     })
     $('#modelo_seleccionado').change(function(){
-      // $('#modelo_seleccionado').removeAttr("checked");
-      // $('#modelo_seleccionado').attr("checked","");
-      // $('#modelo_seleccionado').removeAttr("value");
-      // $('#modelo_seleccionado').attr("value","true");
-      // location.reload();
       window.location.href = '/../Reportes/stockcentral';
       var loading = document.getElementById('spiner');
       loading.style.visibility = 'visible';
-    //   if(this.unchecked) {
-    //     window.location.href = '/../Reportes/stockcentral';
-    // }
     })
     
     var suma = 0;
     $(document).ready(function(){
-      // $('#modelo_seleccionado').change(function(){
-      //   if(this.checked) {
-      //       location.reload();
-      //   }
-      // });
       $("#example1 tbody tr").each(function(){
         var cant = $(this).find("td:eq(7)").text();
         suma += parseFloat(cant);

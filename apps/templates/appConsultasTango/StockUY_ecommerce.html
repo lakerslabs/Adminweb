@@ -54,7 +54,7 @@
           <div class="col-md-12">
             <div class="card card-body">
               <form method="get">
-                <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: left;"  data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
+                <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: left;" checked data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
                 {{myFilter.form}}
                 <button id="botonBuscar" type="submit" class="btn btn-primary">Buscar</button>
                 <button type="button" class="btn btn-dark disabled" role="button" style="float: right;">Total Disponible: <b><h5><span id="Total" class="badge badge-light"></span></h5></b></button>
@@ -164,9 +164,7 @@
       // loading.style.opacity = '0';
     })
     $('#modelo_seleccionado').change(function(){
-      if(this.checked) {
-        window.location.href = '/../Reportes/stockUY_ecommerce';
-      }
+      window.location.href = '/../Reportes/stock_ecommerce';
       var loading = document.getElementById('spiner');
       loading.style.visibility = 'visible';
     })

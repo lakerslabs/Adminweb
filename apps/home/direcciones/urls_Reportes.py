@@ -11,7 +11,6 @@ urlpatterns = [
         # Logistica
             path('stockcentral', views.stockcentral, name='stockcentral'),
             path('stockcUY', views.stockcUY, name='stockcUY'),
-            path('cambiar_base_datos', views.cambiar_base_datos, name='cambiar_base_datos'),
             path('pendiente_despacho', views.Pedidos_pendiente_despacho, name='Reportes'),
             path('MovimientosWms', views.MovimientosWms, name='MovimientosWms'),
         # Abastecimiento
@@ -25,6 +24,7 @@ urlpatterns = [
             path('Tracking_pedidos_mayoristas', views.Tracking_pedidos_mayoristas, name='Reportes'),
         # Ecommerce
             path('stock_ecommerce', views.stockcentral_ecommerce, name='stock_ecommerce'),
+            path('stockUY_ecommerce', views.stockUY_ecommerce, name='stockUY_ecommerce'),
             path('Pedidos', views.Pedidos, name='Reportes'),
             path('Auditoria_Ecommerce', views.Auditoria_Ecommerce, name='Reportes'),
             path('Auditoria_Prisma', views.Auditoria_Prisma, name='Reportes'),

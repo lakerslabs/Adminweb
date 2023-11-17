@@ -405,13 +405,35 @@ def stockcUY(request):
 def stockcentral_ecommerce(request):
     Nombre='Stock Central ecommerce'
     stock = SjStockDisponibleEcommerce.objects.filter(total__gt=0)
-    myFilter = filtro_stock_ecommerce(request.GET, queryset=stock)
+    cambiar_conexion('LAKER_SA')
+    parametro = 'mi_db_2'
+    print('Cambiando base de datos a mi_db_2 - LAKER_SA')
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = filtro_stock_ecommerce(filtroRub,request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:
         datos = SjStockDisponibleEcommerce.objects.filter(deposito='01')
 
     return render(request,'appConsultasTango/StockCentral_ecommerce.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockUY_ecommerce(request):
+    Nombre='Stock Uruguay ecommerce'
+    stock = SjStockDisponibleEcommerce.objects.filter(total__gt=0)
+    cambiar_conexion('TASKY_SA')
+    parametro = 'mi_db_5'
+    print('Cambiando base de datos a mi_db_5 - TASKY_SA')
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = filtro_stock_ecommerce(filtroRub,request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = SjStockDisponibleEcommerce.objects.filter(deposito='01')
+
+    return render(request,'appConsultasTango/StockUY_ecommerce.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def stockLakers(request):
