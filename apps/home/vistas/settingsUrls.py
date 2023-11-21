@@ -32,6 +32,7 @@ DIR_REPORTES = {
     'Tracking_pedidos_mayoristas': 'http://192.168.0.143:8080/Despacho/tracking.php',
     # Ecommerce
     'Pedidos': 'http://192.168.0.143:8080/ECOMMERCE/',
+    'PedidosUY': 'http://app.xl.com.ar:8080/Uruguay/ecommerce/consultaPedidos.php',
     'Auditoria_Ecommerce': 'http://app.xl.com.ar:8080/ecommerce-auditoria/',
     'Auditoria_Prisma': 'http://app.xl.com.ar:8080/ecommerce/auditoriaPrisma/',
     # Administracion

@@ -26,6 +26,7 @@ urlpatterns = [
             path('stock_ecommerce', views.stockcentral_ecommerce, name='stock_ecommerce'),
             path('stockUY_ecommerce', views.stockUY_ecommerce, name='stockUY_ecommerce'),
             path('Pedidos', views.Pedidos, name='Reportes'),
+            path('PedidosUY', views.PedidosUY, name='Reportes'),
             path('Auditoria_Ecommerce', views.Auditoria_Ecommerce, name='Reportes'),
             path('Auditoria_Prisma', views.Auditoria_Prisma, name='Reportes'),
         # Gerencia

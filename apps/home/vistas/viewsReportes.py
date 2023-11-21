@@ -75,8 +75,14 @@ def Tracking_pedidos_mayoristas(request):
 
 @login_required(login_url="/login/")
 def Pedidos(request):
-    Nombre='Pedidos'
+    Nombre=''
     dir_iframe = DIR_REPORTES['Pedidos']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def PedidosUY(request):
+    Nombre=''
+    dir_iframe = DIR_REPORTES['PedidosUY']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
