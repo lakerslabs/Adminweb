@@ -16,6 +16,7 @@ urlpatterns = [
         # Abastecimiento
             path('Auditoria_orden', views.Auditoria_orden, name='Reportes'),
             path('CategoriasDeProductos', views.CategoriasDeProductos, name='Reportes'),
+            path('HRecodificaciones', views.HRecodificaciones, name='Reportes'),
         # Comercial
             path('Stock_Suc_Articulos', views.stockLakers, name='Reportes'),
             path('Stock_Sucursales', views.Stock_Sucursales, name='Reportes'),

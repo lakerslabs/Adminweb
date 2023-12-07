@@ -25,6 +25,7 @@ DIR_REPORTES = {
     # Abastecimiento
     'Auditoria_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/listOrdenesComercial.php',
     'CategoriasDeProductos':'http://192.168.0.143:8080/administracion/comercial/consultaCategoriaProductos.php',
+    'HRecodificaciones':'http://192.168.0.143:8080/recodificacion/historialDeRecodificaciones.php',
     # Comercial
     'Stock_Sucursales': 'http://app.xl.com.ar:8080/stockArticulos/index.php',
     'Stock_central': 'http://192.168.0.143:8080/logistica/stock.php',
@@ -58,6 +59,7 @@ DIR_HERAMIENTAS = {
     'Carga_de_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/index.php',
     'Activar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/activaOrdenes.php',
     'Desactivar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/desactivaOrdenes.php',
+    'Recodificacion': 'http://192.168.0.143:8080/recodificacion/nuevoProceso.php',
     # Comercial
     'Ventas_sucursales': 'http://192.168.0.143:8080/proyecto_21/ventas-canales/ventas_comercial/index.php',
     'Gestion_categoria_productos':'http://192.168.0.143:8080/administracion/comercial/gestionCategoriaProductos.php',

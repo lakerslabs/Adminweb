@@ -79,6 +79,11 @@ def Gestion_guias_mayoristas(request):
 
 # Abastecimiento
 
+@login_required(login_url="/login/")
+def Recodificacion(request):
+    Nombre = 'Recodificacion Outlet'
+    dir_iframe = DIR_HERAMIENTAS['Recodificacion']
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Stock_excluido(request):

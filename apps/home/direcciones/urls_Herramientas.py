@@ -19,6 +19,7 @@ urlpatterns = [
     path('Carga_de_orden', views.Carga_de_orden, name='Herramientas'),
     path('Activar_orden', views.Activar_orden, name='Herramientas'),
     path('Desactivar_orden', views.Desactivar_orden, name='Herramientas'),
+    path('Recodificacion', views.Recodificacion, name='Herramientas'),
     # Comercial
     path('Ventas_sucursales', views.Ventas_sucursales, name='Herramientas'),
     path('GestionCategoriaProductos', views.Gestion_categoria_productos, name='Herramientas'),

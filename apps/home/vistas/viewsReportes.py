@@ -47,6 +47,12 @@ def CategoriasDeProductos(request):
     dir_iframe = DIR_REPORTES['CategoriasDeProductos']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
+@login_required(login_url="/login/")
+def HRecodificaciones(request):
+    Nombre='Historial Recodificaciones Outlet'
+    dir_iframe = DIR_REPORTES['HRecodificaciones']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 # Comercial
 
 @login_required(login_url="/login/")
