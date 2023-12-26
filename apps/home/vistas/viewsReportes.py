@@ -78,6 +78,11 @@ def Tracking_pedidos_mayoristas(request):
 
 
 # Ecommerce
+@login_required(login_url="/login/")
+def Segmentación_clientes(request):
+    Nombre='Segmentación de clientes'
+    dir_iframe = DIR_REPORTES['Segmentación_clientes']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
 def Pedidos(request):

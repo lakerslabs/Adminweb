@@ -36,6 +36,7 @@ DIR_REPORTES = {
     'PedidosUY': 'http://app.xl.com.ar:8080/Uruguay/ecommerce/consultaPedidos.php',
     'Auditoria_Ecommerce': 'http://app.xl.com.ar:8080/ecommerce-auditoria/',
     'Auditoria_Prisma': 'http://app.xl.com.ar:8080/ecommerce/auditoriaPrisma/',
+    'Segmentación_clientes':'http://192.168.0.143:8080/ecommerce/segmentacion/segmentacionDeClientes.php',
     # Administracion
     'VentasXmedio_pago':'http://192.168.0.143:8080/administracion/controlSucursales/resumenVentas.php',
     'consultaGastos':'http://192.168.0.143:8080/administracion/contabilidad/consultaGastos.php',
@@ -68,7 +69,7 @@ DIR_HERAMIENTAS = {
     'Adm_Pedido':'http://192.168.0.143:8080/sistemas/despachoMayorista/index.php',
     # Ecommerce
     'Control_pedidos': 'http://192.168.0.143:8080/logistica/ecommerce/',
-    'StockSegVtex': 'http://192.168.0.143:8080/ecommerce/stockSeguridad/index.php',
+    'StockSegVtex': 'http://192.168.0.143:8080/ecommerce/stockSeguridad/stockSeguridad.php',
     # Gerencia
     'rendircobranzas': 'http://192.168.0.143:8080/sistemas/599/valoresrendir.php?userName=',
     'gestionarCobro':'http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php?userName=',
