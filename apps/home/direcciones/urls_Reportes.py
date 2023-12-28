@@ -8,6 +8,8 @@ from apps.home import views
 
 
 urlpatterns = [
+        # RRHH
+            path('AsistenciasSuc', views.AsistenciasSuc, name='AsistenciasSuc'),
         # Logistica
             path('stockcentral', views.stockcentral, name='stockcentral'),
             path('stockcUY', views.stockcUY, name='stockcUY'),

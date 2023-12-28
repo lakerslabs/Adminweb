@@ -12,6 +12,13 @@ from apps.home.vistas.settingsUrls import *
 from consultasWMS.filters import *
 from consultasWMS.models import RoMovimientosWms
 
+# RRHH
+@login_required(login_url="/login/")
+def AsistenciasSuc(request):
+    Nombre=''
+    dir_iframe = DIR_REPORTES['AsistenciasSuc']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 # Logistica
 
 @login_required(login_url="/login/")

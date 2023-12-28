@@ -48,6 +48,8 @@ DIR_REPORTES = {
     # Gerencia
     'DetalleRemitos599':'http://192.168.0.143:8080/sistemas/599/consultaderemitos.php?userName=',
     'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php?userName=',
+    # RRHH
+    'AsistenciasSuc':'http://192.168.0.143:8080/sistemas/fichaje/reporteDeAsistencias.php',
 
 }
 
