@@ -9,7 +9,7 @@
   </a>
   <ul class="nav nav-treeview">
         <!-- RRHH compartido -->
-        {% if not request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"RRHH" %}
+        {% if request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"RRHH" %}
         <li class="nav-item">
           <a href="/../Reportes/AsistenciasSuc" class="nav-link {% if '/AsistenciasSuc' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
