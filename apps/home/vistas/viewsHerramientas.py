@@ -241,5 +241,22 @@ def EditarContenedor(request):
     dir_iframe = DIR_HERAMIENTAS['mostrarOrden'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
+# RRHH
+@login_required(login_url="/login/")
+def altaVendedores(request):
+    Nombre = ''
+    dir_iframe = DIR_HERAMIENTAS['altaVendedores'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
+@login_required(login_url="/login/")
+def listarGrupos(request):
+    Nombre = ''
+    dir_iframe = DIR_HERAMIENTAS['listarGrupos'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
+@login_required(login_url="/login/")
+def crearGrupo(request):
+    Nombre = ''
+    dir_iframe = DIR_HERAMIENTAS['crearGrupo'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 

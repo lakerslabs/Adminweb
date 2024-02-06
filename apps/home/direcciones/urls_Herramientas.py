@@ -48,5 +48,10 @@ urlpatterns = [
     path('Cargarcontenedor', views.Cargarcontenedor, name='Herramientas'),
     path('EditarContenedor', views.EditarContenedor, name='Herramientas'),
 
+    # RRHH
+    path('altaVendedores', views.altaVendedores, name='Herramientas'),
+    path('listarGrupos', views.listarGrupos, name='Herramientas'),
+    path('crearGrupo', views.crearGrupo, name='Herramientas'),
+
 
 ]
