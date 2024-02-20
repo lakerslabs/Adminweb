@@ -255,8 +255,8 @@ def listarGrupos(request):
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 @login_required(login_url="/login/")
-def crearGrupo(request):
+def gestionarVendedores(request):
     Nombre = ''
-    dir_iframe = DIR_HERAMIENTAS['crearGrupo'] #+ UserName
+    dir_iframe = DIR_HERAMIENTAS['gestionarVendedores'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 

@@ -50,8 +50,8 @@ urlpatterns = [
 
     # RRHH
     path('altaVendedores', views.altaVendedores, name='Herramientas'),
-    path('listarGrupos', views.listarGrupos, name='Herramientas'),
-    path('crearGrupo', views.crearGrupo, name='Herramientas'),
+    path('grupoVendedores', views.listarGrupos, name='Herramientas'),
+    path('gestionarVendedores', views.gestionarVendedores, name='Herramientas'),
 
 
 ]

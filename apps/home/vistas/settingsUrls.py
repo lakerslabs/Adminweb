@@ -91,7 +91,7 @@ DIR_HERAMIENTAS = {
     # RRHH    
     'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores.php',
     'listarGrupos':'http://192.168.0.143:8080/administracion/recursosHumanos/listarGrupos.php',
-    'crearGrupo':'http://192.168.0.143:8080/administracion/recursosHumanos/crearGrupo.php',
+    'gestionarVendedores':'http://192.168.0.143:8080/administracion/recursosHumanos/gestionarVendedores.php',
 }
 
 DIR_EXTRAS = {
