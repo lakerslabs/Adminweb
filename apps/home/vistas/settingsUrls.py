@@ -26,6 +26,7 @@ DIR_REPORTES = {
     'Auditoria_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/listOrdenesComercial.php',
     'CategoriasDeProductos':'http://192.168.0.143:8080/administracion/comercial/consultaCategoriaProductos.php',
     'HRecodificaciones':'http://192.168.0.143:8080/recodificacion/historialDeRecodificaciones.php',
+    'Eficiencia_pedidos': 'http://192.168.0.143:8080/comercial/abastecimiento/pedidos/eficienciaPedidos.php',
     # Comercial
     'Stock_Sucursales': 'http://app.xl.com.ar:8080/stockArticulos/index.php',
     'Stock_central': 'http://192.168.0.143:8080/logistica/stock.php',

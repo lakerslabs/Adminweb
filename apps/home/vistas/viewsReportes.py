@@ -60,6 +60,11 @@ def HRecodificaciones(request):
     dir_iframe = DIR_REPORTES['HRecodificaciones']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
+@login_required(login_url="/login/")
+def Eficiencia_pedidos(request):
+    Nombre=''
+    dir_iframe = DIR_REPORTES['Eficiencia_pedidos']
+    return redirect(dir_iframe)
 # Comercial
 
 @login_required(login_url="/login/")
