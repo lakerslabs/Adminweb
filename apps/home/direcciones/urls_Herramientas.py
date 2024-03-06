@@ -20,6 +20,9 @@ urlpatterns = [
     path('Activar_orden', views.Activar_orden, name='Herramientas'),
     path('Desactivar_orden', views.Desactivar_orden, name='Herramientas'),
     path('Recodificacion', views.Recodificacion, name='Herramientas'),
+    path('AltaPromoBancaria', views.AltaPromoBancaria, name='Herramientas'),
+    path('CrearGrupoPromo', views.CrearGrupoPromo, name='Herramientas'),
+    path('EditarGrupoPromo', views.EditarGrupoPromo, name='Herramientas'),
     # Comercial
     path('Ventas_sucursales', views.Ventas_sucursales, name='Herramientas'),
     path('GestionCategoriaProductos', views.Gestion_categoria_productos, name='Herramientas'),

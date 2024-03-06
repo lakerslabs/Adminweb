@@ -65,6 +65,13 @@ def Eficiencia_pedidos(request):
     Nombre=''
     dir_iframe = DIR_REPORTES['Eficiencia_pedidos']
     return redirect(dir_iframe)
+
+@login_required(login_url="/login/")
+def promocionesActivas(request):
+    Nombre='Promociones Activas'
+    dir_iframe = DIR_REPORTES['promocionesActivas']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 # Comercial
 
 @login_required(login_url="/login/")

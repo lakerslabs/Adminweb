@@ -30,6 +30,7 @@ DIR_REPORTES = {
     # Comercial
     'Stock_Sucursales': 'http://app.xl.com.ar:8080/stockArticulos/index.php',
     'Stock_central': 'http://192.168.0.143:8080/logistica/stock.php',
+    'promocionesActivas': 'http://192.168.0.143:8080/comercial/mayoristas/promocionesBancarias/promocionesActivas.php',
     # Mayoristas
     'Tracking_pedidos_mayoristas': 'http://192.168.0.143:8080/Despacho/tracking.php',
     # Ecommerce
@@ -64,6 +65,9 @@ DIR_HERAMIENTAS = {
     'Activar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/activaOrdenes.php',
     'Desactivar_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/desactivaOrdenes.php',
     'Recodificacion': 'http://192.168.0.143:8080/recodificacion/nuevoProceso.php',
+    'AltaPromoBancaria':'http://192.168.0.143:8080/comercial/mayoristas/promocionesBancarias/altaPromoBancaria.php',
+    'CrearGrupoPromo':'http://192.168.0.143:8080/comercial/mayoristas/promocionesBancarias/crearGrupoPromo.php',
+    'EditarGrupoPromo':'http://192.168.0.143:8080/comercial/mayoristas/promocionesBancarias/listarGruposPromo.php',
     # Comercial
     'Ventas_sucursales': 'http://192.168.0.143:8080/proyecto_21/ventas-canales/ventas_comercial/index.php',
     'Gestion_categoria_productos':'http://192.168.0.143:8080/administracion/comercial/gestionCategoriaProductos.php',

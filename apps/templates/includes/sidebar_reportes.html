@@ -78,6 +78,14 @@
             class="nav-link {% if 'Eficiencia_pedidos' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Eficiencia de pedidos</p>
+            <!-- <span class="badge badge-info right">New</span> -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="http:/../Reportes/promocionesActivas"
+            class="nav-link {% if 'promocionesActivas' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Promos Activas</p>
             <span class="badge badge-info right">New</span>
           </a>
         </li>
@@ -140,7 +148,7 @@
       <!-- Fin 	Administracion -->
 
       <!-- inicio 	e-commerce -->
-        {% if request.user|has_group:"e-commerce_sup" or request.user|has_group:"admin" %} 
+        {% if request.user|has_group:"e-commerce_sup" or request.user|has_group:"admin"  or request.user|has_group:"AdministracionSup"  %} 
                   <!-- ver solo el supervisor del area aqui -->
                   <li class="nav-item">
                     <a href="/../Reportes/Auditoria_Ecommerce" class="nav-link {% if 'Auditoria_Ecommerce' in request.path %} active {% endif %}">
