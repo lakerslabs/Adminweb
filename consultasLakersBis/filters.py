@@ -107,25 +107,64 @@ def itemsFiltros_upper(consulta):
         opciones=tuple(lista)   
     return opciones
 
-# Clase para aplicar filtros a la consulta de stock
-class SucFilter(django_filters.FilterSet):
-    # Cargar los items de los filtros en la variable Deposito
-    consulta = filtroDescSuc()
-    SUCURSAL = itemsFiltros(consulta)
-    # Cargar los items de los filtros en la variable Temporada
-    consulta = filtroTemporada()
-    TEMPORADA = itemsFiltros(consulta)
-    # Cargar los items de los filtros en la variable Rubro
-    consulta = filtroRubro()
-    RUBRO = itemsFiltros(consulta)
+class UtilidadesTasky:
+    @staticmethod
+    def filtroDescSuc(parametro):
+        with connections[parametro].cursor() as cursor:
+            cursor.execute('''
+                        select  ISNULL(DESC_SUCURSAL,'SIN')DESC_SUCURSAL from SOF_STOCK_LAKERS
+                        group by DESC_SUCURSAL
+                        order by DESC_SUCURSAL
+                        ''')
+            row = list(cursor.fetchall())
+        return row
     
+    @staticmethod
+    def filtroTemp(parametro):
+        with connections[parametro].cursor() as cursor:
+            cursor.execute('''
+                            select  ISNULL(TEMPORADA,'SIN')TEMPORADA from SOF_MAESTRO_ARTICULOS_RUBRO_CATEGORIA
+                            group by TEMPORADA
+                            order by TEMPORADA desc
+                            ''')
+            row = list(cursor.fetchall())
+        return row
+    
+    @staticmethod
+    def filtroRub(parametro):
+        with connections[parametro].cursor() as cursor:
+            cursor.execute('''
+                            select  ISNULL(RUBRO,'SIN')RUBRO from SOF_MAESTRO_ARTICULOS_RUBRO_CATEGORIA
+                            group by RUBRO
+                            order by RUBRO
+                            ''')
+            row = list(cursor.fetchall())
+        return row
+    
+    @staticmethod
+    def itemsFil(consulta):
+        lista=[]
+        for c in consulta:
+            lista.append(tuple([c[0],c[0].lower()]))
+            opciones=tuple(lista)   
+        return opciones
+
+    
+# Clase para aplicar filtros a la consulta de stock central
+class OrderFilterTasky(django_filters.FilterSet):
+    desc_sucursal = django_filters.ChoiceFilter()
+    temporada = django_filters.ChoiceFilter()
+    rubro = django_filters.ChoiceFilter()
+    def __init__(self, DESC_SUCURSAL, TEMPORADA, RUBRO, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters['desc_sucursal'].extra.update(choices=DESC_SUCURSAL)
+        self.filters['temporada'].extra.update(choices=TEMPORADA)
+        self.filters['rubro'].extra.update(choices=RUBRO)
+
     class Meta:
         model = SofStockLakers
-        fields = ['desc_sucursal','temporada','rubro']   
-    
-    desc_sucursal = django_filters.ChoiceFilter(label='SUCURSAL ', choices=SUCURSAL)
-    temporada = django_filters.ChoiceFilter(label='TEMPORADA ', choices=TEMPORADA)
-    rubro = django_filters.MultipleChoiceFilter(label='RUBRO ', choices=RUBRO)
+        fields = ['desc_sucursal','temporada','rubro']
+
 
 class DireccionarioFilter(django_filters.FilterSet):
     consulta = filtroCanal_2()

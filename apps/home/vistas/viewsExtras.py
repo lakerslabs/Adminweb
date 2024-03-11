@@ -18,7 +18,7 @@ from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_WMS import validar_ubicacion,actualizar_ubicacion
 from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido
 from consultasTango.filters import *
-from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,SucFilter,DireccionarioFilter
+from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,DireccionarioFilter
 from django.contrib import messages
 import openpyxl
 import pandas as pd

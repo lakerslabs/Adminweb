@@ -14,7 +14,7 @@ from consultasWMS.filters import *
 from consultasTango.filters import *
 from consultasWMS.models import RoMovimientosWms
 from consultasLakersBis.models import SofStockLakers
-from consultasLakersBis.filters import SucFilter
+from consultasLakersBis.filters import *
 from consultasTango.models import StockCentral,SjStockDisponibleEcommerce
 
 # RRHH
@@ -37,7 +37,7 @@ def MovimientosWms(request):
     Nombre='Movimientos WMS'
     
     stock = RoMovimientosWms.objects.all()
-    myFilter = OrderFilter(request.GET, queryset=stock)
+    myFilter = OrderFilterWms(request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:
@@ -302,7 +302,13 @@ def stockSucursalesLakers(request):
     cambiar_conexion(parametro,nombre_db)
     print('Se establecio la conexion por medio de ' + parametro + ' a la base de datos ' + nombre_db) 
     stock = SofStockLakers.objects.all()
-    myFilter = SucFilter(request.GET, queryset=stock)
+    consulta = UtilidadesTasky.filtroDescSuc(parametro)
+    filtroDepo = UtilidadesTasky.itemsFil(consulta)
+    consulta = UtilidadesTasky.filtroTemp(parametro)
+    filtroTemp = UtilidadesTasky.itemsFil(consulta)
+    consulta = UtilidadesTasky.filtroRub(parametro)
+    filtroRub = UtilidadesTasky.itemsFil(consulta)
+    myFilter = OrderFilterTasky(filtroDepo,filtroTemp,filtroRub,request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:
@@ -317,7 +323,13 @@ def stockSucursalesTasky(request):
     cambiar_conexion(parametro,nombre_db)
     print('Se establecio la conexion por medio de ' + parametro + ' a la base de datos ' + nombre_db) 
     stock = SofStockLakers.objects.all()
-    myFilter = SucFilter(request.GET, queryset=stock)
+    consulta = UtilidadesTasky.filtroDescSuc(parametro)
+    filtroDepo = UtilidadesTasky.itemsFil(consulta)
+    consulta = UtilidadesTasky.filtroTemp(parametro)
+    filtroTemp = UtilidadesTasky.itemsFil(consulta)
+    consulta = UtilidadesTasky.filtroRub(parametro)
+    filtroRub = UtilidadesTasky.itemsFil(consulta)
+    myFilter = OrderFilterTasky(filtroDepo,filtroTemp,filtroRub,request.GET, queryset=stock)
     if request.GET:
         datos = myFilter
     else:

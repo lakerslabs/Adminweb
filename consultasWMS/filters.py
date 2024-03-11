@@ -51,7 +51,7 @@ def itemsFiltros(consulta):
 
 
 # Clase para aplicar filtros a la consulta de stock central
-class OrderFilter(django_filters.FilterSet):
+class OrderFilterWms(django_filters.FilterSet):
     # Cargar los items de los filtros en la variable Deposito
     consulta = filtroDeposito()
     DEPOSITO = itemsFiltros(consulta)
