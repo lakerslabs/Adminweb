@@ -9,8 +9,13 @@ from Transportes.models import Transporte
 from Transportes.forms import TransporteForm
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
+from django.conf import settings
 from consultasWMS.filters import *
+from consultasTango.filters import *
 from consultasWMS.models import RoMovimientosWms
+from consultasLakersBis.models import SofStockLakers
+from consultasLakersBis.filters import SucFilter
+from consultasTango.models import StockCentral,SjStockDisponibleEcommerce
 
 # RRHH
 @login_required(login_url="/login/")
@@ -185,3 +190,137 @@ def ChequesRecibidos(request,UserName):
     Nombre='Reporte de cheques'
     dir_iframe = DIR_REPORTES['ChequesRecibidos'] + UserName
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+
+def cambiar_conexion(conection, nombre_db):
+    if conection == 'mi_db_2':
+        settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+        print('Cambiando base de datos a LAKER_SA')
+    elif conection == 'mi_db_4':
+        settings.DATABASES['mi_db_4']['NAME'] = nombre_db
+    
+
+@login_required(login_url="/login/")
+def stockcentral(request):
+    # myFilter=None
+    parametro=''
+    Nombre='Stock Central'
+    nombre_db='LAKER_SA'
+    conection = 'mi_db_2'
+    cambiar_conexion(conection,nombre_db)
+    parametro = 'mi_db_2'
+    print('Se establecio la conexion por medio de ' + conection + ' a la base de datos ' + nombre_db) 
+    stock = StockCentral.objects.all()
+    consulta = Utilidades.filtroDepo(parametro)
+    filtroDepo = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroTemp(parametro)
+    filtroTemp = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = OrderFilter(filtroDepo,filtroTemp,filtroRub,request.GET, queryset=stock)
+    
+    
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = StockCentral.objects.filter(deposito='05')
+
+    return render(request,'appConsultasTango/StockCentral.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockcUY(request):
+    myFilter=None
+    parametro=''
+    Nombre=''
+    nombre_db='TASKY_SA'
+    parametro = 'mi_db_2'
+    cambiar_conexion(parametro,nombre_db)
+    print('Se establecio la conexion por medio de ' + parametro + ' a la base de datos ' + nombre_db) 
+    stock = StockCentral.objects.all()
+    consulta = Utilidades.filtroDepo(parametro)
+    filtroDepo = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroTemp(parametro)
+    filtroTemp = Utilidades.itemsFil(consulta)
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = OrderFilter(filtroDepo,filtroTemp,filtroRub,request.GET, queryset=stock)
+    
+    
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = StockCentral.objects.filter(deposito='05')
+
+    return render(request,'appConsultasTango/StockUY.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockcentral_ecommerce(request):
+    Nombre='Stock Central ecommerce'
+    parametro=''
+    Nombre='Stock Central'
+    nombre_db='LAKER_SA'
+    conection = 'mi_db_2'
+    cambiar_conexion(conection,nombre_db)
+    parametro = 'mi_db_2'
+    print('Se establecio la conexion por medio de ' + conection + ' a la base de datos ' + nombre_db) 
+    stock = SjStockDisponibleEcommerce.objects.filter(total__gt=0)
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = filtro_stock_ecommerce(filtroRub,request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = SjStockDisponibleEcommerce.objects.filter(deposito='01')
+
+    return render(request,'appConsultasTango/StockCentral_ecommerce.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockUY_ecommerce(request):
+    Nombre='Stock Uruguay ecommerce'
+    parametro=''
+    Nombre=''
+    nombre_db='TASKY_SA'
+    parametro = 'mi_db_2'
+    cambiar_conexion(parametro,nombre_db)
+    print('Se establecio la conexion por medio de ' + parametro + ' a la base de datos ' + nombre_db) 
+    stock = SjStockDisponibleEcommerce.objects.filter(total__gt=0)
+    consulta = Utilidades.filtroRub(parametro)
+    filtroRub = Utilidades.itemsFil(consulta)
+    myFilter = filtro_stock_ecommerce(filtroRub,request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = SjStockDisponibleEcommerce.objects.filter(deposito='01')
+
+    return render(request,'appConsultasTango/StockUY_ecommerce.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockSucursalesLakers(request):
+    Nombre='Stock Sucursales'
+    nombre_db='LOCALES_LAKERS'
+    parametro = 'mi_db_4'
+    cambiar_conexion(parametro,nombre_db)
+    print('Se establecio la conexion por medio de ' + parametro + ' a la base de datos ' + nombre_db) 
+    stock = SofStockLakers.objects.all()
+    myFilter = SucFilter(request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = SofStockLakers.objects.all()
+
+    return render(request,'appConsultasTango/StockSucursales.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
+
+def stockSucursalesTasky(request):
+    Nombre='Stock Sucursales Uruguay'
+    nombre_db='SUCURSALES_URUGUAY'
+    parametro = 'mi_db_4'
+    cambiar_conexion(parametro,nombre_db)
+    print('Se establecio la conexion por medio de ' + parametro + ' a la base de datos ' + nombre_db) 
+    stock = SofStockLakers.objects.all()
+    myFilter = SucFilter(request.GET, queryset=stock)
+    if request.GET:
+        datos = myFilter
+    else:
+        datos = SofStockLakers.objects.all()
+
+    return render(request,'appConsultasTango/stockSucursalesUY.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})

@@ -22,9 +22,9 @@ urlpatterns = [
             path('Eficiencia_pedidos', views.Eficiencia_pedidos, name='Reportes'),
             path('promocionesActivas', views.promocionesActivas, name='Reportes'),
         # Comercial
-            path('Stock_Suc_Articulos', views.stockLakers, name='Reportes'),
-            path('Stock_Sucursales', views.Stock_Sucursales, name='Reportes'),
-            # path('Stock_central', views.Stock_central, name='Reportes'),  #Borrar este path
+            path('stockSucursalesLakers', views.stockSucursalesLakers, name='Reportes'),
+            path('Stock_Suc_Articulos', views.Stock_Sucursales, name='Reportes'),
+            path('stockSucursalesTasky', views.stockSucursalesTasky, name='Reportes'),
         # Mayoristas
             path('Tracking_pedidos_mayoristas', views.Tracking_pedidos_mayoristas, name='Reportes'),
         # Ecommerce

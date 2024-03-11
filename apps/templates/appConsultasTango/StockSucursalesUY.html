@@ -58,7 +58,7 @@
               <form method="get">
                 <div class="form-group">
                   <div class="form-row">
-                    <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: right;"  data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
+                    <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: left;" checked data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
                     {{myFilter.form}}
                   </div>
                 </div>
@@ -185,9 +185,7 @@
       // loading.style.opacity = '0';
     })
     $('#modelo_seleccionado').change(function(){
-      if(this.checked) {
-        window.location.href = '/../Reportes/stockSucursalesTasky';
-      }
+      window.location.href = '/../Reportes/stockSucursalesLakers';
       var loading = document.getElementById('spiner');
       loading.style.visibility = 'visible';
     })
