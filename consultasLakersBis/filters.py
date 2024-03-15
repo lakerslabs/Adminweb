@@ -154,7 +154,7 @@ class UtilidadesTasky:
 class OrderFilterTasky(django_filters.FilterSet):
     desc_sucursal = django_filters.ChoiceFilter()
     temporada = django_filters.ChoiceFilter()
-    rubro = django_filters.ChoiceFilter()
+    rubro = django_filters.MultipleChoiceFilter()
     def __init__(self, DESC_SUCURSAL, TEMPORADA, RUBRO, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.filters['desc_sucursal'].extra.update(choices=DESC_SUCURSAL)
