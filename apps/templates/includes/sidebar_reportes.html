@@ -222,7 +222,7 @@
         {% if request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" %} 
                   <!-- ver solo el supervisor del area aqui -->
         {% endif %}
-        {% if request.user|has_group:"Comercial_may" or request.user|has_group:"e-commerce" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"Abastecimiento" %}
+        {% if request.user|has_group:"Comercial_may" or request.user|has_group:"e-commerce" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"Abastecimiento"  or request.user|has_group:"Produccion" %}
         <!-- accesos del area aqui -->
         <li class="nav-item">
           <a href="/../Reportes/stockSucursalesLakers" class="nav-link {% if 'stockSucursales' in request.path %} active {% endif %}">
