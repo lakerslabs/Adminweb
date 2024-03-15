@@ -57,7 +57,7 @@
             <div class="card card-primary">
               <div class="card-header" style="text-align: right;">
                 <h3 class="card-title">Subir archivo</h3>
-                <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false"  data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
+                <input type="checkbox" name="modelo_seleccionado" id="modelo_seleccionado" value="false" style="float: left;" checked data-toggle="toggle" data-on="UY" data-off="AR" data-onstyle="success" data-offstyle="info">
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -193,7 +193,7 @@
   }
   $('#modelo_seleccionado').change(function(){
       if(this.checked) {
-        window.location.href = '/../Extras/importfilecierrePedidosUY';
+        window.location.href = '/../Extras/importfilecierrePedidos';
       }
       var loading = document.getElementById('spiner');
       loading.style.visibility = 'visible';

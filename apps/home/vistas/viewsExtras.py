@@ -101,6 +101,9 @@ def registraSucursal(request):
 
 @login_required(login_url="/login/")
 def import_file_cierrePedidos(request):
+    nombre_db='LAKER_SA'
+    settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+    print('Cambiando base de datos a ' + nombre_db)
     try:
         if request.method == 'POST' and request.FILES['excel_file']:
             pfile = request.FILES['excel_file']
@@ -176,6 +179,87 @@ def import_file_cierrePedidos(request):
     except Exception as identifier:            
         print(identifier)
     return render(request,'appConsultasTango/importFilePedidosCierre.html',{})
+
+@login_required(login_url="/login/")
+def import_file_cierrePedidosUY(request):
+    nombre_db='TASKY_SA'
+    settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+    print('Cambiando base de datos a ' + nombre_db)
+    try:
+        if request.method == 'POST' and request.FILES['excel_file']:
+            pfile = request.FILES['excel_file']
+            filesys =FileSystemStorage()
+            uploadfilename = filesys.save(pfile.name,pfile) #Nombre del archivo
+            extension = os.path.splitext(uploadfilename)
+            if  not extension[1] == '.xlsx':
+                error_extension = 'El formato del archivo debe ser de tipo .xlsx'
+                os.remove(filesys.path(uploadfilename))
+                return render(request,'appConsultasTango/importFilePedidosCierreUY.html',{'mensaje_error':error_extension})
+
+            uploaded_url = filesys.url(uploadfilename)  #Ruta donde se guardo el archivo
+            uploaded_url = os.path.normpath(uploaded_url)
+            # print("uploaded_url: " + uploaded_url)
+            ruta_actual = os.path.join(os.getcwd(), 'core') #Ruta del proyecto
+            # print('Ruta actual: ' + ruta_actual)
+            path_filname = ruta_actual + uploaded_url
+            wb = openpyxl.load_workbook(path_filname) #Abrimos el archivo
+            worksheet = wb.active
+            excel_data = list()
+            enc_data = list()
+            mensaje_error = ''
+            mensaje_Success = ''
+            # iterando sobre las filas y obteniendo
+            # valor de cada celda en la fila
+            for row in worksheet.iter_rows():
+                fila = row[0].row   #Numero de fila
+                row_data = list()
+                talon_pedido = 0
+                i = 1
+                if worksheet.cell(row=fila, column=1).value is None: #Frena el loop al llegar al final de la lista
+                    break
+                
+                for cell in row:
+                    if fila == 1:
+                        enc_data.append(str(cell.value))
+                    else:
+                        if worksheet.cell(row=1, column=i).value == 'NRO_PEDIDO':
+                            if fila > 1:
+                                pedido = worksheet.cell(row=fila, column=i).value
+                                if worksheet.cell(row=1, column=6).value == 'TALON_PED':
+                                    talon_pedido = worksheet.cell(row=fila, column=6).value
+
+                                ped_valido= validar_pedido(pedido,str(talon_pedido))
+                                # print('ped_valido: ' + str(ped_valido))
+                                if ped_valido == 0:
+                                    mensaje_error = 'Los Pedidos NO EXISTEN  o NO ESTAN PENDIENTES'
+                                    row_data.append('*' + str(cell.value) + '*')
+                                    i += 1
+                                    continue
+                        if cell.value == None:
+                            row_data.append(str(''))
+                        else:
+                            row_data.append(str(cell.value))                        
+                    i += 1
+
+                excel_data.append(row_data)
+
+            # print('path_filname: ' + path_filname)
+            wb.save(path_filname)
+            if not(mensaje_error):
+                upload_file_CierrePedidos(path_filname) #Ejecuta ejuste en base de datos
+                mensaje_Success = 'Pedidos anulados correctamente'
+                os.remove(filesys.path(uploadfilename))
+                
+            else:
+                os.remove(filesys.path(uploadfilename))
+
+            
+            return render(request, 'appConsultasTango/importFilePedidosCierreUY.html' ,{'enc_data':enc_data,'excel_data':excel_data,'mensaje_Success':mensaje_Success,'mensaje_error':mensaje_error})
+
+
+    except Exception as identifier:            
+        print(identifier)
+    return render(request,'appConsultasTango/importFilePedidosCierreUY.html',{})
 
 def upload_file_CierrePedidos(path_filname):
     excel_file =path_filname
