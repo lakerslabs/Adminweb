@@ -264,7 +264,8 @@ def EditarContenedor(request):
 def altaVendedores(request):
     Nombre = ''
     dir_iframe = DIR_HERAMIENTAS['altaVendedores'] #+ UserName
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    # return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def listarGrupos(request):
@@ -276,5 +277,6 @@ def listarGrupos(request):
 def gestionarVendedores(request):
     Nombre = ''
     dir_iframe = DIR_HERAMIENTAS['gestionarVendedores'] #+ UserName
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    # return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    return redirect(dir_iframe)
 
