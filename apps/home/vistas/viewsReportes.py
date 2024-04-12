@@ -151,7 +151,7 @@ def Consultagastos(request):
 def VentaVscobranza(request):
     Nombre='Venta Vs cobranza'
     dir_iframe = DIR_REPORTES['ventaVsCobranza']
-    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def Controlcajasmensual(request):
