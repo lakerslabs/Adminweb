@@ -139,7 +139,7 @@ def Auditoria_Prisma(request):
 def VentasXmedio_pago(request):
     Nombre='Resumen de Ventas'
     dir_iframe = DIR_REPORTES['VentasXmedio_pago']
-    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def Consultagastos(request):
@@ -163,7 +163,7 @@ def Controlcajasmensual(request):
 def ResumenMensualAlquileres(request):
     Nombre='Resumen Mensual de Alquileres'
     dir_iframe = DIR_REPORTES['ResumenMensualAlquileres']
-    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def CargaGastosTesoreria(request):
@@ -175,7 +175,7 @@ def CargaGastosTesoreria(request):
 def DetalleContratosDeAlquiler(request):
     Nombre='Detalle Contratos De Alquiler'
     dir_iframe = DIR_REPORTES['DetalleContratosDeAlquiler']
-    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+    return redirect(dir_iframe)
 
 # Gerencia
 
