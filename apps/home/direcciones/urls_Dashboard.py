@@ -18,6 +18,7 @@ urlpatterns = [
             path('Notas_de_credito', views.Notas_de_credito, name='Dashboard_PowerBI'),
             path('Ventas_Franquicias', views.Ventas_Franquicias, name='Dashboard_PowerBI'),
             path('Ventas_Sucursales', views.Ventas_Sucursales, name='Dashboard_PowerBI'),
+            path('Ventas_SucursalesUY', views.Ventas_SucursalesUY, name='Dashboard_PowerBI'),
             path('Velocidad_de_Ventas', views.Velocidad_de_Ventas, name='Dashboard_PowerBI'),
         # Mayoristas
             path('Ventas_Mayoristas', views.Ventas_Mayoristas, name='Dashboard_PowerBI'),

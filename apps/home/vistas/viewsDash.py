@@ -73,6 +73,12 @@ def Ventas_Sucursales(request):
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
+def Ventas_SucursalesUY(request):
+    Nombre='Ventas Sucursales Uruguay'
+    dir_iframe = DIR_PBI['Ventas_SucursalesUY']
+    return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
 def Velocidad_de_Ventas(request):
     Nombre='Velocidad de Ventas'
     dir_iframe = DIR_PBI['Velocidad_de_Ventas']
