@@ -65,9 +65,9 @@ def filtroGrupoEmpresario():
 def filtroRubro():
     with connections['mi_db_4'].cursor() as cursor:
         cursor.execute('''
-                        select  ISNULL(RUBRO,'SIN RUBRO')RUBRO from SOF_STOCK_LAKERS
-                        group by RUBRO
-                        order by RUBRO
+                            SELECT RUBRO FROM SOF_RUBROS_TANGO
+                            where RUBRO != '_KITS'
+                            GROUP BY RUBRO
                         ''')
         row = list(cursor.fetchall())
     return row
@@ -134,9 +134,9 @@ class UtilidadesTasky:
     def filtroRub(parametro):
         with connections[parametro].cursor() as cursor:
             cursor.execute('''
-                            select  ISNULL(RUBRO,'SIN')RUBRO from SOF_MAESTRO_ARTICULOS_RUBRO_CATEGORIA
-                            group by RUBRO
-                            order by RUBRO
+                            SELECT RUBRO FROM SOF_RUBROS_TANGO
+                            where RUBRO != '_KITS'
+                            GROUP BY RUBRO
                             ''')
             row = list(cursor.fetchall())
         return row
