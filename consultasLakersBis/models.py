@@ -50,7 +50,7 @@ from django.db import models
 
 class SucursalesLakers(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    nro_sucursal = models.IntegerField(db_column='NRO_SUCURSAL')  # Field name made lowercase.
+    nro_sucursal = models.IntegerField(db_column='NRO_SUCURSAL', unique=True, error_messages={'unique': 'La sucursal ya existe.'})  # Field name made lowercase.
     cod_client = models.CharField(db_column='COD_CLIENT', max_length=8)  # Field name made lowercase.
     desc_sucursal = models.CharField(db_column='DESC_SUCURSAL', max_length=50)  # Field name made lowercase.
     direccion = models.CharField(db_column='DIRECCION', max_length=60)  # Field name made lowercase.
