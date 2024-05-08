@@ -86,7 +86,7 @@
             class="nav-link {% if 'promocionesActivas' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Promos Activas</p>
-            <span class="badge badge-info right">New</span>
+            <!-- <span class="badge badge-info right">New</span> -->
           </a>
         </li>
         
@@ -107,7 +107,7 @@
             class="nav-link {% if 'DetalleContratosDeAlquiler' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Contratos De Alquiler</p>
-            <span class="badge badge-info right">New</span>
+            <!-- <span class="badge badge-info right">New</span> -->
           </a>
         </li>
         {% endif %}
@@ -188,7 +188,7 @@
           <a href="/../Reportes/PedidosUY" class="nav-link {% if '/PedidosUY' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Pedidos UY</p>
-            <span class="badge badge-info right">New</span>
+            <!-- <span class="badge badge-info right">New</span> -->
           </a>
         </li>
         {% endif %}
@@ -224,6 +224,13 @@
         {% endif %}
         {% if request.user|has_group:"Comercial_may" or request.user|has_group:"e-commerce" or request.user|has_group:"Comercial_fr" or request.user|has_group:"Comercial_suc" or request.user|has_group:"Comercial_sup" or request.user|has_group:"admin" or request.user|has_group:"Abastecimiento"  or request.user|has_group:"Produccion" %}
         <!-- accesos del area aqui -->
+        <li class="nav-item">
+          <a href="/../Reportes/VentasXcanal" class="nav-link {% if 'VentasXcanal' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Ventas por canal</p>
+            <span class="badge badge-info right">New</span>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="/../Reportes/stockSucursalesLakers" class="nav-link {% if 'stockSucursales' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>

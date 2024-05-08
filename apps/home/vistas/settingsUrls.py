@@ -32,6 +32,7 @@ DIR_REPORTES = {
     'Stock_Sucursales': 'http://app.xl.com.ar:8080/stockArticulos/index.php',
     'Stock_central': 'http://192.168.0.143:8080/logistica/stock.php',
     'promocionesActivas': 'http://192.168.0.143:8080/comercial/mayoristas/promocionesBancarias/promocionesActivas.php',
+    'VentasXcanal':'http://192.168.0.143:8080/comercial/abastecimiento/ventasAbastecimiento/',
     # Mayoristas
     'Tracking_pedidos_mayoristas': 'http://192.168.0.143:8080/Despacho/tracking.php',
     # Ecommerce
