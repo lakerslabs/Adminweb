@@ -17,6 +17,7 @@ from apps.home.vistas.viewsReportes import *
 from apps.home.vistas.viewsHerramientas import *
 from apps.home.vistas.viewsExtras import *
 from apps.home.vistas.viewsMob import *
+from apps.home.vistas.viewsApi import *
 
 
 
@@ -55,10 +56,15 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
 
+# @login_required(login_url="/login/")
+# def transporte(request):
+#     transportes = Transporte.objects.all()
+#     return render(request, 'appTransporte/gestionTransporte.html', {'transportes': transportes})
+
 @login_required(login_url="/login/")
 def transporte(request):
-    transportes = Transporte.objects.all()
-    return render(request, 'appTransporte/gestionTransporte.html', {'transportes': transportes})
+    # transportes = Transporte.objects.all()
+    return render(request, 'home/calendar.html')
 
 @login_required(login_url="/login/")
 def registrarTransporte(request):

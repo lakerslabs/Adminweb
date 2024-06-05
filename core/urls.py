@@ -5,6 +5,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.contrib import admin
 from django.urls import path, include  # add this
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
@@ -15,4 +16,6 @@ urlpatterns = [
     path("Herramientas/", include("apps.home.direcciones.urls_Herramientas")),
     path("Extras/", include("apps.home.direcciones.urls_Extras")),
     path("Mob/", include("apps.home.direcciones.urls_Mob")),
+    path("Api/", include("apps.home.direcciones.urls_Api")),
+    path('docs/', include_docs_urls(title='Lakers_Lab Api Documentation')),
 ]
