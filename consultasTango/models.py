@@ -69,3 +69,10 @@ class Turno(models.Model):
 class CodigosError(models.Model):
     CodigoError = models.IntegerField(primary_key=True)
     DescripcionError = models.CharField(max_length=100)
+
+class EB_facturaManual(models.Model):
+    fechaRegistro = models.DateTimeField(auto_now_add=True)
+    numeroSucursal = models.IntegerField()
+    tipoFactura = models.IntegerField(choices=[(0, 'Factura-A'), (1, 'Factura-B')])
+    numeroFactura = models.IntegerField()
+    imgFactura = models.ImageField(upload_to='images/', blank=True, null=True)
