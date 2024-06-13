@@ -172,6 +172,13 @@ def StockSegVtex(request):
     dir_iframe = DIR_HERAMIENTAS['StockSegVtex']
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe, })
 
+@login_required(login_url="/login/")
+def novICBC(request):
+    Nombre = 'Actualizar novedades ICBC'
+    dir_iframe = DIR_HERAMIENTAS['novICBC']
+    # return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre})
+    return redirect(dir_iframe)
+
 # Gerencia
 @login_required(login_url="/login/")
 def rendircobranzas(request,UserName):

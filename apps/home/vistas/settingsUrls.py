@@ -79,6 +79,7 @@ DIR_HERAMIENTAS = {
     # Ecommerce
     'Control_pedidos': 'http://192.168.0.143:8080/logistica/ecommerce/',
     'StockSegVtex': 'http://192.168.0.143:8080/ecommerce/stockSeguridad/stockSeguridad.php',
+    'novICBC':'http://192.168.0.226:923/',
     # Gerencia
     'rendircobranzas': 'http://192.168.0.143:8080/sistemas/599/valoresrendir.php?userName=',
     'gestionarCobro':'http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php?userName=',

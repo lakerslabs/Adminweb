@@ -32,6 +32,7 @@ urlpatterns = [
     # Ecommerce
     path('Control_pedidos', views.Control_pedidos, name='Herramientas'),
     path('StockSegVtex', views.StockSegVtex, name='Herramientas'),
+    path('actNovICBC', views.novICBC, name='Herramientas'),
     # Gerencia
     path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
     path('GestionarCobro/<str:UserName>', views.GestionarCobro, name='Herramientas'),
