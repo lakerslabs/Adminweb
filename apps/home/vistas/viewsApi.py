@@ -5,6 +5,8 @@ from apps.home.vistas.settingsUrls import *
 from rest_framework import viewsets, permissions
 from consultasTango.models import EB_facturaManual
 from consultasTango.serializers import facturaManual
+from consultasTango.forms import DateForm
+from consultasLakersBis.models import Direccionario
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -15,8 +17,52 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
-
 from datetime import date
+
+# from django.shortcuts import render
+from django.db.models import Count
+# from .models import EB_facturaManual
+# from .forms import DateForm
+
+def facturas_por_fecha(request):
+    form = DateForm(request.GET)
+    suc = Direccionario.objects.filter(canal__in=['PROPIOS', 'EXTERIOR'])
+    listSuc = suc.values_list('nro_sucursal', flat=True)
+    imagenes_por_sucursal = {}
+    facturas_con_imagenes = []
+
+    if form.is_valid():
+        date = form.cleaned_data['date']
+        facturas = EB_facturaManual.objects.filter(fechaRegistro__date=date).values('numeroSucursal').annotate(count=Count('numeroSucursal'))
+
+        # Obtén las imágenes asociadas a cada factura
+        
+        for factura in facturas:
+            numero_sucursal = factura['numeroSucursal']
+            imagenes = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal).exclude(imgFactura=None).values_list('imgFactura', flat=True))
+            tipoFac = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal).exclude(tipoFactura=None).values_list('tipoFactura', flat=True))
+            imagenes_por_sucursal[numero_sucursal] = dict(zip(tipoFac, imagenes))
+
+        # Obtén el total de imágenes cargadas para cada sucursal
+        total_imagenes = {}
+        for numero_sucursal in listSuc:
+            total_imagenes[numero_sucursal] = len(imagenes_por_sucursal.get(numero_sucursal, {}))
+        
+        # Obtén el total de imágenes cargadas para cada sucursal
+        total_imagenes = {}
+        for numero_sucursal in listSuc:
+            total_imagenes[numero_sucursal] = len(imagenes_por_sucursal.get(numero_sucursal, {}))
+        
+        # Agrupa las sucursales y su total de imágenes cargadas
+        
+        for numero_sucursal in listSuc:
+            sucursal = Direccionario.objects.get(nro_sucursal=numero_sucursal)
+            facturas_con_imagenes.append((numero_sucursal, total_imagenes.get(numero_sucursal, 0), sucursal.desc_sucursal))
+        
+
+    
+    return render(request, 'appConsultasTango/listarFacturasManuales.html', {'form': form, 'facturas': facturas_con_imagenes, 'imagenes_por_sucursal': imagenes_por_sucursal})
+
 
 @api_view(['GET'])
 def login(request):

@@ -17,4 +17,5 @@ urlpatterns = [
         path('gettoken', views.login, name='gettoken'),
         path('getFacturas/<int:numSuc>', views.getFacturas, name='getFacturas'),
         path('postFactura', views.postFactura, name='postFactura'),
+        path('listarFacturasManuales', views.facturas_por_fecha, name='postFactura'),
 ]

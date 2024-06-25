@@ -116,3 +116,12 @@ class filtro_stock_ecommerce(django_filters.FilterSet):
     class Meta:
         model = SjStockDisponibleEcommerce
         fields = ['rubro']
+
+
+class FacturaManualFilter(django_filters.FilterSet):
+    fechaRegistro = django_filters.DateFilter(field_name='fechaRegistro', lookup_expr='date')
+    numeroSucursal = django_filters.NumberFilter(field_name='numeroSucursal')
+
+    class Meta:
+        model = EB_facturaManual
+        fields = ['fechaRegistro', 'numeroSucursal']
