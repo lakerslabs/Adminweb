@@ -39,8 +39,8 @@ def facturas_por_fecha(request):
         
         for factura in facturas:
             numero_sucursal = factura['numeroSucursal']
-            imagenes = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal).exclude(imgFactura=None).values_list('imgFactura', flat=True))
-            tipoFac = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal).exclude(tipoFactura=None).values_list('tipoFactura', flat=True))
+            imagenes = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(imgFactura=None).values_list('imgFactura', flat=True))
+            tipoFac = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(tipoFactura=None).values_list('tipoFactura', flat=True))
             imagenes_por_sucursal[numero_sucursal] = dict(zip(tipoFac, imagenes))
 
         # Obtén el total de imágenes cargadas para cada sucursal
@@ -177,7 +177,7 @@ def postFactura(request):
 
     serializer = facturaManual(data=request.data)
     if serializer.is_valid():
-        # serializer.save()
+        serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         print(serializer.errors)

@@ -77,9 +77,9 @@
                                 <thead>
                                     <tr>
                                       <th style="width: 10px">#</th>
-                                      <th style="width: 200px">Sucursal</th>
+                                      <th>Sucursal</th>
                                       <th style="width: 20px">Imagenes</th>
-                                      <th>Progress</th>
+                                      <th style="width: 200px">Progress</th>
                                       <!-- <th style="width: 15px">Ver</th> -->
                                       <th style="width: 130px">Imagenes</th>
                                       <!-- <th>Img2</th>
@@ -116,11 +116,11 @@
                                                 <td>
                                                     {% for tipo_fact, img in imagenes.items %}
                                                         {% if tipo_fact == 0 %}
-                                                            <a href="{{' MEDIA_URL '}}{{ img }}" class="btn btn-outline-secondary float-center" role="button" target="_blank"><i class="fas fa-edit"></i></a>
+                                                            <a href="/media/{{ img }}" class="btn btn-outline-secondary float-center" role="button" target="_blank"><i class="fas fa-edit"></i></a>
                                                         <!-- </td> -->
                                                         {% elif tipo_fact == 1 %}
                                                         <!-- <td> -->
-                                                          <a href="{{' MEDIA_URL '}}{{ img }}" class="btn btn-outline-secondary float-right" role="button" target="_blank"><i class="fas fa-edit"></i></a>
+                                                          <a href="/media/{{ img }}" class="btn btn-outline-secondary float-right" role="button" target="_blank"><i class="fas fa-edit"></i></a>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </td>
