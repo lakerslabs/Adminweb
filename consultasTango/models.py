@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 class StockCentral(models.Model):
@@ -74,5 +75,5 @@ class EB_facturaManual(models.Model):
     fechaRegistro = models.DateTimeField(auto_now_add=True)
     numeroSucursal = models.IntegerField()
     tipoFactura = models.IntegerField(choices=[(0, 'Factura-A'), (1, 'Factura-B')])
-    numeroFactura = models.IntegerField()
+    numeroFactura = models.CharField(max_length=14, validators=[RegexValidator(regex='^\d{5}-\d{8}$', message='El formato debe ser XXXXX-XXXXXXX')])
     imgFactura = models.ImageField(upload_to='images/', blank=True, null=True)
