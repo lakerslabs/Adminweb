@@ -151,7 +151,7 @@ def VentasXmedio_pago(request):
 def Consultagastos(request):
     Nombre='Consulta de gastos'
     dir_iframe = DIR_REPORTES['consultaGastos']
-    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def VentaVscobranza(request):

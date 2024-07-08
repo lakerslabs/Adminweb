@@ -92,7 +92,7 @@ DIR_HERAMIENTAS = {
     'Controlcajasdiario':'http://192.168.0.143:8080/administracion/controlSucursales/controlDiarioCajaSucursales.php',
     'CargaGastosAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaAlquileres.php',
     'GestionDeAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/porcGastosAlquileres.php',
-    'ControlEgresosDeCaja':'http://192.168.0.143:8080/administracion/controlSucursales/controlEgresosCajaSucursales.php',
+    'ControlEgresosDeCaja':'http://192.168.0.143:8080/administracion/controlSucursales/controlEgresosCajaSucursales.php?userName=',
     'ControlMasivoCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/controlMasivoCaja.php',
     'CargarContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaContratoAlquileres.php',
     'RelacionesCtaCont':'http://192.168.0.143:8080/administracion/contabilidad/gestionRelacionesCuenta.php',

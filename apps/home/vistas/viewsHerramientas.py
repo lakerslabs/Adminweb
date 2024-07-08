@@ -209,13 +209,13 @@ def ControlMasivoCobranza(request):
 def Controlgastos(request):
     Nombre = 'Control Gastos'
     dir_iframe = DIR_HERAMIENTAS['controlGastos'] #+ UserName
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def Cargargastos(request):
     Nombre = 'Gestionar Cobro'
     dir_iframe = DIR_HERAMIENTAS['cargaGastos'] #+ UserName
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def Controlcajasdiario(request):
@@ -236,10 +236,10 @@ def GestionDeAlquileres(request):
     return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
-def ControlEgresosDeCaja(request):
+def ControlEgresosDeCaja(request,UserName):
     Nombre = 'Control Egresos De Caja'
-    dir_iframe = DIR_HERAMIENTAS['ControlEgresosDeCaja'] #+ UserName
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    dir_iframe = DIR_HERAMIENTAS['ControlEgresosDeCaja'] + UserName
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")
 def CargarContratosDeAlquiler(request):
@@ -251,7 +251,7 @@ def CargarContratosDeAlquiler(request):
 def RelacionesCtaCont(request):
     Nombre = ''
     dir_iframe = DIR_HERAMIENTAS['RelacionesCtaCont'] #+ UserName
-    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    return redirect(dir_iframe)
 
 # Administracion_CE             ***Comercio Exterior***
 @login_required(login_url="/login/")
