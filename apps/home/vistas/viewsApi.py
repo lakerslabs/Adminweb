@@ -39,21 +39,22 @@ def facturas_por_fecha(request):
         facturas = EB_facturaManual.objects.filter(fechaRegistro__date=date).values('numeroSucursal').annotate(count=Count('numeroSucursal'))
 
         # Obtén las imágenes asociadas a cada factura
-        i=1
+        # i=1
         fact= len(facturas)
         fact= fact-1
+        contFact = 0
         for factura in facturas:
             numero_sucursal = factura['numeroSucursal']
             imagenes = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(imgFactura=None).values_list('imgFactura', flat=True))
             tipoFac = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(tipoFactura=None).values_list('tipoFactura', flat=True))
-            cant = facturas[fact]['count']
+            cant = facturas[contFact]['count']
             for i in range(cant):
                 elemtosSuc.append((imagenes[i],tipoFac[i]))
-                
+                # print('elemtosSuc: ',elemtosSuc)
             imagenes_por_sucursal[numero_sucursal] = dict(elemtosSuc)
             elemtosSuc.clear()
-        
-        # Obtén el total de imágenes cargadas para cada sucursal
+            contFact += 1
+
         total_imagenes = {}
         for numero_sucursal in listSuc:
             total_imagenes[numero_sucursal] = len(imagenes_por_sucursal.get(numero_sucursal, {}))
@@ -63,7 +64,7 @@ def facturas_por_fecha(request):
         for numero_sucursal in listSuc:
             sucursal = Direccionario.objects.get(nro_sucursal=numero_sucursal)
             facturas_con_imagenes.append((numero_sucursal, total_imagenes.get(numero_sucursal, 0), sucursal.desc_sucursal))
-   
+
     return render(request, 'appConsultasTango/listarFacturasManuales.html', {'form': form, 'facturas': facturas_con_imagenes, 'imagenes_por_sucursal': imagenes_por_sucursal})
 
 
