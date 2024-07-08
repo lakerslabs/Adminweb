@@ -47,4 +47,5 @@ urlpatterns = [
             path('ResumenMensualAlquileres', views.ResumenMensualAlquileres, name='Reportes'),
             path('CargaGastosTesoreria', views.CargaGastosTesoreria, name='Reportes'),
             path('DetalleContratosDeAlquiler', views.DetalleContratosDeAlquiler, name='Reportes'),
+            path('FacturaManualLista', views.facturas_por_fecha, name='Reportes'),
 ]

@@ -18,6 +18,8 @@ from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from datetime import date
+from django.utils import timezone
+from datetime import timedelta
 
 # from django.shortcuts import render
 from django.db.models import Count
@@ -30,23 +32,26 @@ def facturas_por_fecha(request):
     listSuc = suc.values_list('nro_sucursal', flat=True)
     imagenes_por_sucursal = {}
     facturas_con_imagenes = []
+    elemtosSuc =[]
 
     if form.is_valid():
         date = form.cleaned_data['date']
         facturas = EB_facturaManual.objects.filter(fechaRegistro__date=date).values('numeroSucursal').annotate(count=Count('numeroSucursal'))
 
         # Obtén las imágenes asociadas a cada factura
-        
+        i=1
+        fact= len(facturas)
+        fact= fact-1
         for factura in facturas:
             numero_sucursal = factura['numeroSucursal']
             imagenes = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(imgFactura=None).values_list('imgFactura', flat=True))
             tipoFac = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(tipoFactura=None).values_list('tipoFactura', flat=True))
-            imagenes_por_sucursal[numero_sucursal] = dict(zip(tipoFac, imagenes))
-
-        # Obtén el total de imágenes cargadas para cada sucursal
-        total_imagenes = {}
-        for numero_sucursal in listSuc:
-            total_imagenes[numero_sucursal] = len(imagenes_por_sucursal.get(numero_sucursal, {}))
+            cant = facturas[fact]['count']
+            for i in range(cant):
+                elemtosSuc.append((imagenes[i],tipoFac[i]))
+                
+            imagenes_por_sucursal[numero_sucursal] = dict(elemtosSuc)
+            elemtosSuc.clear()
         
         # Obtén el total de imágenes cargadas para cada sucursal
         total_imagenes = {}
@@ -58,9 +63,7 @@ def facturas_por_fecha(request):
         for numero_sucursal in listSuc:
             sucursal = Direccionario.objects.get(nro_sucursal=numero_sucursal)
             facturas_con_imagenes.append((numero_sucursal, total_imagenes.get(numero_sucursal, 0), sucursal.desc_sucursal))
-        
-
-    
+   
     return render(request, 'appConsultasTango/listarFacturasManuales.html', {'form': form, 'facturas': facturas_con_imagenes, 'imagenes_por_sucursal': imagenes_por_sucursal})
 
 
@@ -87,7 +90,16 @@ def login(request):
     # token_date = date.today().strftime("%Y%m%d")
     if Token.objects.filter(user=user).exists():
         Token.objects.filter(user=user).delete()
+    # token = Token.objects.create(user=user)
+    # Crear el token
     token = Token.objects.create(user=user)
+
+    # Obtener la fecha y hora actual en la zona horaria del servidor
+    current_datetime = timezone.now()
+
+    # Establecer la fecha y hora del token con la fecha y hora actual
+    token.created = current_datetime
+    token.save()
 
     return Response({'token': token.key}, status=status.HTTP_200_OK)
 
@@ -107,40 +119,33 @@ def validate_token(token):
         msgError = 'Token inválido'
         vilidateToken = False
 
-    token_date = token.created.date()
-    current_date = date.today()
+    token_date = token.created
+    c_dateTime = datetime.now().replace(tzinfo=timezone.utc) + timedelta(hours=3)
+    c_date = c_dateTime.date()
+    t_date = token_date.date()
+    # Calcula la diferencia de tiempo
+    diferencia_time = c_dateTime - token_date
+    # Convierte la diferencia de tiempo a segundos
+    diferencia_segundos = diferencia_time.seconds
+    # Calcula la diferencia en horas
+    diferencia_horas = diferencia_segundos // 3600
+    # Si deseas obtener un valor absoluto (sin signo), puedes usar abs()
+    diferencia_horas_abs = abs(diferencia_horas)
+    # Finalmente, asigna el valor entero de la diferencia de horas
+    diferencia_horas_entero = int(diferencia_horas_abs)
 
-    if token_date != current_date:
+    if t_date != c_date:
         msgError = 'Token expirado'
         vilidateToken = False
- 
-    # Obtener la hora actual
-    current_time = datetime.now()    
-    # Obtener la hora almacenada en token.created.time()
-    token_time = token.created.time()    
-    # Crear un objeto datetime a partir de la hora almacenada en token.created.time()
-    combined_datetime = datetime.combine(current_time.date(), token_time)    
-    # Restar 3 horas a la hora almacenada en token.created.time()
-    three_hours_ago = combined_datetime - timedelta(hours=3)    
-    # Almacenar la hora restada en la variable token_time
-    token_time = three_hours_ago.time()    
-    # Crear un objeto datetime a partir de la hora almacenada en token.created.time()
-    combined_datetime = datetime.combine(current_time.date(), token_time)
-    # Calcular la diferencia de horas entre token_time y current_time
-    time_difference = (current_time - combined_datetime).total_seconds() / 3600
-    # Convertir la diferencia de horas a un entero
-    time_difference_in_hours = int(time_difference)
-    print(time_difference_in_hours) # Imprime la diferencia de horas en print
     
-    if time_difference_in_hours > 3:
+    if diferencia_horas_entero > 3:
         msgError = 'Token expirado'
         vilidateToken = False
 
     return vilidateToken,msgError
 
 
-from django.utils import timezone
-from datetime import timedelta
+
 
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication])
@@ -153,7 +158,7 @@ def getFacturas(request, numSuc):
         return Response({'error': msgError}, status=status.HTTP_401_UNAUTHORIZED)
 
     today = timezone.now().date()
-    last_five_days = today - timedelta(days=30)
+    last_five_days = today - timedelta(days=7)
     facturas = EB_facturaManual.objects.filter(numeroSucursal=numSuc, fechaRegistro__gte=last_five_days)
     serializer = facturaManual(facturas, many=True)
     return Response(serializer.data)
@@ -165,7 +170,7 @@ def getFacturas(request, numSuc):
 @permission_classes([IsAuthenticated])
 def postFactura(request):
     datos = request.data
-    print(datos)
+    # print(datos)
     # Acceder al archivo adjunto (imagen de factura)
     img_factura = request.FILES.get('imgFactura')
     # return Response({'ok': 'ok'}, status=status.HTTP_200_OK)

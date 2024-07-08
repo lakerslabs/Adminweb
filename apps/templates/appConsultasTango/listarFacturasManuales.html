@@ -46,9 +46,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-2 align-self-start">
+                <div class="col-1 align-self-start">
                 </div>
-                <div class="col-md-8 align-self-center">
+                <div class="col-md-10 align-self-center">
                     <div class="card">
                         <div class="card-body">
                             <!-- <div class="d-flex justify-content-between"> -->
@@ -81,7 +81,7 @@
                                       <th style="width: 20px">Imagenes</th>
                                       <th style="width: 200px">Progress</th>
                                       <!-- <th style="width: 15px">Ver</th> -->
-                                      <th style="width: 130px">Imagenes</th>
+                                      <th style="width: 20%">Imagenes</th>
                                       <!-- <th>Img2</th>
                                       <th>Img3</th> -->
                                     </tr>
@@ -97,11 +97,15 @@
                                                 {% if factura.1 == 0 %}
                                                   <div class="progress-bar bg-danger" style="width: 10%">
                                                 {% elif factura.1 == 1 %}
-                                                    <div class="progress-bar bg-warning" style="width: 50%">
+                                                    <div class="progress-bar bg-warning" style="width: 25%">
                                                 {% elif factura.1 == 2 %}
-                                                    <div class="progress-bar bg-success" style="width: 100%">
-                                                {% elif factura.1 >= 3 %}
-                                                    <div class="progress-bar bg-danger" style="width: 100%">
+                                                    <div class="progress-bar bg-warning" style="width: 50%">
+                                                {% elif factura.1 == 3 %}
+                                                  <div class="progress-bar bg-warning" style="width: 50%">
+                                                {% elif factura.1 == 4 %}
+                                                  <div class="progress-bar bg-info" style="width: 100%">
+                                                {% elif factura.1 > 4 %}
+                                                  <div class="progress-bar bg-danger" style="width: 100%">
                                                 {% endif %}
 
                                                   </div>
@@ -114,13 +118,13 @@
                                             {% for numero_sucursal, imagenes in imagenes_por_sucursal.items %}
                                                 {% if numero_sucursal == factura.0 %}
                                                 <td>
-                                                    {% for tipo_fact, img in imagenes.items %}
+                                                    {% for img, tipo_fact in imagenes.items %}
                                                         {% if tipo_fact == 0 %}
-                                                            <a href="/media/{{ img }}" class="btn btn-outline-secondary float-center" role="button" target="_blank"><i class="fas fa-edit"></i></a>
+                                                            <a href="/media/{{ img }}" class="btn btn-outline-secondary" role="button" target="_blank"><i class="fas fa-edit"></i></a>
                                                         <!-- </td> -->
                                                         {% elif tipo_fact == 1 %}
                                                         <!-- <td> -->
-                                                          <a href="/media/{{ img }}" class="btn btn-outline-secondary float-right" role="button" target="_blank"><i class="fas fa-edit"></i></a>
+                                                          <a href="/media/{{ img }}" class="btn btn-outline-secondary" role="button" target="_blank"><i class="fas fa-edit"></i></a>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </td>
