@@ -108,7 +108,11 @@ def import_file_cierrePedidos(request):
         if request.method == 'POST' and request.FILES['excel_file']:
             pfile = request.FILES['excel_file']
             filesys =FileSystemStorage()
-            uploadfilename = filesys.save(pfile.name,pfile) #Nombre del archivo
+            # Obtener el nombre del archivo sin espacios en blanco
+            filename = pfile.name.replace(' ', '')
+
+            # Guardar el archivo con el nombre sin espacios en blanco
+            uploadfilename = filesys.save(filename, pfile)
             extension = os.path.splitext(uploadfilename)
             if  not extension[1] == '.xlsx':
                 error_extension = 'El formato del archivo debe ser de tipo .xlsx'
@@ -118,7 +122,7 @@ def import_file_cierrePedidos(request):
             uploaded_url = filesys.url(uploadfilename)  #Ruta donde se guardo el archivo
             uploaded_url = os.path.normpath(uploaded_url)
             # print("uploaded_url: " + uploaded_url)
-            ruta_actual = os.path.join(os.getcwd(), 'core') #Ruta del proyecto
+            ruta_actual = os.path.join(os.getcwd()) #Ruta del proyecto
             # print('Ruta actual: ' + ruta_actual)
             path_filname = ruta_actual + uploaded_url
             wb = openpyxl.load_workbook(path_filname) #Abrimos el archivo
