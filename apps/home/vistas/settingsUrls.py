@@ -96,10 +96,11 @@ DIR_HERAMIENTAS = {
     'ControlMasivoCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/controlMasivoCaja.php',
     'CargarContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaContratoAlquileres.php',
     'RelacionesCtaCont':'http://192.168.0.143:8080/administracion/contabilidad/gestionRelacionesCuenta.php',
-    # RRHH    
-    'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores.php',
-    'listarGrupos':'http://192.168.0.143:8080/administracion/recursosHumanos/listarGrupos.php',
-    'gestionarVendedores':'http://192.168.0.143:8080/administracion/recursosHumanos/gestionarVendedores.php',
+    # RRHH
+    'adminEmpleados':'http://192.168.0.143:8080/administracion/recursosHumanos/controlHorarios/controlHorario.php',
+    'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores/altaVendedores.php',
+    'listarGrupos':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/listarGrupos.php',
+    'gestionarVendedores':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/gestionarVendedores.php',
 }
 
 DIR_EXTRAS = {

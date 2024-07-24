@@ -287,3 +287,10 @@ def gestionarVendedores(request):
     # return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
     return redirect(dir_iframe)
 
+@login_required(login_url="/login/")
+def adminEmpleados(request):
+    Nombre = ''
+    dir_iframe = DIR_HERAMIENTAS['adminEmpleados'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+    # return redirect(dir_iframe)
+
