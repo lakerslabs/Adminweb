@@ -16,7 +16,7 @@ from consultasLakersBis.models import Direccionario, SofStockLakers
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_WMS import validar_ubicacion,actualizar_ubicacion
-from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido
+from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido,validar_articulo,borrar_contTabla,cargar_articulo
 from consultasTango.filters import *
 from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,DireccionarioFilter
 from django.contrib import messages
@@ -98,6 +98,100 @@ def registraSucursal(request):
 
     return  render(request,'appConsultasTango/registraSucursal.html',{'formulario':formulario})
 
+@login_required(login_url="/login/")
+def import_file_etiquetas(request):
+    nombre_db='LAKER_SA'
+    settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+    print('Cambiando base de datos a ' + nombre_db)
+    print('import_file_etiquetas')
+    try:
+        if request.method == 'POST' and request.FILES['excel_file']:
+            pfile = request.FILES['excel_file']
+            filesys =FileSystemStorage()
+            # Obtener el nombre del archivo sin espacios en blanco
+            filename = pfile.name.replace(' ', '')
+
+            # Guardar el archivo con el nombre sin espacios en blanco
+            uploadfilename = filesys.save(filename, pfile)
+            extension = os.path.splitext(uploadfilename)
+            if  not extension[1] == '.xlsx':
+                error_extension = 'El formato del archivo debe ser de tipo .xlsx'
+                os.remove(filesys.path(uploadfilename))
+                return render(request,'appConsultasTango/importFileEtiquetas.html',{'mensaje_error':error_extension})
+
+            uploaded_url = filesys.url(uploadfilename)  #Ruta donde se guardo el archivo
+            uploaded_url = os.path.normpath(uploaded_url)
+            # print("uploaded_url: " + uploaded_url)
+            ruta_actual = os.path.join(os.getcwd()) #Ruta del proyecto
+            # print('Ruta actual: ' + ruta_actual)
+            path_filname = ruta_actual + uploaded_url
+            wb = openpyxl.load_workbook(path_filname) #Abrimos el archivo
+            worksheet = wb.active
+            excel_data = list()
+            enc_data = list()
+            mensaje_error = ''
+            mensaje_Success = ''
+            # iterando sobre las filas y obteniendo
+            # valor de cada celda en la fila
+            for row in worksheet.iter_rows():
+                fila = row[0].row   #Numero de fila
+                row_data = list()
+                talon_pedido = 0
+                i = 1
+                if worksheet.cell(row=fila, column=1).value is None: #Frena el loop al llegar al final de la lista
+                    break
+                
+                for cell in row:
+                    if fila == 1:
+                        enc_data.append(str(cell.value))
+                    else:
+                        if worksheet.cell(row=1, column=i).value == 'ARTICULO':
+                            if fila > 1:
+                                articulo = worksheet.cell(row=fila, column=i).value
+                                art_valido= validar_articulo(articulo)
+                                # print('ped_valido: ' + str(ped_valido))
+                                if art_valido == 0:
+                                    mensaje_error = 'Hay articulos que no existen en SJ_ETIQUETAS_FINAL'
+                                    row_data.append('*' + str(cell.value) + '*')
+                                    i += 1
+                                    continue
+                        if cell.value == None:
+                            row_data.append(str(''))
+                        else:
+                            row_data.append(str(cell.value))                        
+                    i += 1
+
+                excel_data.append(row_data)
+
+            # print('path_filname: ' + path_filname)
+            wb.save(path_filname)
+            if not(mensaje_error):
+                upload_file_artEtiquetas(path_filname) #Carga articulos en base de datos
+                mensaje_Success = 'Articulos cargados correctamente'
+                os.remove(filesys.path(uploadfilename))
+                
+            else:
+                os.remove(filesys.path(uploadfilename))
+
+            
+            return render(request, 'appConsultasTango/importFileEtiquetas.html' ,{'enc_data':enc_data,'excel_data':excel_data,'mensaje_Success':mensaje_Success,'mensaje_error':mensaje_error})
+
+
+    except Exception as identifier:            
+        print(identifier)
+    return render(request,'appConsultasTango/importFileEtiquetas.html',{})
+
+def upload_file_artEtiquetas(path_filname):
+    excel_file =path_filname
+    empexceldata = pd.read_excel(excel_file)
+    dbframe = empexceldata
+    borrar_contTabla('SJ_T_ETIQUETAS_FINAL')
+    
+    for df in dbframe.itertuples():
+        
+        articulo = df.ARTICULO
+        descripcion = str(df.DESCRIPCION)
+        cargar_articulo(articulo,descripcion)
 
 @login_required(login_url="/login/")
 def import_file_cierrePedidos(request):
@@ -170,7 +264,7 @@ def import_file_cierrePedidos(request):
             wb.save(path_filname)
             if not(mensaje_error):
                 upload_file_CierrePedidos(path_filname) #Ejecuta ejuste en base de datos
-                mensaje_Success = 'Pedidos anulados correctamente'
+                mensaje_Success = 'Articulos cargados correctamente'
                 os.remove(filesys.path(uploadfilename))
                 
             else:
@@ -193,7 +287,11 @@ def import_file_cierrePedidosUY(request):
         if request.method == 'POST' and request.FILES['excel_file']:
             pfile = request.FILES['excel_file']
             filesys =FileSystemStorage()
-            uploadfilename = filesys.save(pfile.name,pfile) #Nombre del archivo
+            # Obtener el nombre del archivo sin espacios en blanco
+            filename = pfile.name.replace(' ', '')
+
+            # Guardar el archivo con el nombre sin espacios en blanco
+            uploadfilename = filesys.save(filename, pfile)
             extension = os.path.splitext(uploadfilename)
             if  not extension[1] == '.xlsx':
                 error_extension = 'El formato del archivo debe ser de tipo .xlsx'
@@ -203,7 +301,7 @@ def import_file_cierrePedidosUY(request):
             uploaded_url = filesys.url(uploadfilename)  #Ruta donde se guardo el archivo
             uploaded_url = os.path.normpath(uploaded_url)
             # print("uploaded_url: " + uploaded_url)
-            ruta_actual = os.path.join(os.getcwd(), 'core') #Ruta del proyecto
+            ruta_actual = os.path.join(os.getcwd()) #Ruta del proyecto
             # print('Ruta actual: ' + ruta_actual)
             path_filname = ruta_actual + uploaded_url
             wb = openpyxl.load_workbook(path_filname) #Abrimos el archivo
@@ -300,7 +398,7 @@ def import_file_ubi(request):
             uploaded_url = filesys.url(uploadfilename)  #Ruta donde se guardo el archivo
             uploaded_url = os.path.normpath(uploaded_url)
             # print("uploaded_url: " + uploaded_url)
-            ruta_actual = os.path.join(os.getcwd(), 'core') #Ruta del proyecto
+            ruta_actual = os.path.join(os.getcwd()) #Ruta del proyecto
             # print('Ruta actual: ' + ruta_actual)
             path_filname = ruta_actual + uploaded_url
             wb = openpyxl.load_workbook(path_filname) #Abrimos el archivo

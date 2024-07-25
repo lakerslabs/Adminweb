@@ -13,6 +13,7 @@ urlpatterns = [
             path('importFileUbi', views.import_file_ubi, name='uploadFile'),
             path('importfilecierrePedidos', views.import_file_cierrePedidos, name='uploadFilecierrePedidos'),
             path('importfilecierrePedidosUY', views.import_file_cierrePedidosUY, name='uploadFilecierrePedidosUY'),
+            path('importfileArticulos', views.import_file_etiquetas, name='uploadFileArt'),
         # Logistica
         # Abastecimiento
         # Comercial
