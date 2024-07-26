@@ -131,6 +131,7 @@ def import_file_etiquetas(request):
             enc_data = list()
             mensaje_error = ''
             mensaje_Success = ''
+            art_valido = ''
             # iterando sobre las filas y obteniendo
             # valor de cada celda en la fila
             for row in worksheet.iter_rows():
@@ -149,12 +150,15 @@ def import_file_etiquetas(request):
                             if fila > 1:
                                 articulo = worksheet.cell(row=fila, column=i).value
                                 art_valido= validar_articulo(articulo)
-                                # print('ped_valido: ' + str(ped_valido))
-                                if art_valido == 0:
+                                print('art_valido: ' + str(art_valido))
+                                if art_valido == 'ERROR':
                                     mensaje_error = 'Hay articulos que no existen en SJ_ETIQUETAS_FINAL'
                                     row_data.append('*' + str(cell.value) + '*')
                                     i += 1
                                     continue
+                        elif worksheet.cell(row=1, column=i).value == 'DESCRIPCION':
+                            worksheet.cell(row=fila, column=i).value = art_valido
+
                         if cell.value == None:
                             row_data.append(str(''))
                         else:

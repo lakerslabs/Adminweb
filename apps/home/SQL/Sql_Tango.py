@@ -2,16 +2,12 @@ from django.db import connections
 
 def validar_articulo(articulo):
     with connections['mi_db_2'].cursor() as cursor:
-        
-        sql = '''SELECT COUNT(*) CONTAR FROM 
-                    (
-                    SELECT * FROM SJ_ETIQUETAS_FINAL WHERE COD_ARTICU = '''+ "'" + articulo + "'"''') A
-                    '''
+        sql = ''' SELECT COALESCE((SELECT TOP 1 DESCRIPCIO FROM SJ_ETIQUETAS_FINAL WHERE COD_ARTICU = ''' + "'" + articulo + "'" + '),' + "'ERROR'" + ") AS RESULT"
         cursor.execute(sql)
         # print(sql)
         resulatado = cursor.fetchone()
         # print(resulatado[0])
-    return int(resulatado[0])
+    return resulatado[0]
 
 def cargar_articulo(articulo, descripcion):
     with connections['mi_db_2'].cursor() as cursor:
