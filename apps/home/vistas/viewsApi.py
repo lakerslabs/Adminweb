@@ -35,7 +35,7 @@ def facturas_por_fecha(request):
     elemtosSuc =[]
 
     if form.is_valid():
-        date = form.cleaned_data['date']
+        date = form.cleaned_data['date'] 
         facturas = EB_facturaManual.objects.filter(fechaRegistro__date=date).values('numeroSucursal').annotate(count=Count('numeroSucursal'))
 
         # Obtén las imágenes asociadas a cada factura
@@ -90,17 +90,21 @@ def login(request):
 
     # token_date = date.today().strftime("%Y%m%d")
     if Token.objects.filter(user=user).exists():
-        Token.objects.filter(user=user).delete()
-    # token = Token.objects.create(user=user)
-    # Crear el token
-    token = Token.objects.create(user=user)
+        token = Token.objects.get(user=user)
+        validacion = validate_token(Token.objects.get(user=user).key)
+        # print('Token valido: ',validacion[0])
+        if validacion[0] == False:
+            Token.objects.filter(user=user).delete()
+            token = Token.objects.create(user=user)
+        # Crear el token
+        # token = Token.objects.create(user=user)
 
-    # Obtener la fecha y hora actual en la zona horaria del servidor
-    current_datetime = timezone.now()
+        # Obtener la fecha y hora actual en la zona horaria del servidor
+        current_datetime = timezone.now()
 
-    # Establecer la fecha y hora del token con la fecha y hora actual
-    token.created = current_datetime
-    token.save()
+        # Establecer la fecha y hora del token con la fecha y hora actual
+        token.created = current_datetime
+        token.save()
 
     return Response({'token': token.key}, status=status.HTTP_200_OK)
 

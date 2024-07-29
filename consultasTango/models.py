@@ -77,3 +77,4 @@ class EB_facturaManual(models.Model):
     tipoFactura = models.IntegerField(choices=[(0, 'Factura-A'), (1, 'Factura-B')])
     numeroFactura = models.CharField(max_length=14, validators=[RegexValidator(regex='^\d{5}-\d{8}$', message='El formato debe ser XXXXX-XXXXXXX')])
     imgFactura = models.ImageField(upload_to='images/', blank=True, null=True)
+    fechaVencimiento = models.DateField(blank=True, null=True)
