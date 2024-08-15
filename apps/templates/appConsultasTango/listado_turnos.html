@@ -1,0 +1,205 @@
+{% extends "layouts/base.html" %}
+{% load bootstrap %}
+
+{% block body_class %}sidebar-mini sidebar-collapse{% endblock body_class %}
+
+{% block stylesheets %}
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/static/assets/plugins/fontawesome-free/css/all.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="/static/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/static/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="/static/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+    .dataTables_wrapper .dataTables_filter {
+        float: right;
+    }
+    .dataTables_wrapper .dataTables_length {
+        float: left;
+    }
+    .progress {
+        height: 20px;
+        background-color: #f0f0f0;
+    }
+    .progress-bar {
+        line-height: 20px;
+        color: #000;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+        transition: width 0.6s ease;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>{{Nombre}}</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">{{Nombre}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Listado de Turnos Asignados</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="fecha-filtro">Filtrar por fecha:</label>
+                            <input type="text" id="fecha-filtro" class="form-control flatpickr" placeholder="Seleccionar fecha">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="turnos-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Código Proveedor</th>
+                                    <th>Fecha Asignación</th>
+                                    <th>Orden de Compra</th>
+                                    <th>Progreso</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for turno in turnos %}
+                                <tr>
+                                    <td>{{ turno.IdTurno }}</td>
+                                    <td>{{ turno.CodigoProveedor }}</td>
+                                    <td>{{ turno.FechaAsignacion|date:"d/m/Y H:i" }}</td>
+                                    <td>{{ turno.OrdenCompra }}</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" 
+                                                 style="width: {{ turno.progreso }}%;" 
+                                                 aria-valuenow="{{ turno.progreso }}" 
+                                                 aria-valuemin="0" 
+                                                 aria-valuemax="100"
+                                                 data-progress="{{ turno.progreso }}">
+                                                {{ turno.progreso }}%
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'ver_turno' turno.IdTurno %}" class="btn btn-info btn-sm">Ver</a>
+                                        {% if turno.progreso < 100 %}
+                                            <a href="{% url 'editar_turno' turno.IdTurno %}" class="btn btn-warning btn-sm">Editar</a>
+                                            <button class="btn btn-danger btn-sm eliminar-turno" data-turno-id="{{ turno.IdTurno }}">Eliminar</button>
+                                        {% else %}
+                                            <button class="btn btn-primary btn-sm ver-imagenes" data-turno-id="{{ turno.IdTurno }}">Ver Adjuntos</button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<!-- jQuery -->
+<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bootstrap4-toggle -->
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/static/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/static/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/static/assets/plugins/jszip/jszip.min.js"></script>
+<script src="/static/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/static/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/static/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/assets/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/assets/js/demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+$(document).ready(function() {
+    // Inicializar DataTables
+    var table = $('#turnos-table').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+        },
+        "order": [[2, "desc"]]  // Ordenar por fecha de asignación descendente
+    });
+
+    // Función para calcular el color de la barra de progreso
+    function getColor(value) {
+        var hue = ((value / 100) * 120).toString(10);
+        return ["hsl(", hue, ",100%,50%)"].join("");
+    }
+
+    // Aplicar colores a las barras de progreso
+    $('.progress-bar').each(function() {
+        var progress = $(this).data('progress');
+        $(this).css('background-color', getColor(progress));
+    });
+
+    // Inicializar Flatpickr para el selector de fecha
+    flatpickr("#fecha-filtro", {
+        dateFormat: "d/m/Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            table.column(2).search(dateStr).draw();
+        }
+    });
+
+    // Función para eliminar turno
+    $('.eliminar-turno').on('click', function() {
+        var turnoId = $(this).data('turno-id');
+        if (confirm('¿Está seguro de que desea eliminar este turno?')) {
+            $.ajax({
+                url: '/turnos/eliminar/' + turnoId + '/',
+                method: 'POST',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                success: function(data) {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Error al eliminar el turno');
+                    }
+                }
+            });
+        }
+    });
+
+    // Nueva función para ver imágenes
+    $('.ver-imagenes').on('click', function() {
+        var turnoId = $(this).data('turno-id');
+        // Aquí puedes implementar la lógica para mostrar las imágenes
+        // Por ejemplo, abrir un modal o redirigir a una página de imágenes
+        alert('Ver imágenes del turno ' + turnoId);
+        // Reemplaza el alert con tu lógica real para mostrar imágenes
+    });
+});
+</script>
+{% endblock %}
