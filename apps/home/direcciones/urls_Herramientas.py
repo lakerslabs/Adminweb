@@ -8,12 +8,18 @@ from apps.home import views
 
 urlpatterns = [
     # Logistica
+    
     path("Calendario/TurnoListView", views.Listar_turno, name="Herramientas"),
     path('Calendario/NuevoTurnoProveedor', views.Crear_turno, name='Herramientas'),
     path('Calendario/EditarTurnoProveedor/<int:IdTurno>', views.Editar_Turno, name='Herramientas'),
     path('Gestion_cronograma', views.Gestion_cronograma, name='Herramientas'),
-    path('Gestion_guias_mayoristas',
-         views.Gestion_guias_mayoristas, name='Herramientas'),
+    path('Gestion_guias_mayoristas', views.Gestion_guias_mayoristas, name='Herramientas'),
+    path('registro', views.registro_turno, name='registro_turno'),
+    path('get_nombre_proveedor', views.get_nombre_proveedor, name='get_nombre_proveedor'),
+    path('listado', views.listado_turnos, name='listado_turnos'),
+    path('eliminar/<int:turno_id>', views.eliminar_turno, name='eliminar_turno'),
+    path('ver/<int:turno_id>', views.ver_turno, name='ver_turno'),
+    path('editar/<int:turno_id>', views.editar_turno, name='editar_turno'),
     # Abastecimiento
     path('Stock_excluido', views.Stock_excluido, name='Herramientas'),
     path('Carga_de_orden', views.Carga_de_orden, name='Herramientas'),
@@ -33,6 +39,8 @@ urlpatterns = [
     path('Control_pedidos', views.Control_pedidos, name='Herramientas'),
     path('StockSegVtex', views.StockSegVtex, name='Herramientas'),
     path('actNovICBC', views.novICBC, name='Herramientas'),
+    path('uploadImg', views.ImageUploadView.as_view(), name='uploadImg'),
+    path('success', views.upload_success, name='upload_success'),
     # Gerencia
     path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
     path('GestionarCobro/<str:UserName>', views.GestionarCobro, name='Herramientas'),

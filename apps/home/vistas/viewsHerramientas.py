@@ -1,16 +1,23 @@
 import pprint
+import os
+from django.conf import settings
 from django import template
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from django.template import loader
 from django.urls import reverse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from Transportes.models import Transporte
 from Transportes.forms import TransporteForm
+from django.views import View
 from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
-from consultasTango.forms import TurnoForm
-from consultasTango.models import Turno
+from consultasTango.forms import TurnoForm,TurnoEditForm,CodigoErrorForm,ImageUploadForm
+from consultasTango.models import Turno,CodigosError
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 # @login_required(login_url="/login/")
 # def (request):
@@ -20,6 +27,183 @@ from consultasTango.models import Turno
 
 
 # Logistica
+@login_required(login_url="/login/")
+def registro_turno(request):
+    if request.method == 'POST':
+        form = TurnoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listado_turnos')  # Asumimos que crearemos esta vista más adelante
+    else:
+        form = TurnoForm()
+    
+    return render(request, 'appConsultasTango/registro_turno.html', {'form': form})
+
+@login_required(login_url="/login/")
+def get_nombre_proveedor(request):
+    codigo_proveedor = request.GET.get('codigo', '')
+    # Aquí deberías implementar la lógica para obtener el nombre del proveedor
+    # Por ahora, usaremos un diccionario de ejemplo
+    proveedores = {
+        'AGODIF': 'DI FALCO MARIO DI FALCO JOSE Y DI FALCO COSME SOC DE HECHO',
+        'BFBISE': 'BANCO MACRO S.A.',
+        # ... Añade el resto de los proveedores aquí
+    }
+    nombre_proveedor = proveedores.get(codigo_proveedor, '')
+    return JsonResponse({'nombre': nombre_proveedor})
+
+def listado_turnos(request):
+    turnos = Turno.objects.all().order_by('-FechaAsignacion')
+    for turno in turnos:
+        turno.progreso = calcular_progreso(turno)
+        turno.save()
+
+    # print(turnos)    
+    return render(request, 'appConsultasTango/listado_turnos.html', {'turnos': turnos})
+
+def eliminar_turno(request, turno_id):
+    turno = get_object_or_404(Turno, pk=turno_id)
+    if request.method == 'POST':
+        turno.delete()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
+
+def calcular_progreso(turno):
+    total_steps = 3
+    completed_steps = sum([turno.Recepcionado, turno.Auditado, turno.Posicionado])
+    return int((completed_steps / total_steps) * 100)
+
+def ver_turno(request, turno_id):
+    turno = get_object_or_404(Turno, pk=turno_id)
+    
+    timeline = [
+        {
+            'estado': 'Recepcionado',
+            'completado': turno.Recepcionado,
+            'fecha': turno.RecepcionadoFechaHora
+        },
+        {
+            'estado': 'Auditado',
+            'completado': turno.Auditado,
+            'fecha': turno.AuditadoFechaHora
+        },
+        {
+            'estado': 'Posicionado',
+            'completado': turno.Posicionado,
+            'fecha': turno.PosicionadoFechaHora
+        }
+    ]
+    
+    context = {
+        'turno': turno,
+        'timeline': timeline
+    }
+    
+    return render(request, 'appConsultasTango/ver_turno.html', context)
+
+def editar_turno(request, turno_id):
+    turno = get_object_or_404(Turno, pk=turno_id)
+    if request.method == 'POST':
+        form = TurnoEditForm(request.POST, instance=turno)
+        if form.is_valid():
+            turno = form.save(commit=False)
+            
+            # Actualizar las fechas de los estados
+            if turno.Recepcionado and not turno.RecepcionadoFechaHora:
+                turno.RecepcionadoFechaHora = timezone.now()
+            if turno.Auditado and not turno.AuditadoFechaHora:
+                turno.AuditadoFechaHora = timezone.now()
+            if turno.Posicionado and not turno.PosicionadoFechaHora:
+                turno.PosicionadoFechaHora = timezone.now()
+            
+            turno.save()
+            return redirect('ver_turno', turno_id=turno.IdTurno)
+    else:
+        form = TurnoEditForm(instance=turno)
+    
+    return render(request, 'appConsultasTango/editar_turno.html', {'form': form, 'turno': turno})
+
+def lista_codigos_error(request):
+    codigos = CodigosError.objects.all().order_by('CodigoError')
+    return render(request, 'appConsultasTango/lista_codigos_error.html', {'codigos': codigos})
+
+def crear_codigo_error(request):
+    if request.method == 'POST':
+        form = CodigoErrorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Código de error creado exitosamente.')
+            return redirect('lista_codigos_error')
+    else:
+        form = CodigoErrorForm()
+    return render(request, 'appConsultasTango/crear_editar_codigo_error.html', {'form': form, 'accion': 'Crear'})
+
+def editar_codigo_error(request, codigo_id):
+    codigo = get_object_or_404(CodigosError, pk=codigo_id)
+    if request.method == 'POST':
+        form = CodigoErrorForm(request.POST, instance=codigo)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Código de error actualizado exitosamente.')
+            return redirect('lista_codigos_error')
+    else:
+        form = CodigoErrorForm(instance=codigo)
+    return render(request, 'appConsultasTango/crear_editar_codigo_error.html', {'form': form, 'accion': 'Editar'})
+
+def eliminar_codigo_error(request, codigo_id):
+    codigo = get_object_or_404(CodigosError, pk=codigo_id)
+    if request.method == 'POST':
+        codigo.delete()
+        messages.success(request, 'Código de error eliminado exitosamente.')
+        return redirect('lista_codigos_error')
+    return render(request, 'appConsultasTango/confirmar_eliminar_codigo_error.html', {'codigo': codigo})
+# @login_required(login_url="/login/")
+# @method_decorator(csrf_exempt, name='dispatch')
+class ImageUploadView(View):
+    @method_decorator(login_required(login_url="/login/"))
+    @method_decorator(csrf_exempt)
+    def get(self, request):
+        return render(request, 'appConsultasTango/uploadImg.html')
+
+    def post(self, request):
+        # Verificar si se recibieron archivos
+        if not request.FILES:
+            return JsonResponse({'error': 'No se recibieron archivos'}, status=400)
+
+        files = []
+        for key in request.FILES:
+            files.extend(request.FILES.getlist(key))
+        
+        print('Files:', files)
+
+        if not files:
+            return JsonResponse({'error': 'No se recibieron archivos'}, status=400)
+
+        uploaded_files = []
+        for f in files:
+            file_path = os.path.join(settings.MEDIA_ROOT, 'imgTempEcommerce', f.name)
+            counter = 1
+            # Asegurarse de que el nombre del archivo sea único
+            while os.path.exists(file_path):
+                name, extension = os.path.splitext(f.name)
+                file_path = os.path.join(settings.MEDIA_ROOT, 'imgTempEcommerce', f"{name}_{counter}{extension}")
+                counter += 1
+
+            # Guardar el archivo en el sistema de archivos
+            with open(file_path, 'wb+') as destination:
+                for chunk in f.chunks():
+                    destination.write(chunk)
+            uploaded_files.append(f.name)
+
+        return JsonResponse({'message': 'Imágenes cargadas con éxito', 'files': uploaded_files})
+
+@login_required(login_url="/login/")
+def upload_success(request):
+    return render(request, 'appConsultasTango/successImg.html')
+
+# ***************************
+# ***************************
+
 @login_required(login_url="/login/")
 def Eliminar_Turno(request):
     if request.method == 'POST':
