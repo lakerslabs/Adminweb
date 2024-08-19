@@ -71,8 +71,9 @@
                       <th>LOCAL</th>
                       <th>DIRECCION</th>
                       <th>LOCALIDAD</th>
-                      <th>TELEFONO</th>
                       <th>PROVINCIA</th>
+                      <th>TELEFONO</th>
+                      <th>E-MAIL</th>
                       <th>CANAL</th>
                       <th>HORARIO DE ATENCION</th>
                     </tr>
@@ -84,8 +85,9 @@
                         <td><b>{{ dato.cod_client }}</b>-{{ dato.desc_sucursal }}</td>
                         <td>{{ dato.direccion }}</td>
                         <td>{{ dato.localidad }}</td>
-                        <td>{{ dato.telefono }}</td>
                         <td>{{ dato.provincia }}</td>
+                        <td>{{ dato.telefono }}</td>
+                        <td>{{ dato.mail }}</td>
                         <td>{{ dato.canal }}</td>
                         {% if dato.horario %}
                           <td>{{ dato.horario }}</td>
