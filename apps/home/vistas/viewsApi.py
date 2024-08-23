@@ -33,13 +33,12 @@ def facturas_por_fecha(request):
     imagenes_por_sucursal = {}
     facturas_con_imagenes = []
     elemtosSuc =[]
+    estado = {}
+    vencePronto = False
 
     if form.is_valid():
         date = form.cleaned_data['date'] 
         facturas = EB_facturaManual.objects.filter(fechaRegistro__date=date).values('numeroSucursal').annotate(count=Count('numeroSucursal'))
-
-        # Obtén las imágenes asociadas a cada factura
-        # i=1
         fact= len(facturas)
         fact= fact-1
         contFact = 0
@@ -47,14 +46,26 @@ def facturas_por_fecha(request):
             numero_sucursal = factura['numeroSucursal']
             imagenes = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(imgFactura=None).values_list('imgFactura', flat=True))
             tipoFac = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(tipoFactura=None).values_list('tipoFactura', flat=True))
+            vencimiento = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(fechaVencimiento=None).values_list('fechaVencimiento', flat=True))
+            
+            # Obtener la fecha actual
+            fecha_actual = date.today()
+
             cant = facturas[contFact]['count']
             for i in range(cant):
+                diferencia_dias = (vencimiento[i] - fecha_actual).days
+
+                if diferencia_dias < 45:
+                    vencePronto = True
+                    estado[numero_sucursal] = vencePronto
+                
                 elemtosSuc.append((imagenes[i],tipoFac[i]))
-                # print('elemtosSuc: ',elemtosSuc)
+                
             imagenes_por_sucursal[numero_sucursal] = dict(elemtosSuc)
             elemtosSuc.clear()
             contFact += 1
-
+        
+        vencePronto = False
         total_imagenes = {}
         for numero_sucursal in listSuc:
             total_imagenes[numero_sucursal] = len(imagenes_por_sucursal.get(numero_sucursal, {}))
@@ -63,7 +74,9 @@ def facturas_por_fecha(request):
         
         for numero_sucursal in listSuc:
             sucursal = Direccionario.objects.get(nro_sucursal=numero_sucursal)
-            facturas_con_imagenes.append((numero_sucursal, total_imagenes.get(numero_sucursal, 0), sucursal.desc_sucursal))
+            facturas_con_imagenes.append((numero_sucursal, total_imagenes.get(numero_sucursal, 0), sucursal.desc_sucursal, estado.get(numero_sucursal, False)))
+            
+        
 
     return render(request, 'appConsultasTango/listarFacturasManuales.html', {'form': form, 'facturas': facturas_con_imagenes, 'imagenes_por_sucursal': imagenes_por_sucursal})
 
