@@ -2,8 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from apps.home.vistas.settingsUrls import *
+from apps.home.SQL.Sql_Tango import validar_factManualCargada
 from rest_framework import viewsets, permissions
 from consultasTango.models import EB_facturaManual
+from django.db.models import F
 from consultasTango.serializers import facturaManual
 from consultasTango.forms import DateForm
 from consultasLakersBis.models import Direccionario
@@ -20,11 +22,7 @@ from django.http import HttpResponse
 from datetime import date
 from django.utils import timezone
 from datetime import timedelta
-
-# from django.shortcuts import render
 from django.db.models import Count
-# from .models import EB_facturaManual
-# from .forms import DateForm
 
 def facturas_por_fecha(request):
     form = DateForm(request.GET)
@@ -34,21 +32,36 @@ def facturas_por_fecha(request):
     facturas_con_imagenes = []
     elemtosSuc =[]
     estado = {}
+    cargaTango = {}
     vencePronto = False
+    aux1 = 0
 
     if form.is_valid():
         date = form.cleaned_data['date'] 
         facturas = EB_facturaManual.objects.filter(fechaRegistro__date=date).values('numeroSucursal').annotate(count=Count('numeroSucursal'))
-        fact= len(facturas)
-        fact= fact-1
+        facNum = EB_facturaManual.objects.filter(fechaRegistro__date=date).values('numeroSucursal').annotate(factManual=F('numeroFactura'))
+        fact= 0
         contFact = 0
+        for factura in facNum:
+            fact_manual = factura['factManual']
+            aux= validar_factManualCargada(str(factura['numeroSucursal']),fact_manual)
+            
+            if aux1 != factura['numeroSucursal']:
+                fact = 0
+                if aux == 1:
+                    fact = fact + aux
+                    cargaTango[factura['numeroSucursal']] = fact
+            else:
+                if aux == 1:
+                    fact = fact + aux
+                    cargaTango[factura['numeroSucursal']] = fact
+            aux1 = factura['numeroSucursal']
+        # print('cargaTango: ',cargaTango)
         for factura in facturas:
             numero_sucursal = factura['numeroSucursal']
             imagenes = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(imgFactura=None).values_list('imgFactura', flat=True))
             tipoFac = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(tipoFactura=None).values_list('tipoFactura', flat=True))
             vencimiento = list(EB_facturaManual.objects.filter(numeroSucursal=numero_sucursal,fechaRegistro__date=date).exclude(fechaVencimiento=None).values_list('fechaVencimiento', flat=True))
-            
-            # Obtener la fecha actual
             fecha_actual = date.today()
 
             cant = facturas[contFact]['count']
@@ -58,9 +71,8 @@ def facturas_por_fecha(request):
                 if diferencia_dias < 45:
                     vencePronto = True
                     estado[numero_sucursal] = vencePronto
-                
                 elemtosSuc.append((imagenes[i],tipoFac[i]))
-                
+   
             imagenes_por_sucursal[numero_sucursal] = dict(elemtosSuc)
             elemtosSuc.clear()
             contFact += 1
@@ -70,15 +82,13 @@ def facturas_por_fecha(request):
         for numero_sucursal in listSuc:
             total_imagenes[numero_sucursal] = len(imagenes_por_sucursal.get(numero_sucursal, {}))
         
-        # Agrupa las sucursales y su total de imágenes cargadas
-        
         for numero_sucursal in listSuc:
             sucursal = Direccionario.objects.get(nro_sucursal=numero_sucursal)
             facturas_con_imagenes.append((numero_sucursal, total_imagenes.get(numero_sucursal, 0), sucursal.desc_sucursal, estado.get(numero_sucursal, False)))
             
-        
+        # print(facturas_con_imagenes)
 
-    return render(request, 'appConsultasTango/listarFacturasManuales.html', {'form': form, 'facturas': facturas_con_imagenes, 'imagenes_por_sucursal': imagenes_por_sucursal})
+    return render(request, 'appConsultasTango/listarFacturasManuales.html', {'form': form, 'facturas': facturas_con_imagenes, 'imagenes_por_sucursal': imagenes_por_sucursal, 'cargaTango': cargaTango})
 
 
 @api_view(['GET'])
@@ -192,6 +202,16 @@ def postFactura(request):
     # Acceder al archivo adjunto (imagen de factura)
     img_factura = request.FILES.get('imgFactura')
     # return Response({'ok': 'ok'}, status=status.HTTP_200_OK)
+    # Verificar si el número de factura ya existe para el día actual
+    today = timezone.now().date()
+    facturas_existentes = EB_facturaManual.objects.filter(
+        numeroFactura=datos['numeroFactura'],
+        fechaRegistro__date=today
+    )
+    
+    if facturas_existentes.exists():
+        return Response({'error': 'Número de factura ya existe para el día actual'}, status=status.HTTP_400_BAD_REQUEST)
+    
     token = request.auth
     vilidateToken, msgError = validate_token(token)
     if vilidateToken == False:
