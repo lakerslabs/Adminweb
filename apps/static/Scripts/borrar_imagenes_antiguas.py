@@ -2,25 +2,27 @@ import os
 import time
 import logging
 from datetime import datetime, timedelta
+from core.settings import MEDIA_ROOT
 
 # Configurar el logging
 logging.basicConfig(filename='log.txt', level=logging.ERROR, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Directorio donde se encuentran las imágenes
-directorio = r'C:\Users\eduardo.berga\Desktop\Proyectos\Lakers_Lab\Adminweb\media\images'
+ruta = MEDIA_ROOT
 
-# Tiempo límite (3 días en segundos)
-tiempo_limite = 90 * 24 * 60 * 60
+# Fecha límite (últimos 30 días)
+fecha_limite = datetime.now() - timedelta(days=60)
 
-def borrar_imagenes_antiguas():
+def borrar_imagenes_antiguas(carpeta):
+    directorio = os.path.join(ruta, carpeta)
+    # print("Directorio:", directorio)
     try:
-        ahora = time.time()
         for filename in os.listdir(directorio):
             ruta_archivo = os.path.join(directorio, filename)
             if os.path.isfile(ruta_archivo):
-                tiempo_creacion = os.path.getmtime(ruta_archivo)
-                if ahora - tiempo_creacion > tiempo_limite:
+                tiempo_creacion = datetime.fromtimestamp(os.path.getmtime(ruta_archivo))
+                if tiempo_creacion < fecha_limite:
                     try:
                         os.remove(ruta_archivo)
                         print(f"Archivo borrado: {filename}")
@@ -30,5 +32,7 @@ def borrar_imagenes_antiguas():
         logging.error(f"Error al acceder al directorio o procesar archivos: {str(e)}")
 
 if __name__ == "__main__":
-    borrar_imagenes_antiguas()
-    print("Proceso completado. Revise el archivo log.txt para ver si hubo errores.")
+    borrar_imagenes_antiguas('images')
+    borrar_imagenes_antiguas('imgTempEcommerce')
+    logging.info(f"Proceso ejecutado correctamente el {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    # print("Proceso completado. Revise el archivo log.txt para ver si hubo errores.")
