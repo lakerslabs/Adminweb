@@ -14,6 +14,9 @@ ruta = MEDIA_ROOT
 # Fecha límite (últimos 30 días)
 fecha_limite = datetime.now() - timedelta(days=60)
 
+# Extensiones de imágenes permitidas
+extensiones_imagenes = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
+
 def borrar_imagenes_antiguas(carpeta):
     directorio = os.path.join(ruta, carpeta)
     # print("Directorio:", directorio)
@@ -21,15 +24,17 @@ def borrar_imagenes_antiguas(carpeta):
         for filename in os.listdir(directorio):
             ruta_archivo = os.path.join(directorio, filename)
             if os.path.isfile(ruta_archivo):
-                tiempo_creacion = datetime.fromtimestamp(os.path.getmtime(ruta_archivo))
-                if tiempo_creacion < fecha_limite:
-                    try:
-                        os.remove(ruta_archivo)
-                        print(f"Archivo borrado: {filename}")
-                    except Exception as e:
-                        logging.error(f"No se pudo borrar el archivo {filename}: {str(e)}")
+                extension = os.path.splitext(filename)[1].lower()
+                if extension in extensiones_imagenes:
+                    tiempo_creacion = datetime.fromtimestamp(os.path.getmtime(ruta_archivo))
+                    if tiempo_creacion < fecha_limite:
+                        try:
+                            os.remove(ruta_archivo)
+                            print(f"Archivo borrado: {filename}")
+                        except Exception as e:
+                            logging.error(f"No se pudo borrar el archivo {filename}")
     except Exception as e:
-        logging.error(f"Error al acceder al directorio o procesar archivos: {str(e)}")
+        logging.error(f"Error al borrar archivos: {e}")
 
 if __name__ == "__main__":
     borrar_imagenes_antiguas('images')
