@@ -85,6 +85,7 @@ DIR_HERAMIENTAS = {
     'gestionarCobro':'http://192.168.0.143:8080/sistemas/599/composicionDeRemitos.php?userName=',
     'registrarEfectivo':'http://192.168.0.143:8080/administracion/controlSucursales/controlRecepcionEfectivo.php?userName=',
     # Administracion
+    'ControlGastosSupervision':'http://192.168.0.143:8080/comercial/supervision/controlarGastos.php',
     'controlGastos':'http://192.168.0.143:8080/administracion/contabilidad/controlGastos.php',
     'cargaGastos':'http://192.168.0.143:8080/administracion/contabilidad/cargaGastos.php',
     'cargaInicial':'http://192.168.0.143:8080/administracion/comercioExterior/cargaInicial.php',

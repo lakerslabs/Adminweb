@@ -46,6 +46,7 @@ urlpatterns = [
     path('GestionarCobro/<str:UserName>', views.GestionarCobro, name='Herramientas'),
     path('RegistrarEfectivo/<str:UserName>', views.RegistrarEfectivo, name='Herramientas'),
     # Administracion
+    path('ControlGastosSupervision', views.ControlGastosSupervision, name='Herramientas'),
     path('Controlgastos', views.Controlgastos, name='Herramientas'),
     path('Cargargastos', views.Cargargastos, name='Herramientas'),
     path('Controlcajasdiario', views.Controlcajasdiario, name='Herramientas'),
