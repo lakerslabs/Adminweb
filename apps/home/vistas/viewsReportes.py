@@ -142,6 +142,13 @@ def Auditoria_Prisma(request):
 # Administracion
 
 @login_required(login_url="/login/")
+def ContratosFranquicias(request):
+    Nombre='Contratos Franquicias'
+    dir_iframe = DIR_REPORTES['ContratosFranquicias']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+
+@login_required(login_url="/login/")
 def VentasXmedio_pago(request):
     Nombre='Resumen de Ventas'
     dir_iframe = DIR_REPORTES['VentasXmedio_pago']

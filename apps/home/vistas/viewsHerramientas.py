@@ -384,6 +384,12 @@ def RegistrarEfectivo(request,UserName):
 
 # Administracion
 @login_required(login_url="/login/")
+def CargaContratosFr(request):
+    Nombre = 'Carga Contratos Franquicias'
+    dir_iframe = DIR_HERAMIENTAS['CargaContratosFr'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
+@login_required(login_url="/login/")
 def ControlGastosSupervision(request):
     Nombre = 'Gastos Supervision'
     dir_iframe = DIR_HERAMIENTAS['ControlGastosSupervision'] #+ UserName

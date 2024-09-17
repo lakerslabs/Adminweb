@@ -49,6 +49,7 @@ DIR_REPORTES = {
     'ResumenMensualAlquileres':'http://192.168.0.143:8080/administracion/impuestos/alquileres/consultaAlquileres.php',
     'CargaGastosTesoreria':'http://192.168.0.143:8080/administracion/controlSucursales/cargaGastosTesoreria.php',
     'DetalleContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/detalleContratosAlquiler.php',
+    'ContratosFranquicias':'http://192.168.0.143:8080/administracion/impuestos/alquileresFranquicias/detalleContratosAlquiler.php',
     # Gerencia
     'DetalleRemitos599':'http://192.168.0.143:8080/sistemas/599/consultaderemitos.php?userName=',
     'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php?userName=',
@@ -97,6 +98,7 @@ DIR_HERAMIENTAS = {
     'ControlMasivoCobranza':'http://192.168.0.143:8080/administracion/controlSucursales/controlMasivoCaja.php',
     'CargarContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaContratoAlquileres.php',
     'RelacionesCtaCont':'http://192.168.0.143:8080/administracion/contabilidad/gestionRelacionesCuenta.php',
+    'CargaContratosFr':'http://192.168.0.143:8080/administracion/impuestos/alquileresFranquicias/cargaContratosAlquileres.php',
     # RRHH
     'adminEmpleados':'http://192.168.0.143:8080/administracion/recursosHumanos/controlHorarios/controlHorario.php',
     'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores/altaVendedores.php',
