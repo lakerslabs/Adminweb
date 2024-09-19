@@ -151,14 +151,7 @@
         <!-- <span class="badge badge-info right">New</span> -->
       </a>
     </li>
-    <li class="nav-item">
-      <a href="http:/../Herramientas/ContratosFrCarga"
-        class="nav-link {% if 'ContratosFrCarga' in request.path %} active {% endif %}">
-        <i class="far fa-circle nav-icon"></i>
-        <p>Cargar Contratos Fr</p>
-        <span class="badge badge-info right">New</span>
-      </a>
-    </li>
+
     
     {% endif %}
     {% if request.user|has_group:"Administracion" or request.user|has_group:"AdministracionSup" or request.user|has_group:"admin" %}
@@ -227,6 +220,15 @@
         <!-- <span class="badge badge-info top">New</span> -->
       </a>
     </li>
+    <li class="nav-item">
+      <a href="http:/../Herramientas/ContratosFrCarga"
+        class="nav-link {% if 'ContratosFrCarga' in request.path %} active {% endif %}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Cargar Contratos Fr</p>
+        <span class="badge badge-info right">New</span>
+      </a>
+    </li>
+
     {% endif %}
     <!-- Administracion_CE   ***Comercio Exterior*** -->
     {% if request.user|has_group:"Administracion_CE" or request.user|has_group:"AdministracionSup" or request.user|has_group:"admin" %}
