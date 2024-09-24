@@ -99,6 +99,7 @@ DIR_HERAMIENTAS = {
     'CargarContratosDeAlquiler':'http://192.168.0.143:8080/administracion/impuestos/alquileres/cargaContratoAlquileres.php',
     'RelacionesCtaCont':'http://192.168.0.143:8080/administracion/contabilidad/gestionRelacionesCuenta.php',
     'CargaContratosFr':'http://192.168.0.143:8080/administracion/impuestos/alquileresFranquicias/cargaContratosAlquileres.php',
+    'CargaFacturasSuc':'http://192.168.0.143:8080/administracion/controlSucursales/cargaFacturaSucursales.php',
     # RRHH
     'adminEmpleados':'http://192.168.0.143:8080/administracion/recursosHumanos/controlHorarios/controlHorario.php',
     'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores/altaVendedores.php',
