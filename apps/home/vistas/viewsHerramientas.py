@@ -18,6 +18,11 @@ from consultasTango.models import Turno,CodigosError
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.core.files.storage import FileSystemStorage
+import openpyxl
+import pandas as pd
+import json
+from apps.home.SQL.Sql_Tango import validar_articulo,obtenerInformacionArticulo
 
 # @login_required(login_url="/login/")
 # def (request):
@@ -342,6 +347,117 @@ def Adm_Pedido(request):
 
 # Ecommerce
 
+@login_required(login_url="/login/")
+def import_art_vtex(request):
+    nombre_db='LAKER_SA'
+    settings.DATABASES['mi_db_2']['NAME'] = nombre_db
+    print('Cambiando base de datos a ' + nombre_db)
+    print('import_file_etiquetas')
+    try:
+        if request.method == 'POST' and request.FILES['excel_file']:
+            pfile = request.FILES['excel_file']
+            filesys =FileSystemStorage()
+            # Obtener el nombre del archivo sin espacios en blanco
+            filename = pfile.name.replace(' ', '')
+
+            # Guardar el archivo con el nombre sin espacios en blanco
+            uploadfilename = filesys.save(filename, pfile)
+            extension = os.path.splitext(uploadfilename)
+            if  not extension[1] == '.xlsx':
+                error_extension = 'El formato del archivo debe ser de tipo .xlsx'
+                os.remove(filesys.path(uploadfilename))
+                return render(request,'appConsultasTango/importFileArtVtex.html',{'mensaje_error':error_extension})
+
+            uploaded_url = filesys.url(uploadfilename)  #Ruta donde se guardo el archivo
+            uploaded_url = os.path.normpath(uploaded_url)
+            # print("uploaded_url: " + uploaded_url)
+            ruta_actual = os.path.join(os.getcwd()) #Ruta del proyecto
+            # print('Ruta actual: ' + ruta_actual)
+            path_filname = ruta_actual + uploaded_url
+            wb = openpyxl.load_workbook(path_filname) #Abrimos el archivo
+            worksheet = wb.active
+            excel_data = list()
+            enc_data = list()
+            mensaje_error = ''
+            mensaje_Success = ''
+            art_valido = ''
+            # iterando sobre las filas y obteniendo
+            # valor de cada celda en la fila
+            for row in worksheet.iter_rows():
+                fila = row[0].row   #Numero de fila
+                row_data = list()
+                talon_pedido = 0
+                i = 1
+                if worksheet.cell(row=fila, column=1).value is None: #Frena el loop al llegar al final de la lista
+                    break
+                
+                for cell in row:
+                    if fila == 1:
+                        enc_data.append(str(cell.value))
+                    else:
+                        if worksheet.cell(row=1, column=i).value == 'ARTICULO':
+                            if fila > 1:
+                                articulo = worksheet.cell(row=fila, column=i).value
+                                art_valido= validar_articulo(articulo)
+                                print('art_valido: ' + str(art_valido))
+                                if art_valido == 'ERROR':
+                                    mensaje_error = 'Hay articulos que no existen en SJ_ETIQUETAS_FINAL'
+                                    row_data.append('*' + str(cell.value) + '*')
+                                    i += 1
+                                    continue
+                        elif worksheet.cell(row=1, column=i).value == 'DESCRIPCION':
+                            worksheet.cell(row=fila, column=i).value = art_valido
+
+                        if cell.value == None:
+                            row_data.append(str(''))
+                        else:
+                            row_data.append(str(cell.value))                        
+                    i += 1
+
+                excel_data.append(row_data)
+                if len(row_data) > 0:
+                    resultado = json.loads(obtenerInformacionArticulo(row_data[0], row_data[2]))
+                    nombre_archivo = "AltaArtVtex.xlsx"
+                    crear_archivo_excel(resultado, nombre_archivo)
+           
+            wb.save(path_filname)
+            if not(mensaje_error):
+                mensaje_Success = 'Articulos cargados correctamente'
+                os.remove(filesys.path(uploadfilename))                
+            else:
+                os.remove(filesys.path(uploadfilename))
+            
+            return render(request, 'appConsultasTango/importFileArtVtex.html' ,{'enc_data':enc_data,'excel_data':excel_data,'mensaje_Success':mensaje_Success,'mensaje_error':mensaje_error})
+
+
+    except Exception as identifier:            
+        print(identifier)
+    return render(request,'appConsultasTango/importFileArtVtex.html',{})
+
+def crear_archivo_excel(tempJson, nombre_archivo):
+    # Construir la ruta absoluta del archivo
+    ruta_archivo = os.path.join(settings.MEDIA_ROOT, nombre_archivo)
+
+    # Abrir el archivo de Excel existente
+    try:
+        libro = openpyxl.load_workbook(ruta_archivo)
+        hoja = libro.active
+    except FileNotFoundError:
+        # Si el archivo no existe, crear uno nuevo
+        libro = openpyxl.Workbook()
+        hoja = libro.active
+
+    # Agregar los encabezados si es el primer registro
+    if hoja.max_row == 1:
+        encabezados = list(tempJson[0].keys())
+        hoja.append(encabezados)
+
+    # Agregar los datos a la hoja
+    for fila in tempJson:
+        hoja.append(list(fila.values()))
+
+    # Guardar el libro en un archivo
+    libro.save(ruta_archivo)
 
 @login_required(login_url="/login/")
 def Control_pedidos(request):

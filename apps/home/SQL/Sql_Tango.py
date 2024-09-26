@@ -46,6 +46,15 @@ def validar_articulo(articulo):
         # print(resulatado[0])
     return resulatado[0]
 
+def obtenerInformacionArticulo(CodigoArt,DescripcionMetaTag):
+    with connections['mi_db_2'].cursor() as cursor:
+        sql = ''' EXEC SP_EB_DescArt_VtxAr '''+ "'" + CodigoArt + "'" + ',' + "'" + DescripcionMetaTag + "'"
+        cursor.execute(sql)
+        # print(sql)
+        resulatado = cursor.fetchone()
+        # print(resulatado[0])
+    return resulatado[0]
+
 def cargar_articulo(articulo, descripcion):
     with connections['mi_db_2'].cursor() as cursor:
         sql = '''INSERT INTO SJ_T_ETIQUETAS_FINAL (COD_ARTICU, DESCRIPCIO) VALUES (''' + "'" + articulo + "'" + ',' + "'" + descripcion + "'" + ')'

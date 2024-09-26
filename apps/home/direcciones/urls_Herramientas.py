@@ -3,9 +3,12 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from django.urls import path
+from django.urls import path, re_path
 from apps.home import views
+from django.conf import settings
+from django.conf.urls.static import static
 
+app_name = "Herramientas"
 urlpatterns = [
     # Logistica
     
@@ -41,6 +44,7 @@ urlpatterns = [
     path('actNovICBC', views.novICBC, name='Herramientas'),
     path('uploadImg', views.ImageUploadView.as_view(), name='uploadImg'),
     path('success', views.upload_success, name='upload_success'),
+    path('importartvtex', views.import_art_vtex, name='importartvtex'),
     # Gerencia
     path('rendircobranzas/<str:UserName>', views.rendircobranzas, name='Herramientas'),
     path('GestionarCobro/<str:UserName>', views.GestionarCobro, name='Herramientas'),
@@ -69,3 +73,6 @@ urlpatterns = [
 
 
 ]
+
+if settings.DEBUG:   
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
