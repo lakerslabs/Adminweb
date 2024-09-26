@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect, get_object_or_404
 from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_Tango import validar_factManualCargada
@@ -17,12 +18,87 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
-from django.contrib.auth import authenticate
 from django.http import HttpResponse
-from datetime import date
 from django.utils import timezone
-from datetime import timedelta
 from django.db.models import Count
+from rest_framework.exceptions import AuthenticationFailed
+from datetime import datetime, timedelta
+
+
+@api_view(['GET'])
+def login(request):
+    username = request.META.get('HTTP_USERNAME')
+    password = request.META.get('HTTP_PASSWORD')
+
+    if username is None or password is None:
+        return Response({'error': 'Falta proporcionar el nombre de usuario o la contraseña'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = authenticate(username=username, password=password)
+    if user is None:
+        return Response({'error': 'Nombre de usuario o contraseña inválidos'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Verificar si el usuario pertenece al grupo "Adm01"
+    if not user.groups.filter(name='admin').exists():
+        return Response({'error': 'El usuario no pertenece a un grupo autorizado'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Verificar si el usuario está activo
+    if not user.is_active:
+        return Response({'error': 'El usuario no está activo'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # token_date = date.today().strftime("%Y%m%d")
+    if Token.objects.filter(user=user).exists():
+        token = Token.objects.get(user=user)
+        validacion = validate_token(Token.objects.get(user=user).key)
+        # print('Token valido: ',validacion[0])
+        if validacion[0] == False:
+            Token.objects.filter(user=user).delete()
+            token = Token.objects.create(user=user)
+        # Crear el token
+        # token = Token.objects.create(user=user)
+
+        # Obtener la fecha y hora actual en la zona horaria del servidor
+        current_datetime = timezone.now()
+
+        # Establecer la fecha y hora del token con la fecha y hora actual
+        token.created = current_datetime
+        token.save()
+
+    return Response({'token': token.key}, status=status.HTTP_200_OK)
+
+def validate_token(token):
+    vilidateToken = True
+    msgError = ''
+    try:
+        token = Token.objects.get(key=token)
+    except Token.DoesNotExist:
+        msgError = 'Token inválido'
+        vilidateToken = False
+
+    token_date = token.created
+    c_dateTime = datetime.now().replace(tzinfo=timezone.utc) + timedelta(hours=3)
+    c_date = c_dateTime.date()
+    t_date = token_date.date()
+    # Calcula la diferencia de tiempo
+    diferencia_time = c_dateTime - token_date
+    # Convierte la diferencia de tiempo a segundos
+    diferencia_segundos = diferencia_time.seconds
+    # Calcula la diferencia en horas
+    diferencia_horas = diferencia_segundos // 3600
+    # Si deseas obtener un valor absoluto (sin signo), puedes usar abs()
+    diferencia_horas_abs = abs(diferencia_horas)
+    # Finalmente, asigna el valor entero de la diferencia de horas
+    diferencia_horas_entero = int(diferencia_horas_abs)
+
+    if t_date != c_date:
+        msgError = 'Token expirado'
+        vilidateToken = False
+    
+    if diferencia_horas_entero > 3:
+        msgError = 'Token expirado'
+        vilidateToken = False
+
+    return vilidateToken,msgError
+
 
 def facturas_por_fecha(request):
     form = DateForm(request.GET)
@@ -90,91 +166,6 @@ def facturas_por_fecha(request):
 
     return render(request, 'appConsultasTango/listarFacturasManuales.html', {'form': form, 'facturas': facturas_con_imagenes, 'imagenes_por_sucursal': imagenes_por_sucursal, 'cargaTango': cargaTango})
 
-
-@api_view(['GET'])
-def login(request):
-    username = request.META.get('HTTP_USERNAME')
-    password = request.META.get('HTTP_PASSWORD')
-
-    if username is None or password is None:
-        return Response({'error': 'Falta proporcionar el nombre de usuario o la contraseña'}, status=status.HTTP_400_BAD_REQUEST)
-
-    user = authenticate(username=username, password=password)
-    if user is None:
-        return Response({'error': 'Nombre de usuario o contraseña inválidos'}, status=status.HTTP_400_BAD_REQUEST)
-
-    # Verificar si el usuario pertenece al grupo "Adm01"
-    if not user.groups.filter(name='admin').exists():
-        return Response({'error': 'El usuario no pertenece a un grupo autorizado'}, status=status.HTTP_400_BAD_REQUEST)
-
-    # Verificar si el usuario está activo
-    if not user.is_active:
-        return Response({'error': 'El usuario no está activo'}, status=status.HTTP_400_BAD_REQUEST)
-
-    # token_date = date.today().strftime("%Y%m%d")
-    if Token.objects.filter(user=user).exists():
-        token = Token.objects.get(user=user)
-        validacion = validate_token(Token.objects.get(user=user).key)
-        # print('Token valido: ',validacion[0])
-        if validacion[0] == False:
-            Token.objects.filter(user=user).delete()
-            token = Token.objects.create(user=user)
-        # Crear el token
-        # token = Token.objects.create(user=user)
-
-        # Obtener la fecha y hora actual en la zona horaria del servidor
-        current_datetime = timezone.now()
-
-        # Establecer la fecha y hora del token con la fecha y hora actual
-        token.created = current_datetime
-        token.save()
-
-    return Response({'token': token.key}, status=status.HTTP_200_OK)
-
-from datetime import date
-from rest_framework.authtoken.models import Token
-from rest_framework.exceptions import AuthenticationFailed
-from datetime import datetime, timedelta
-
-from datetime import datetime, timedelta
-
-def validate_token(token):
-    vilidateToken = True
-    msgError = ''
-    try:
-        token = Token.objects.get(key=token)
-    except Token.DoesNotExist:
-        msgError = 'Token inválido'
-        vilidateToken = False
-
-    token_date = token.created
-    c_dateTime = datetime.now().replace(tzinfo=timezone.utc) + timedelta(hours=3)
-    c_date = c_dateTime.date()
-    t_date = token_date.date()
-    # Calcula la diferencia de tiempo
-    diferencia_time = c_dateTime - token_date
-    # Convierte la diferencia de tiempo a segundos
-    diferencia_segundos = diferencia_time.seconds
-    # Calcula la diferencia en horas
-    diferencia_horas = diferencia_segundos // 3600
-    # Si deseas obtener un valor absoluto (sin signo), puedes usar abs()
-    diferencia_horas_abs = abs(diferencia_horas)
-    # Finalmente, asigna el valor entero de la diferencia de horas
-    diferencia_horas_entero = int(diferencia_horas_abs)
-
-    if t_date != c_date:
-        msgError = 'Token expirado'
-        vilidateToken = False
-    
-    if diferencia_horas_entero > 3:
-        msgError = 'Token expirado'
-        vilidateToken = False
-
-    return vilidateToken,msgError
-
-
-
-
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
@@ -206,6 +197,7 @@ def postFactura(request):
     today = timezone.now().date()
     facturas_existentes = EB_facturaManual.objects.filter(
         numeroFactura=datos['numeroFactura'],
+        tipoFactura=datos['tipoFactura'],
         fechaRegistro__date=today
     )
     
