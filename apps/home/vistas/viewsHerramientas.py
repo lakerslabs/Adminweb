@@ -381,6 +381,8 @@ def import_art_vtex(request):
             mensaje_error = ''
             mensaje_Success = ''
             art_valido = ''
+            nombre_archivo = "AltaArtVtex.xlsx"
+            eliminar_archivo_excel(nombre_archivo)
             # iterando sobre las filas y obteniendo
             # valor de cada celda en la fila
             for row in worksheet.iter_rows():
@@ -417,7 +419,6 @@ def import_art_vtex(request):
                 excel_data.append(row_data)
                 if len(row_data) > 0:
                     resultado = json.loads(obtenerInformacionArticulo(row_data[0], row_data[2]))
-                    nombre_archivo = "AltaArtVtex.xlsx"
                     crear_archivo_excel(resultado, nombre_archivo)
            
             wb.save(path_filname)
@@ -458,6 +459,15 @@ def crear_archivo_excel(tempJson, nombre_archivo):
 
     # Guardar el libro en un archivo
     libro.save(ruta_archivo)
+
+def eliminar_archivo_excel(nombre_archivo):
+    # Construir la ruta absoluta del archivo
+    ruta_archivo = os.path.join(settings.MEDIA_ROOT, nombre_archivo)
+    print('ruta_archivo: ' + ruta_archivo)
+    # Verificar si el archivo existe y eliminarlo si es así
+    if os.path.exists(ruta_archivo):
+        os.remove(ruta_archivo)
+        print('Se elimino el archivo ' + nombre_archivo)
 
 @login_required(login_url="/login/")
 def Control_pedidos(request):
