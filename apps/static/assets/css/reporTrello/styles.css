@@ -1,0 +1,66 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card-title {
+    color: #0079BF;
+}
+
+#exportButton {
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+#exportButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#exportButton:hover {
+    background-color: #0056b3;
+}
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+@media print {
+  /* Agrega estilos para la impresión aquí */
+  .grafico {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .card {
+    width: 100%;
+    height: auto;
+    margin: 2 auto;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    overflow: hidden;
+  }
+}

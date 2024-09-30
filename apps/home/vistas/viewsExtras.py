@@ -17,6 +17,8 @@ from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_WMS import validar_ubicacion,actualizar_ubicacion
 from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido,validar_articulo,borrar_contTabla,cargar_articulo
+from apps.static.Scripts.getData_Trello import reporte_trello
+import json
 from consultasTango.filters import *
 from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,DireccionarioFilter
 from django.contrib import messages
@@ -526,4 +528,11 @@ def DireccionarioTabla(request):    # <<<----- Direccionario Tabla -->
         datos = Direccionario.objects.all()
 
     return render(request,'appConsultasTango/direccionarioTabla.html',{'myFilter':myFilter,'datos':datos,'Nombre':Nombre})
-    
+
+@login_required(login_url="/login/")
+def reporTrello(request):
+    miReporte_json = reporte_trello()
+    archivo_json = 'media/Trello.json'
+    with open(archivo_json, 'w') as outfile:
+        json.dump(miReporte_json, outfile, indent=4)
+    return render(request, 'home/trello-activity-report.html')

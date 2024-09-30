@@ -25,8 +25,10 @@ urlpatterns = [
         # Ecommerce
         # Gerencia
         # Correr Script de python
-        path('runscript', views.runscript, name='runScript'),
-        path('runscriptResult', views.runscriptResult, name='runscriptResult'),
+            path('runscript', views.runscript, name='runScript'),
+            path('runscriptResult', views.runscriptResult, name='runscriptResult'),
+        # Proyectos
+            path('reporTrello', views.reporTrello, name='reporTrello'),
 
 ]
 
