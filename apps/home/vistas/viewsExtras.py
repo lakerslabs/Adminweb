@@ -17,7 +17,7 @@ from django.views.generic.list import ListView
 from apps.home.vistas.settingsUrls import *
 from apps.home.SQL.Sql_WMS import validar_ubicacion,actualizar_ubicacion
 from apps.home.SQL.Sql_Tango import validar_pedido,cerrar_pedido,validar_articulo,borrar_contTabla,cargar_articulo
-from apps.static.Scripts.getData_Trello import reporte_trello
+# from apps.static.Scripts.getData_Trello import reporte_trello
 import json
 from consultasTango.filters import *
 from consultasLakersBis.filters import filtroCanal,filtroTipoLocal,filtroGrupoEmpresario,DireccionarioFilter
@@ -529,10 +529,20 @@ def DireccionarioTabla(request):    # <<<----- Direccionario Tabla -->
 
     return render(request,'appConsultasTango/direccionarioTabla.html',{'myFilter':myFilter,'datos':datos,'Nombre':Nombre})
 
+# @login_required(login_url="/login/")
+# def reporTrello(request):
+#     miReporte_json = reporte_trello()
+# #     print(type(miReporte_json))
+
+# # # convertir la variable miReporte_json del formato <class 'dict'> a json
+#     miReporte_json = json.dumps(miReporte_json)
+#     print(type(miReporte_json))
+#     # print(miReporte_json)
+
+#     return render(request, 'home/trello-activity-report.html', {'data': miReporte_json})
+
 @login_required(login_url="/login/")
 def reporTrello(request):
-    miReporte_json = reporte_trello()
-    archivo_json = 'media/Trello.json'
-    with open(archivo_json, 'w') as outfile:
-        json.dump(miReporte_json, outfile, indent=4)
-    return render(request, 'home/trello-activity-report.html')
+    Nombre=''
+    dir_iframe = DIR_EXTRAS['reporteTrello']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})

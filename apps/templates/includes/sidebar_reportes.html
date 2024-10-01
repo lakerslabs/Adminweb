@@ -212,9 +212,6 @@
       <!-- Fin 	e-commerce -->          
 
       <!-- inicio 	Gerencia -->
-        {% if request.user|has_group:"Gerencia" or request.user|has_group:"admin" %} 
-                  <!-- ver solo el supervisor del area aqui -->
-        {% endif %}
         {% if request.user|has_group:"Gerencia" or request.user|has_group:"Gerencia_Adm" or request.user|has_group:"admin" %}
         <li class="nav-item">
           <a href="http:/../Reportes/DetalleRemitos599/{{ request.user.username }}"
@@ -229,6 +226,17 @@
             class="nav-link {% if 'ChequesRecibidos' in request.path %} active {% endif %}">
             <i class="far fa-circle nav-icon"></i>
             <p>Reporte de cheques</p>
+            <!-- <span class="badge badge-info right">2</span> -->
+          </a>
+        </li>
+        {% endif %}
+        {% if request.user|has_group:"Gerencia" or request.user|has_group:"admin" %} 
+                  <!-- ver solo el supervisor del area aqui -->
+        <li class="nav-item">
+          <a href="http:/../Extras/reporTrello"
+            class="nav-link {% if 'reporTrello' in request.path %} active {% endif %}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Tareas Diarias</p>
             <!-- <span class="badge badge-info right">2</span> -->
           </a>
         </li>
