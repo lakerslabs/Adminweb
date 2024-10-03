@@ -28,9 +28,7 @@ staticfiles/*
 apps/static/assets/node_modules
 apps/static/assets/yarn.lock
 apps/static/assets/.temp
-apps/static/Scripts/getData_Trello.py
+core/local.py
 manage.py
-core/*
-media/*
-
-.gitignore
+core/asgi.py
+core/wsgi.py
