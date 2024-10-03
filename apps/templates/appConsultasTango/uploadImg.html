@@ -46,7 +46,7 @@
     <div class="container mt-5 position-relative">
         <a href="{% url 'logout' %}" class="btn fa fa-times cerrar-sesion"></a>
         <h1 class="mb-4">Carga Masiva de Imágenes</h1>
-        <form action="{% url 'uploadImg' %}" class="dropzone" id="my-dropzone">
+        <form action="{% url 'Herramientas:uploadImg' %}" class="dropzone" id="my-dropzone">
             {% csrf_token %}
         </form>
         <button id="submit-all" class="btn btn-primary mt-3">Cargar Imágenes</button>
@@ -57,7 +57,7 @@
         
         document.addEventListener('DOMContentLoaded', function() {
             var myDropzone = new Dropzone("#my-dropzone", {
-                url: "{% url 'uploadImg' %}",
+                url: "{% url 'Herramientas:uploadImg' %}",
                 paramName: "images",
                 maxFilesize: 2,
                 acceptedFiles: "image/*",
@@ -98,7 +98,7 @@
                             confirmButtonText: 'Ok'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = "{% url 'upload_success' %}";
+                                window.location.href = "{% url 'Herramientas:upload_success' %}";
                             }
                         });
                     });

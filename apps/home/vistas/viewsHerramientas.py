@@ -352,7 +352,7 @@ def import_art_vtex(request):
     nombre_db='LAKER_SA'
     settings.DATABASES['mi_db_2']['NAME'] = nombre_db
     print('Cambiando base de datos a ' + nombre_db)
-    print('import_file_etiquetas')
+    print('import_art_vtex')
     try:
         if request.method == 'POST' and request.FILES['excel_file']:
             pfile = request.FILES['excel_file']
@@ -381,7 +381,7 @@ def import_art_vtex(request):
             mensaje_error = ''
             mensaje_Success = ''
             art_valido = ''
-            nombre_archivo = "AltaArtVtex.xlsx"
+            nombre_archivo = "AltaArtVtex.xls"
             eliminar_archivo_excel(nombre_archivo)
             # iterando sobre las filas y obteniendo
             # valor de cada celda en la fila
@@ -435,30 +435,53 @@ def import_art_vtex(request):
         print(identifier)
     return render(request,'appConsultasTango/importFileArtVtex.html',{})
 
+import xlwt
+import xlrd
+
 def crear_archivo_excel(tempJson, nombre_archivo):
     # Construir la ruta absoluta del archivo
     ruta_archivo = os.path.join(settings.MEDIA_ROOT, nombre_archivo)
 
-    # Abrir el archivo de Excel existente
     try:
-        libro = openpyxl.load_workbook(ruta_archivo)
-        hoja = libro.active
+        # Abrir el archivo de Excel existente
+        libro_rd = xlrd.open_workbook(ruta_archivo)
+        hoja_rd = libro_rd.sheet_by_index(0)
+        ultima_fila = hoja_rd.nrows
+
+        # Crear un nuevo objeto Workbook
+        libro_wt = xlwt.Workbook()
+        hoja_wt = libro_wt.add_sheet('Hoja 1')
+
+        # Copiar los datos de la hoja existente a la nueva hoja
+        for i in range(ultima_fila):
+            for j in range(hoja_rd.ncols):
+                hoja_wt.write(i, j, hoja_rd.cell_value(i, j))
+
+        # Agregar los nuevos datos a la hoja
+        for i, fila in enumerate(tempJson):
+            for j, valor in enumerate(fila.values()):
+                hoja_wt.write(ultima_fila + i, j, valor)
+
+        # Guardar el libro en un archivo
+        libro_wt.save(ruta_archivo)
     except FileNotFoundError:
         # Si el archivo no existe, crear uno nuevo
-        libro = openpyxl.Workbook()
-        hoja = libro.active
+        libro_wt = xlwt.Workbook()
+        hoja_wt = libro_wt.add_sheet('Hoja 1')
 
-    # Agregar los encabezados si es el primer registro
-    if hoja.max_row == 1:
-        encabezados = list(tempJson[0].keys())
-        hoja.append(encabezados)
+        # Agregar los encabezados si es el primer registro
+        if len(tempJson) > 0:
+            encabezados = list(tempJson[0].keys())
+            for i, encabezado in enumerate(encabezados):
+                hoja_wt.write(0, i, encabezado)
 
-    # Agregar los datos a la hoja
-    for fila in tempJson:
-        hoja.append(list(fila.values()))
+        # Agregar los datos a la hoja
+        for i, fila in enumerate(tempJson):
+            for j, valor in enumerate(fila.values()):
+                hoja_wt.write(i + 1, j, valor)
 
-    # Guardar el libro en un archivo
-    libro.save(ruta_archivo)
+        # Guardar el libro en un archivo
+        libro_wt.save(ruta_archivo)
 
 def eliminar_archivo_excel(nombre_archivo):
     # Construir la ruta absoluta del archivo
