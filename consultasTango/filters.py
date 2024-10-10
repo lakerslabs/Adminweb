@@ -53,7 +53,7 @@ class Utilidades:
             cursor.execute('''
                             select  COD_SUCURS from STA22
                             where INHABILITA = 0
-                            AND COD_SUCURS IN ('82','01','02','03','04','05','06','07','08','09','10','11','12','20')
+                            AND COD_SUCURS IN ('83','82','01','02','03','04','05','06','07','08','09','10','11','12','20')
                             group by COD_SUCURS
                             order by COD_SUCURS
                             ''')
