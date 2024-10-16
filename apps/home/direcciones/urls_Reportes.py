@@ -13,6 +13,8 @@ urlpatterns = [
         # Logistica
             path('stockcentral', views.stockcentral, name='stockcentral'),
             path('stockcUY', views.stockcUY, name='stockcUY'),
+            path('stockSupply', views.stockcentral_pivot, name='stockcentral_pivot'),
+            path('stockSupplyUY', views.stockcentral_pivotUY, name='stockcentral_pivotUY'),
             path('pendiente_despacho', views.Pedidos_pendiente_despacho, name='Reportes'),
             path('MovimientosWms', views.MovimientosWms, name='MovimientosWms'),
         # Abastecimiento

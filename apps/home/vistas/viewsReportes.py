@@ -241,6 +241,79 @@ def stockcentral(request):
     return render(request,'appConsultasTango/StockCentral.html',{'myFilter':myFilter,'articulos':datos,'Nombre':Nombre})
 
 @login_required(login_url="/login/")
+def stockcentral_pivot(request):
+    # myFilter=None
+    parametro=''
+    Nombre='Stock Supply'
+    nombre_db='LAKER_SA'
+    conection = 'mi_db_2'
+    stock = []
+    cambiar_conexion(conection,nombre_db)
+    parametro = 'mi_db_2'
+    print('Se establecio la conexion por medio de ' + conection + ' a la base de datos ' + nombre_db)
+    
+    aux = Utilidades.consultarStock_pivot(parametro)
+    temporada = Utilidades.listdropdowns(Utilidades.filtroTemp(parametro))
+    rubro = Utilidades.listdropdowns(Utilidades.filtroRub(parametro))
+    categoria = Utilidades.listdropdowns(Utilidades.filtroCat(parametro))
+    columnas = aux[1]
+
+    if 'botonBuscar' in request.GET:
+            stock = aux[0]
+            filtro_rubro = request.GET.get('filtro_rubro')
+            filtro_categoria = request.GET.get('filtro_categoria')
+            filtro_temporada = request.GET.get('filtro_temporada')
+            
+            if filtro_rubro:
+                stock = [item for item in stock if item[3] == filtro_rubro]  # Índice 3 para 'Rubro'
+            if filtro_categoria:
+                stock = [item for item in stock if item[4] == filtro_categoria]  # Índice 4 para 'Categoría'
+            if filtro_temporada:
+                stock = [item for item in stock if item[5] == filtro_temporada]  # Índice 5 para 'Temporada'
+            
+            print('se presiono el boton: botonBuscar')
+            # print(stock)
+    
+    return render(request,'appConsultasTango/StockCentral_pivot.html',{'articulos':stock,'columnas':columnas,'Temporadas':temporada,'Rubros':rubro, 'Categorias':categoria,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def stockcentral_pivotUY(request):
+    # myFilter=None
+    parametro=''
+    Nombre='Stock Supply'
+    nombre_db='TASKY_SA'
+    conection = 'mi_db_2'
+    stock = []
+    cambiar_conexion(conection,nombre_db)
+    parametro = 'mi_db_2'
+    print('Se establecio la conexion por medio de ' + conection + ' a la base de datos ' + nombre_db)
+    
+    aux = Utilidades.consultarStock_pivot(parametro)
+    temporada = Utilidades.listdropdowns(Utilidades.filtroTemp(parametro))
+    rubro = Utilidades.listdropdowns(Utilidades.filtroRub(parametro))
+    categoria = Utilidades.listdropdowns(Utilidades.filtroCat(parametro))
+    columnas = aux[1]
+    
+    if 'botonBuscar' in request.GET:
+            stock = aux[0]
+            filtro_rubro = request.GET.get('filtro_rubro')
+            filtro_categoria = request.GET.get('filtro_categoria')
+            filtro_temporada = request.GET.get('filtro_temporada')
+            
+            if filtro_rubro:
+                stock = [item for item in stock if item[3] == filtro_rubro]  # Índice 3 para 'Rubro'
+            if filtro_categoria:
+                stock = [item for item in stock if item[4] == filtro_categoria]  # Índice 4 para 'Categoría'
+            if filtro_temporada:
+                stock = [item for item in stock if item[5] == filtro_temporada]  # Índice 5 para 'Temporada'
+            
+            print('se presiono el boton: botonBuscar')
+            # print(stock)
+    
+    return render(request,'appConsultasTango/StockCentral_pivotUY.html',{'articulos':stock,'columnas':columnas,'Temporadas':temporada,'Rubros':rubro, 'Categorias':categoria,'Nombre':Nombre})
+
+
+@login_required(login_url="/login/")
 def stockcUY(request):
     myFilter=None
     parametro=''

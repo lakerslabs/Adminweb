@@ -47,6 +47,19 @@ def itemsFiltros(consulta):
     return opciones
 
 class Utilidades:
+
+    @staticmethod
+    def consultarStock_pivot(parametro):
+        sql = '''
+            EXEC EB_StockCentralPivot
+        '''
+        with connections[parametro].cursor() as cursor:
+            cursor.execute(sql)
+            columns = [col[0] for col in cursor.description]
+            results = cursor.fetchall()
+        
+        return results, columns
+
     @staticmethod
     def filtroDepo(parametro):
         with connections[parametro].cursor() as cursor:
@@ -83,12 +96,30 @@ class Utilidades:
         return row
     
     @staticmethod
+    def filtroCat(parametro):
+        with connections[parametro].cursor() as cursor:
+            cursor.execute('''
+                            select  ISNULL(CATEGORIA,'SIN')CATEGORIA from SOF_MAESTRO_ARTICULOS_RUBRO_CATEGORIA
+                            group by CATEGORIA
+                            order by CATEGORIA desc
+                            ''')
+            row = list(cursor.fetchall())
+        return row
+    
+    @staticmethod
     def itemsFil(consulta):
         lista=[]
         for c in consulta:
             lista.append(tuple([c[0],c[0].lower()]))
             opciones=tuple(lista)   
         return opciones
+    
+    @staticmethod
+    def listdropdowns(consulta):
+        lista=[]
+        for c in consulta:
+            lista.append(str(c[0]))  
+        return lista
     
 
 # Clase para aplicar filtros a la consulta de stock central
