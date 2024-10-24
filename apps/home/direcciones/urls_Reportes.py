@@ -32,6 +32,7 @@ urlpatterns = [
             path('Tracking_pedidos_mayoristas', views.Tracking_pedidos_mayoristas, name='Reportes'),
         # Ecommerce
             path('stock_ecommerce', views.stockcentral_ecommerce, name='stock_ecommerce'),
+            path('Tracking_Ecommerce', views.Tracking_Ecommerce, name='stock_ecommerce'),
             path('stockUY_ecommerce', views.stockUY_ecommerce, name='stockUY_ecommerce'),
             path('Pedidos', views.Pedidos, name='Reportes'),
             path('PedidosUY', views.PedidosUY, name='Reportes'),
