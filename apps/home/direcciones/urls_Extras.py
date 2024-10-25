@@ -14,6 +14,7 @@ urlpatterns = [
             path('importfilecierrePedidos', views.import_file_cierrePedidos, name='uploadFilecierrePedidos'),
             path('importfilecierrePedidosUY', views.import_file_cierrePedidosUY, name='uploadFilecierrePedidosUY'),
             path('importfileArticulos', views.import_file_etiquetas, name='uploadFileArt'),
+            path('internos', views.internos, name='internos'),
         # Logistica
         # Abastecimiento
         # Comercial

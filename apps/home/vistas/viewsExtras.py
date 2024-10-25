@@ -546,3 +546,9 @@ def reporTrello(request):
     Nombre=''
     dir_iframe = DIR_EXTRAS['reporteTrello']
     return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
+def internos(request):
+    Nombre=''
+    dir_iframe = DIR_EXTRAS['internos']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})

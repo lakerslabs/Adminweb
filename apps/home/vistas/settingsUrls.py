@@ -111,5 +111,6 @@ DIR_HERAMIENTAS = {
 DIR_EXTRAS = {
     'direccionario': 'http://192.168.0.143:8080/proyecto_21/direccionario/index.php',
     'reporteTrello':'http://192.168.0.143:8080/Proyectos/ReporteTrello_Claude/trello-activity-report.html',
+    'internos':'http://192.168.0.143:8080/comercial/recepcion/index.php',
     
 }
