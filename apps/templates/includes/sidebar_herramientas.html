@@ -15,7 +15,7 @@
       <a href="/../Herramientas/adminEmpleados" class="nav-link {% if '/adminEmpleados' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
         <p>Admin. Empleados</p>
-        <span class="badge badge-info right">New</span>
+        <!-- <span class="badge badge-info right">New</span> -->
       </a>
     </li>
     {% endif %}  
@@ -233,7 +233,7 @@
         class="nav-link {% if 'CargaFacturasSuc' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
         <p>Carga Facturas Suc</p>
-        <span class="badge badge-info right">New</span>
+        <!-- <span class="badge badge-info right">New</span> -->
       </a>
     </li>
 
@@ -300,7 +300,7 @@
         class="nav-link {% if 'importartvtex' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
         <p>Archivo de carga Vtex</p>
-        <span class="badge badge-info right">new</span>
+        <!-- <span class="badge badge-info right">new</span> -->
       </a>
     </li>
     {% endif %}
@@ -321,7 +321,7 @@
         class="nav-link {% if 'RegistrarEfectivo' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
         <p>Registrar Efectivo</p>
-        <span class="badge badge-danger right">New</span>
+        <!-- <span class="badge badge-danger right">New</span> -->
       </a>
     </li>
     {% endif %}
@@ -377,6 +377,16 @@
         <i class="far fa-circle nav-icon"></i>
         <p>Adm. Pedido</p>
         <!-- <span class="badge badge-info right">New</span> -->
+      </a>
+    </li>
+    {% endif %}
+    {% if request.user|has_group:"Gerencia_Adm"  or request.user|has_group:"admin" %}
+    <!-- accesos del area aqui -->
+    <li class="nav-item">
+      <a href="/../Herramientas/AdministrarInternos" class="nav-link {% if 'AdministrarInternos' in request.path %} active {% endif %}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Adm. Internos</p>
+        <span class="badge badge-danger right">New</span>
       </a>
     </li>
     {% endif %}

@@ -338,6 +338,12 @@ def AdministrarCuotas(request):
     dir_iframe = DIR_HERAMIENTAS['AdministrarCuotas'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
+@login_required(login_url="/login/")
+def AdministrarInternos(request):
+    Nombre = 'Administrar Internos'
+    dir_iframe = DIR_HERAMIENTAS['AdministrarInternos'] #+ UserName
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
+
 # Mayoristas
 @login_required(login_url="/login/")
 def Adm_Pedido(request):

@@ -76,6 +76,7 @@ DIR_HERAMIENTAS = {
     'Ventas_sucursales': 'http://192.168.0.143:8080/proyecto_21/ventas-canales/ventas_comercial/index.php',
     'Gestion_categoria_productos':'http://192.168.0.143:8080/administracion/comercial/gestionCategoriaProductos.php',
     'AdministrarCuotas':'http://192.168.0.143:8080/cuotas/',
+    'AdministrarInternos':'http://192.168.0.143:8080/comercial/recepcion/listado.php',
     # Mayoristas
     'Adm_Pedido':'http://192.168.0.143:8080/sistemas/despachoMayorista/index.php',
     # Ecommerce
