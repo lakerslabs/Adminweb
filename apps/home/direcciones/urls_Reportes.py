@@ -29,6 +29,7 @@ urlpatterns = [
             path('Stock_Suc_Articulos', views.Stock_Sucursales, name='Reportes'),
             path('stockSucursalesTasky', views.stockSucursalesTasky, name='Reportes'),
             path('VentasXcanal', views.VentasXcanal, name='Reportes'),
+            path('AdmEmpleados', views.AdmEmpleados, name='Reportes'),
         # Mayoristas
             path('Tracking_pedidos_mayoristas', views.Tracking_pedidos_mayoristas, name='Reportes'),
         # Ecommerce

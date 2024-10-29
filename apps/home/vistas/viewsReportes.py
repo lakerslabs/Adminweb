@@ -86,6 +86,12 @@ def promocionesActivas(request):
 # Comercial
 
 @login_required(login_url="/login/")
+def AdmEmpleados(request):
+    Nombre=''
+    dir_iframe = DIR_REPORTES['AdmEmpleados']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
+@login_required(login_url="/login/")
 def VentasXcanal(request):
     Nombre='Ventas por canal'
     dir_iframe = DIR_REPORTES['VentasXcanal']
