@@ -34,7 +34,7 @@ DIR_REPORTES = {
     'Stock_central': 'http://192.168.0.143:8080/logistica/stock.php',
     'promocionesActivas': 'http://192.168.0.143:8080/comercial/mayoristas/promocionesBancarias/promocionesActivas.php',
     'VentasXcanal':'http://192.168.0.143:8080/comercial/abastecimiento/ventasAbastecimiento/',
-    'AdmEmpleados':'http://localhost/administracion/recursosHumanos/controlHorarios/verControlHorario.php',
+    'AdmEmpleados':'http://192.168.0.143:8080/administracion/recursosHumanos/controlHorarios/verControlHorario.php',
     # Mayoristas
     'Tracking_pedidos_mayoristas': 'http://192.168.0.143:8080/Despacho/tracking.php',
     # Ecommerce
