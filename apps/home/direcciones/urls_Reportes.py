@@ -17,6 +17,7 @@ urlpatterns = [
             path('stockSupplyUY', views.stockcentral_pivotUY, name='stockcentral_pivotUY'),
             path('pendiente_despacho', views.Pedidos_pendiente_despacho, name='Reportes'),
             path('MovimientosWms', views.MovimientosWms, name='MovimientosWms'),
+            path('ConsultaDestino', views.ConsultaDestino, name='ConsultaDestino'),
         # Abastecimiento
             path('Auditoria_orden', views.Auditoria_orden, name='Reportes'),
             path('CategoriasDeProductos', views.CategoriasDeProductos, name='Reportes'),

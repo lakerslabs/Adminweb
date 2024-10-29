@@ -23,6 +23,7 @@ DIR_PBI = {
 DIR_REPORTES = {
     # Logistica
     'Pedidos_pendiente_despacho':'http://192.168.0.143:8080/sistemas/cronoDespacho/pedidos.php',
+    'ConsultaDestino':'http://192.168.0.143:8080/sistemas/maestroDestinos/indexMob.php',
     # Abastecimiento
     'Auditoria_orden': 'http://192.168.0.143:8080/sistemas/distriCuero/listOrdenesComercial.php',
     'CategoriasDeProductos':'http://192.168.0.143:8080/administracion/comercial/consultaCategoriaProductos.php',
@@ -107,6 +108,8 @@ DIR_HERAMIENTAS = {
     'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores/altaVendedores.php',
     'listarGrupos':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/listarGrupos.php',
     'gestionarVendedores':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/gestionarVendedores.php',
+    # Tesoreria
+    'ControlDefectivo':'http://192.168.0.143:8080/administracion/controlSucursales/controlRecepcionEfectivo.php',
 }
 
 DIR_EXTRAS = {

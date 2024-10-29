@@ -45,6 +45,12 @@ def MovimientosWms(request):
 
     return render(request,'appConsultasWMS/Mov_WMS.html',{'myFilter':myFilter,'registros':datos,'Nombre':Nombre})
 
+@login_required(login_url="/login/")
+def ConsultaDestino(request):
+    Nombre='Consulta de Destino'
+    dir_iframe = DIR_REPORTES['ConsultaDestino']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 # Abastecimiento
 
 @login_required(login_url="/login/")

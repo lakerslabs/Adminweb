@@ -74,6 +74,9 @@ urlpatterns = [
     path('grupoVendedores', views.listarGrupos, name='Herramientas'),
     path('gestionarVendedores', views.gestionarVendedores, name='Herramientas'),
 
+    # Tesoreria
+    path('ControlDefectivo', views.ControlDefectivo, name='Herramientas'),
+
 
 ]
 

@@ -392,6 +392,20 @@
     {% endif %}
     <!-- Fin 	Comercial -->
 
+    <!-- inicio 	Tesoreria -->
+    {% if request.user|has_group:"Tesoreria"  or request.user|has_group:"admin" %}
+    <!-- accesos del area aqui -->
+    <li class="nav-item">
+      <a href="/../Herramientas/ControlDefectivo" class="nav-link {% if 'ControlDefectivo' in request.path %} active {% endif %}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Control De fectivo</p>
+        <span class="badge badge-info right">New</span>
+      </a>
+    </li>
+    {% endif %}
+
+    <!-- Fin 	Tesoreria -->
+
 
   </ul>
 
