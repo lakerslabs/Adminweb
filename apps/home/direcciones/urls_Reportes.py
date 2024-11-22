@@ -30,6 +30,7 @@ urlpatterns = [
             path('stockSucursalesTasky', views.stockSucursalesTasky, name='Reportes'),
             path('VentasXcanal', views.VentasXcanal, name='Reportes'),
             path('AdmEmpleados', views.AdmEmpleados, name='Reportes'),
+            path('AnalisisProductos', views.AnalisisProductos, name='Reportes'),
         # Mayoristas
             path('Tracking_pedidos_mayoristas', views.Tracking_pedidos_mayoristas, name='Reportes'),
         # Ecommerce
