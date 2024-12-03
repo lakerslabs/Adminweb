@@ -92,6 +92,13 @@
     <!-- inicio 	Gerencia -->
       {% if request.user|has_group:"Gerencia" or request.user|has_group:"admin" %} 
                 <!-- ver solo el supervisor del area aqui -->
+      <li class="nav-item">
+        <a href="/../Dashboard/PremiosComercial" class="nav-link {% if 'PremiosComercial' in request.path %} active {% endif %}">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Premios Comercial</p>
+          <span class="badge badge-danger right">New</span>
+        </a>
+      </li>
       {% endif %}
       {% if request.user|has_group:"Gerencia" or request.user|has_group:"Gerencia_Adm" or request.user|has_group:"admin" %}
                 <!-- accesos del area aqui -->

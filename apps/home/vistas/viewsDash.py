@@ -110,5 +110,10 @@ def PromocionesEcommerce(request):
     dir_iframe = DIR_PBI['PromocionesEcommerce']
     return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
-
+# Gerencia
+@login_required(login_url="/login/")
+def PremiosComercial(request):
+    Nombre=''
+    dir_iframe = DIR_PBI['PremiosComercial']
+    return render(request,'home/PlantillaDash_PBI.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
 
