@@ -48,6 +48,7 @@ DIR_REPORTES = {
     'Auditoria_Ecommerce': 'http://app.xl.com.ar:8080/ecommerce-auditoria/',
     'Auditoria_Prisma': 'http://app.xl.com.ar:8080/ecommerce/auditoriaPrisma/',
     'Segmentacion_clientes':'http://192.168.0.143:8080/ecommerce/segmentacion/segmentacionDeClientes.php',
+    'TableroDeControl':'http://app.xl.com.ar:8080/ecommerce/tableroControl.php',
     # Administracion
     'VentasXmedio_pago':'http://192.168.0.143:8080/administracion/controlSucursales/resumenVentas.php',
     'consultaGastos':'http://192.168.0.143:8080/administracion/contabilidad/consultaGastos.php',

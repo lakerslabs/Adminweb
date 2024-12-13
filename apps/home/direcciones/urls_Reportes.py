@@ -42,6 +42,7 @@ urlpatterns = [
             path('Auditoria_Ecommerce', views.Auditoria_Ecommerce, name='Reportes'),
             path('Auditoria_Prisma', views.Auditoria_Prisma, name='Reportes'),
             path('Segmentacion_clientes', views.Segmentacion_clientes, name='Reportes'),
+            path('TableroDeControl', views.TableroDeControl, name='Reportes'),
         # Gerencia
             path('DetalleRemitos599/<str:UserName>', views.DetalleRemitos599, name='Reportes'),
             path('ChequesRecibidos/<str:UserName>', views.ChequesRecibidos, name='Reportes'),

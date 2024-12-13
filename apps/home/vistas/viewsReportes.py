@@ -126,6 +126,13 @@ def Tracking_pedidos_mayoristas(request):
 
 
 # Ecommerce
+
+@login_required(login_url="/login/")
+def TableroDeControl(request):
+    Nombre=''
+    dir_iframe = DIR_REPORTES['TableroDeControl']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 @login_required(login_url="/login/")
 def Tracking_Ecommerce(request):
     Nombre=''
