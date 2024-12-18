@@ -110,6 +110,7 @@ DIR_HERAMIENTAS = {
     'RelacionesCtaCont':'http://192.168.0.143:8080/administracion/contabilidad/gestionRelacionesCuenta.php',
     'CargaContratosFr':'http://192.168.0.143:8080/administracion/impuestos/alquileresFranquicias/cargaContratosAlquileres.php',
     'CargaFacturasSuc':'http://192.168.0.143:8080/administracion/controlSucursales/cargaFacturaSucursales.php',
+    'EgresosCajaTesoreria':'http://192.168.0.143:8080/administracion/tesoreria/cargaGastos.php',
     # RRHH
     'adminEmpleados':'http://192.168.0.143:8080/administracion/recursosHumanos/controlHorarios/controlHorario.php',
     'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores/altaVendedores.php',
