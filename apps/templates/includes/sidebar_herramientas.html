@@ -238,7 +238,7 @@
     </li>
 
     {% endif %}
-    {% if request.user|has_group:"Administracion" or request.user|has_group:"AdministracionSup" or request.user|has_group:"admin" or recuest.userid == 70 %}
+    {% if request.user|has_group:"Administracion" or request.user|has_group:"AdministracionSup" or request.user|has_group:"admin" or request.user|has_group:"Tesoreria" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/EgresosCajaTesoreria"
         class="nav-link {% if 'EgresosCajaTesoreria' in request.path %} active {% endif %}">
