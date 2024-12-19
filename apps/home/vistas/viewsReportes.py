@@ -107,7 +107,7 @@ def Stock_Sucursales(request):
 def AnalisisProductos(request):
     Nombre=''
     dir_iframe = DIR_REPORTES['AnalisisProductos']
-    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+    return redirect(dir_iframe)
 
 @login_required(login_url="/login/")#---> Discontinuado
 def Stock_central(request):
