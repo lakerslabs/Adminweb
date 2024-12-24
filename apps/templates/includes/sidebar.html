@@ -1,5 +1,6 @@
 
 {% load has_group %}
+{% with user=request.user %}
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -12,10 +13,9 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
           <a href="{% url 'logout' %}" class="d-block text-warning">
-            {{ request.user.username|upper }}
+            {{ user.username|upper }}
           </a>
-          <a></a>
-            <a href="/admin/" class="fas fa-user-cog text-succes"> - Admin</a>
+          <a href="/admin/" class="fas fa-user-cog text-succes"> - Admin</a>
         </div>
       </div>
       <!-- SidebarSearch Form -->
@@ -36,10 +36,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           {% include 'includes/sidebar_Dashboard.html' %}          
-          {% if request.user|has_group:"admin" %}
-          {% include 'includes/sidebar_reportesAdmin.html' %}
+          {% if user|has_group:"admin" %}
+            {% include 'includes/sidebar_reportesAdmin.html' %}
           {% else %}
-          {% include 'includes/sidebar_reportes.html' %}
+            {% include 'includes/sidebar_reportes.html' %}
           {% endif %}
           {% include 'includes/sidebar_herramientas.html' %}
           <li class="nav-header">EXTRAS</li>
@@ -52,5 +52,6 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  {% endwith %}
 
   
