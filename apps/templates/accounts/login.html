@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="/static/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css">
 
 {% endblock stylesheets %}
 
@@ -61,15 +63,6 @@
             </div>
           </div>
           <div class="row">
-            <!-- <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-                <label for="remember">
-                  Recuérdame
-                </label>
-              </div>
-            </div> -->
-            <!-- /.col -->
             <div class="col-4">
               <button type="submit" name="login" class="btn btn-primary btn-block">Iniciar</button>
             </div>
@@ -80,10 +73,10 @@
         <br /><br />
 
         <div class="text-center">
-            <!-- No eres miembro? <a href="{% url 'register' %}" class="text-center">Registrate</a> -->
+            No eres miembro? <a href="{% url 'register' %}" class="text-center">Registrate</a>
             <br />
             <br />
-            &copy; ColorLib 
+            © ColorLib 
             <a target="_blank" rel="noopener noreferrer"
                href=""><b>AS1DO</b></a> 
             - coded by <a target="_blank" rel="noopener noreferrer" href="">Eduardo.B</a>.
@@ -104,5 +97,35 @@
   <script src="/static/assets/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Check for the registered parameter in the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const registered = urlParams.get('registered');
+  
+      if (registered === 'true') {
+        // Display SweetAlert2 popup
+        Swal.fire({
+          title: 'Registro exitoso!',
+          text: 'Su cuenta ha sido creada exitosamente.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      }
+
+      {% if messages %}
+        {% for message in messages %}
+            Swal.fire({
+              title: '{{ message }}',
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            })
+        {% endfor %}
+      {% endif %}
+    });
+  </script>
 
 {% endblock javascripts %}

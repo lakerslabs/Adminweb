@@ -7,7 +7,7 @@ Copyright (c) 2019 - present AppSeed.us
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
-
+from django.contrib import messages
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -28,14 +28,16 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect(meta)
+                if meta is not None:
+                    return redirect(meta)
+                else:
+                    return redirect("/")
             else:
                 msg = 'Invalid credentials'
         else:
             msg = 'Error validating the form'
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
-
 
 def register_user(request):
     msg = None
@@ -49,10 +51,11 @@ def register_user(request):
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
 
-            msg = 'User created - please <a href="/login?next=/">login</a>.'
-            success = True
-
-            # return redirect("/login/")
+            # Usar messages framework para un mensaje flash
+            messages.success(request, 'User created successfully!')
+            
+            # Redireccionar a login con un flag para mostrar SweetAlert2
+            return redirect("/login?next=/")
 
         else:
             msg = 'Form is not valid'
