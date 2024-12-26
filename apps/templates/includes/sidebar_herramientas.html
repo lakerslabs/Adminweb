@@ -1,4 +1,5 @@
 {% load has_group %} <!-- \apps\home\templatetags\has_group.py -->
+{% with user_groups=request.user|get_user_groups %}
 <li class="nav-item {% if 'Herramientas' in request.path %} menu-open {% endif %}">
   <a href="#" class="nav-link {% if 'Herramientas' in request.path %} active {% endif %}">
     <i class="nav-icon fas fa-tools"></i>
@@ -10,7 +11,7 @@
   </a>
   <ul class="nav nav-treeview">
     <!-- RRHH -->
-    {% if has_group|has_any_group:"RRHH,admin" %}
+    {% if request.user|has_any_group:"RRHH,admin" %}
     <li class="nav-item">
       <a href="/../Herramientas/adminEmpleados" class="nav-link {% if '/adminEmpleados' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
@@ -20,7 +21,7 @@
     </li>
     {% endif %}  
     <!-- RRHH compartido -->
-    {% if has_group|has_any_group:"admin,Comercial_sup,RRHH" %}
+    {% if request.user|has_any_group:"admin,Comercial_sup,RRHH" %}
     <li class="nav-item">
       <a href="/../Herramientas/altaVendedores" class="nav-link {% if '/altaVendedores' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
@@ -41,11 +42,11 @@
     </li>
     {% endif %}    
     <!-- inicio Logistica -->
-    {% if has_group|has_any_group:"admin,Logistica_Sup" %}
+    {% if request.user|has_any_group:"admin,Logistica_Sup" %}
     
 
     {% endif %}
-    {% if has_group|has_any_group:"admin,Logistica_Sup,Logistica" %}
+    {% if request.user|has_any_group:"admin,Logistica_Sup,Logistica" %}
     
     <li class="nav-item">
       <a href="/../Herramientas/Gestion_guias_mayoristas"
@@ -65,10 +66,10 @@
     <!-- Fin Logistica -->
 
     <!-- inicio 	Abastecimiento -->
-    {% if has_group|has_any_group:"admin,Abastecimiento_Sup" %}
+    {% if request.user|has_any_group:"admin,Abastecimiento_Sup" %}
     <!-- ver solo el supervisor del area aqui -->
     {% endif %}
-    {% if has_group|has_any_group:"admin,Abastecimiento_Sup,Abastecimiento" %}
+    {% if request.user|has_any_group:"admin,Abastecimiento_Sup,Abastecimiento" %}
 
     <!-- accesos del area aqui -->
     <li class="nav-item">
@@ -137,7 +138,7 @@
     <!-- Fin 	Abastecimiento -->
 
     <!-- inicio 	Administracion -->
-    {% if has_group|has_any_group:"admin,AdministracionSup" %}
+    {% if request.user|has_any_group:"admin,AdministracionSup" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/Controlgastos"
         class="nav-link {% if 'Controlgastos' in request.path %} active {% endif %}">
@@ -157,7 +158,7 @@
 
     
     {% endif %}
-    {% if has_group|has_any_group:"admin,AdministracionSup,Administracion" %}
+    {% if request.user|has_any_group:"admin,AdministracionSup,Administracion" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/ControlGastosSupervision"
         class="nav-link {% if 'ControlGastosSupervision' in request.path %} active {% endif %}">
@@ -241,7 +242,7 @@
     </li>
 
     {% endif %}
-    {% if has_group|has_any_group:"admin,AdministracionSup,Administracion,Tesoreria" %}
+    {% if request.user|has_any_group:"admin,AdministracionSup,Administracion,Tesoreria" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/EgresosCajaTesoreria"
         class="nav-link {% if 'EgresosCajaTesoreria' in request.path %} active {% endif %}">
@@ -252,7 +253,7 @@
     </li>
     {% endif %}
     <!-- Administracion_CE   ***Comercio Exterior*** -->
-    {% if has_group|has_any_group:"admin,AdministracionSup,Administracion_CE" %}
+    {% if request.user|has_any_group:"admin,AdministracionSup,Administracion_CE" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/Cargarcontenedor"
         class="nav-link {% if 'Cargarcontenedor' in request.path %} active {% endif %}">
@@ -273,10 +274,10 @@
     <!-- Fin 	Administracion -->
 
     <!-- inicio 	e-commerce -->
-    {% if has_group|has_any_group:"admin,e-commerce_sup" %}
+    {% if request.user|has_any_group:"admin,e-commerce_sup" %}
     <!-- ver solo el supervisor del area aqui -->
     {% endif %}
-    {% if has_group|has_any_group:"admin,e-commerce_sup,e-commerce" %}
+    {% if request.user|has_any_group:"admin,e-commerce_sup,e-commerce" %}
     <!-- accesos del area aqui -->
     <li class="nav-item">
       <a href="/../Herramientas/Control_pedidos"
@@ -320,7 +321,7 @@
     <!-- Fin 	e-commerce -->
 
     <!-- inicio 	Gerencia -->
-    {% if has_group|has_any_group:"admin,Gerencia" %}
+    {% if request.user|has_any_group:"admin,Gerencia" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/rendircobranzas/{{ request.user.username }}"
         class="nav-link {% if 'rendircobranzas' in request.path %} active {% endif %}">
@@ -346,7 +347,7 @@
       </a>
     </li>
     {% endif %}
-    {% if has_group|has_any_group:"admin,Gerencia,Gerencia_Adm" %}
+    {% if request.user|has_any_group:"admin,Gerencia,Gerencia_Adm" %}
     <li class="nav-item">
       <a href="http:/../Herramientas/GestionarCobro/{{ request.user.username }}"
         class="nav-link {% if 'GestionarCobro' in request.path %} active {% endif %}">
@@ -359,7 +360,7 @@
     <!-- Fin 	Gerencia -->
 
     <!-- inicio 	Comercial -->
-    {% if has_group|has_any_group:"admin,Comercial_sup" or request.user.id == 20 %}
+    {% if request.user|has_any_group:"admin,Comercial_sup" or request.user.id == 20 %}
     <li class="nav-item">
       <a href="/../Herramientas/AdministrarCuotas"
         class="nav-link {% if 'AdministrarCuotas' in request.path %} active {% endif %}">
@@ -369,7 +370,7 @@
       </a>
     </li>
     {% endif %}
-    {% if has_group|has_any_group:"admin,Comercial_may,Comercial_fr,Comercial_suc,Comercial_sup" %}
+    {% if request.user|has_any_group:"admin,Comercial_may,Comercial_fr,Comercial_suc,Comercial_sup" %}
     <!-- accesos del area aqui -->
     <li class="nav-item">
       <a href="/../Herramientas/Ventas_sucursales"
@@ -379,7 +380,7 @@
       </a>
     </li>
     {% endif %}
-    {% if has_group|has_any_group:"admin,Comercial_sup,Comercial_suc" %}
+    {% if request.user|has_any_group:"admin,Comercial_sup,Comercial_suc" %}
     <li class="nav-item">
       <a href="/../Herramientas/GestionCategoriaProductos"
         class="nav-link {% if 'GestionCategoriaProductos' in request.path %} active {% endif %}">
@@ -388,10 +389,10 @@
       </a>
     </li>
     {% endif %}
-    {% if has_group|has_any_group:"admin,Comercial_sup,Comercial_fr" %}
+    {% if request.user|has_any_group:"admin,Comercial_sup,Comercial_fr" %}
     <!-- accesos del area aqui -->
     {% endif %}
-    {% if has_group|has_any_group:"admin,Comercial_sup,Comercial_may" %}
+    {% if request.user|has_any_group:"admin,Comercial_sup,Comercial_may" %}
     <!-- accesos del area aqui -->
     <li class="nav-item">
       <a href="/../Herramientas/Adm_Pedido" class="nav-link {% if 'Adm_Pedido' in request.path %} active {% endif %}">
@@ -401,7 +402,7 @@
       </a>
     </li>
     {% endif %}
-    {% if has_group|has_any_group:"admin,Gerencia_Adm" %}
+    {% if request.user|has_any_group:"admin,Gerencia_Adm" %}
     <!-- accesos del area aqui -->
     <li class="nav-item">
       <a href="/../Herramientas/AdministrarInternos" class="nav-link {% if 'AdministrarInternos' in request.path %} active {% endif %}">
@@ -414,7 +415,7 @@
     <!-- Fin 	Comercial -->
 
     <!-- inicio 	Tesoreria -->
-    {% if has_group|has_any_group:"admin,Tesoreria" %}
+    {% if request.user|has_any_group:"admin,Tesoreria" %}
     <!-- accesos del area aqui -->
     <li class="nav-item">
       <a href="/../Herramientas/ControlDeEfectivo" class="nav-link {% if 'ControlDefectivo' in request.path %} active {% endif %}">
@@ -431,3 +432,4 @@
   </ul>
 
 </li>
+{% endwith %}
