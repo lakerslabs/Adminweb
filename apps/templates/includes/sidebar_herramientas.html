@@ -418,7 +418,7 @@
     {% if request.user|has_any_group:"admin,Tesoreria" %}
     <!-- accesos del area aqui -->
     <li class="nav-item">
-      <a href="/../Herramientas/ControlDeEfectivo" class="nav-link {% if 'ControlDefectivo' in request.path %} active {% endif %}">
+      <a href="/../Herramientas/ControlDeEfectivo" class="nav-link {% if 'ControlDeEfectivo' in request.path %} active {% endif %}">
         <i class="far fa-circle nav-icon"></i>
         <p>Control De efectivo</p>
         <span class="badge badge-info right">New</span>

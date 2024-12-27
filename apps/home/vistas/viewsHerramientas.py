@@ -667,9 +667,9 @@ def adminEmpleados(request):
 # Tesoreria
 
 @login_required(login_url="/login/")
-def ControlDefectivo(request):
+def ControlDeEfectivo(request):
     Nombre = ''
-    dir_iframe = DIR_HERAMIENTAS['ControlDefectivo'] #+ UserName
+    dir_iframe = DIR_HERAMIENTAS['ControlDeEfectivo'] #+ UserName
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
     # return redirect(dir_iframe)
 

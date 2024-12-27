@@ -117,7 +117,7 @@ DIR_HERAMIENTAS = {
     'listarGrupos':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/listarGrupos.php',
     'gestionarVendedores':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/gestionarVendedores.php',
     # Tesoreria
-    'ControlDefectivo':'http://192.168.0.143:8080/administracion/controlSucursales/controlRecepcionEfectivo.php',
+    'ControlDeEfectivo':'http://192.168.0.143:8080/administracion/controlSucursales/controlRecepcionEfectivo.php',
 }
 
 DIR_EXTRAS = {

@@ -77,7 +77,7 @@ urlpatterns = [
     path('gestionarVendedores', views.gestionarVendedores, name='Herramientas'),
 
     # Tesoreria
-    path('ControlDefectivo', views.ControlDefectivo, name='Herramientas'),
+    path('ControlDeEfectivo', views.ControlDeEfectivo, name='Herramientas'),
 
 
 ]
