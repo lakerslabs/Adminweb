@@ -63,6 +63,7 @@ DIR_REPORTES = {
     'ChequesRecibidos':'http://192.168.0.143:8080/sistemas/599/reportedecheques.php?userName=',
     # RRHH
     'AsistenciasSuc':'http://192.168.0.143:8080/sistemas/fichaje/reporteDeAsistencias.php',
+    'ReporteAnticipos':'http://app.xl.com.ar:8080/administracion/recursosHumanos/anticipoSueldos/reporteAnticipos.php',
 
 }
 
@@ -116,6 +117,9 @@ DIR_HERAMIENTAS = {
     'altaVendedores':'http://192.168.0.143:8080/administracion/recursoshumanos/altaVendedores/altaVendedores.php',
     'listarGrupos':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/listarGrupos.php',
     'gestionarVendedores':'http://192.168.0.143:8080/administracion/recursosHumanos/altaVendedores/gestionarVendedores.php',
+    'CargaAnticipoGrupo':'http://app.xl.com.ar:8080/administracion/recursosHumanos/anticipoSueldos/cargaAnticipoGrupo.php',
+    'CargaAnticipo':'http://app.xl.com.ar:8080/administracion/recursosHumanos/anticipoSueldos/cargaAnticipo.php',
+    
     # Tesoreria
     'ControlDeEfectivo':'http://192.168.0.143:8080/administracion/controlSucursales/controlRecepcionEfectivo.php',
 }

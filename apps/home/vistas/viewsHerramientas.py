@@ -32,6 +32,14 @@ from apps.home.SQL.Sql_Tango import validar_articulo,obtenerInformacionArticulo
 
 
 # Logistica
+
+
+@login_required(login_url="/login/")
+def CargaAnticipoGrupo(request):
+    Nombre = 'Carga de anticipos'
+    dir_iframe = DIR_HERAMIENTAS['CargaAnticipoGrupo']
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre})
+
 @login_required(login_url="/login/")
 def registro_turno(request):
     if request.method == 'POST':
@@ -637,6 +645,13 @@ def EditarContenedor(request):
     return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre })
 
 # RRHH
+
+@login_required(login_url="/login/")
+def CargaAnticipo(request):
+    Nombre = 'Carga de anticipos'
+    dir_iframe = DIR_HERAMIENTAS['CargaAnticipo']
+    return render(request, 'home/PlantillaHerramientas.html', {'dir_iframe': dir_iframe,'Nombre':Nombre})
+
 @login_required(login_url="/login/")
 def altaVendedores(request):
     Nombre = ''

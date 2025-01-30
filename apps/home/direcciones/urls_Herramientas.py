@@ -23,6 +23,8 @@ urlpatterns = [
     path('eliminar/<int:turno_id>', views.eliminar_turno, name='eliminar_turno'),
     path('ver/<int:turno_id>', views.ver_turno, name='ver_turno'),
     path('editar/<int:turno_id>', views.editar_turno, name='editar_turno'),
+    path("cargaAnticipoGrupo", views.CargaAnticipoGrupo, name="Herramientas"),
+    
     # Abastecimiento
     path('Stock_excluido', views.Stock_excluido, name='Herramientas'),
     path('Carga_de_orden', views.Carga_de_orden, name='Herramientas'),
@@ -75,6 +77,7 @@ urlpatterns = [
     path('altaVendedores', views.altaVendedores, name='Herramientas'),
     path('grupoVendedores', views.listarGrupos, name='Herramientas'),
     path('gestionarVendedores', views.gestionarVendedores, name='Herramientas'),
+    path('cargaAnticipo', views.CargaAnticipo, name='Herramientas'),
 
     # Tesoreria
     path('ControlDeEfectivo', views.ControlDeEfectivo, name='Herramientas'),

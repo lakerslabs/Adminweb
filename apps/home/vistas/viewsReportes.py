@@ -18,6 +18,13 @@ from consultasLakersBis.filters import *
 from consultasTango.models import StockCentral,SjStockDisponibleEcommerce
 
 # RRHH
+
+@login_required(login_url="/login/")
+def reporteAnticipos(request):
+    Nombre='Reporte de Anticipos'
+    dir_iframe = DIR_REPORTES['ReporteAnticipos']
+    return render(request,'home/PlantillaReportes.html',{'dir_iframe':dir_iframe,'Nombre':Nombre})
+
 @login_required(login_url="/login/")
 def AsistenciasSuc(request):
     Nombre=''
