@@ -128,7 +128,15 @@
       Internos
       <!-- <span class="badge badge-info right">2</span> -->
     </p>
-    <span class="badge badge-warning right">New</span>
+    <!-- <span class="badge badge-warning right">New</span> -->
   </a>
 </li>
-  
+{% if not request.user|has_group:"Gerencia" or not request.user|has_group:"soporteExt" %}
+  <li class="nav-item">
+    <a href="/../Herramientas/cargaAnticipo" class="nav-link {% if '/cargaAnticipo' in request.path %} active {% endif %}">
+      <i class="far fa-circle nav-icon"></i>
+      <p>Anticipo de Sueldo</p>
+      <span class="badge badge-info right">New</span>
+    </a>
+  </li>
+{% endif %}  
